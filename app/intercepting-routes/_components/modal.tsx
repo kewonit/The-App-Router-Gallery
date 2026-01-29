@@ -55,19 +55,19 @@ export function Modal({ children }: { children: React.ReactNode }) {
     <div
       ref={overlayRef}
       onClick={handleOverlayClick}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm dark:bg-black/80"
       role="dialog"
       aria-modal="true"
       aria-label="Photo modal"
     >
       <div
         ref={dialogRef}
-        className="relative m-4 max-h-[90vh] w-full max-w-2xl overflow-auto rounded-xl border border-gray-800 bg-gray-950 shadow-2xl"
+        className="relative m-4 max-h-[90vh] w-full max-w-2xl overflow-auto rounded-xl border border-gray-300 bg-white shadow-2xl dark:border-gray-800 dark:bg-gray-950"
       >
         {/* Close button */}
         <button
           onClick={onDismiss}
-          className="absolute top-3 right-3 z-10 flex size-8 items-center justify-center rounded-full bg-gray-900/80 text-gray-400 transition-colors hover:bg-gray-800 hover:text-gray-200"
+          className="absolute top-3 right-3 z-10 flex size-8 items-center justify-center rounded-full bg-gray-200/80 text-gray-600 transition-colors hover:bg-gray-300 hover:text-gray-900 dark:bg-gray-900/80 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
           aria-label="Close modal"
         >
           <svg

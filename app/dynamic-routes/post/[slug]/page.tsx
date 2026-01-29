@@ -65,11 +65,11 @@ export default async function PostPage({
     <Boundary label="post/[slug]/page.tsx" animateRerendering={false}>
       <div className="flex flex-col gap-6">
         {/* Params display */}
-        <div className="flex flex-col gap-2 rounded-lg border border-blue-900/50 bg-blue-950/20 p-4">
-          <h3 className="text-sm font-medium text-blue-400">
+        <div className="flex flex-col gap-2 rounded-lg border border-blue-300/50 bg-blue-100/50 p-4 dark:border-blue-900/50 dark:bg-blue-950/20">
+          <h3 className="text-sm font-medium text-blue-700 dark:text-blue-400">
             Single Segment: [slug]
           </h3>
-          <pre className="text-xs text-gray-400">
+          <pre className="text-xs text-gray-600 dark:text-gray-400">
             <code>params.slug = "{slug}"</code>
           </pre>
         </div>
@@ -77,17 +77,21 @@ export default async function PostPage({
         {/* Post content */}
         <article className="flex flex-col gap-4">
           <header>
-            <h1 className="text-2xl font-bold text-gray-100">{post.title}</h1>
-            <time className="text-sm text-gray-500">{post.date}</time>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              {post.title}
+            </h1>
+            <time className="text-sm text-gray-600 dark:text-gray-500">
+              {post.date}
+            </time>
           </header>
 
-          <p className="text-gray-400">{post.content}</p>
+          <p className="text-gray-600 dark:text-gray-400">{post.content}</p>
 
           <div className="flex flex-wrap gap-2">
-            <span className="rounded bg-gray-800 px-2 py-1 text-xs text-gray-400">
+            <span className="rounded bg-gray-200 px-2 py-1 text-xs text-gray-600 dark:bg-gray-800 dark:text-gray-400">
               Slug: {slug}
             </span>
-            <span className="rounded bg-blue-900/50 px-2 py-1 text-xs text-blue-300">
+            <span className="rounded bg-blue-100 px-2 py-1 text-xs text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
               Type: Single Segment [slug]
             </span>
           </div>
@@ -97,7 +101,7 @@ export default async function PostPage({
         <div className="flex flex-wrap gap-3">
           <Link
             href="/dynamic-routes"
-            className="rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-700"
+            className="rounded-lg bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
           >
             ← Back to Overview
           </Link>
@@ -108,7 +112,7 @@ export default async function PostPage({
               <Link
                 key={p.slug}
                 href={`/dynamic-routes/post/${p.slug}`}
-                className="rounded-lg border border-gray-800 px-4 py-2 text-sm text-gray-400 transition-colors hover:border-gray-700 hover:text-gray-300"
+                className="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-600 transition-colors hover:border-gray-400 hover:text-gray-900 dark:border-gray-800 dark:text-gray-400 dark:hover:border-gray-700 dark:hover:text-gray-300"
               >
                 {p.title}
               </Link>

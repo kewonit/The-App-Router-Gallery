@@ -4,38 +4,21 @@ import { TodoItem } from './todo-item';
 
 export async function TodoList() {
   const todos = await getTodos();
-
   const completedCount = todos.filter((t) => t.completed).length;
-  const pendingCount = todos.length - completedCount;
 
   return (
-    <Boundary
-      label="<TodoList> (Server Component)"
-      size="small"
-      animateRerendering={false}
-    >
+    <Boundary label="TodoList (async)" size="small">
       <div className="flex flex-col gap-4">
-        {/* Stats */}
-        <div className="flex items-center gap-4 text-sm">
-          <span className="text-gray-300">
-            Total:{' '}
-            <span className="font-mono text-gray-500">{todos.length}</span>
+        <h2 className="text-xl font-medium text-gray-700 dark:text-gray-300">
+          Todos{' '}
+          <span className="font-mono tracking-tighter text-gray-500 dark:text-gray-600">
+            ({completedCount}/{todos.length})
           </span>
-          <span className="text-gray-300">
-            Pending:{' '}
-            <span className="font-mono text-yellow-500">{pendingCount}</span>
-          </span>
-          <span className="text-gray-300">
-            Completed:{' '}
-            <span className="font-mono text-green-500">{completedCount}</span>
-          </span>
-        </div>
+        </h2>
 
-        {/* Todo Items */}
         {todos.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-gray-800 py-12">
-            <div className="text-4xl">📝</div>
-            <p className="text-gray-500">No todos yet. Add one above!</p>
+          <div className="rounded-lg bg-gray-100 p-8 text-center text-gray-500 dark:bg-gray-900/50 dark:text-gray-600">
+            No todos yet
           </div>
         ) : (
           <div className="flex flex-col gap-2">
@@ -51,30 +34,17 @@ export async function TodoList() {
 
 export function TodoListSkeleton() {
   return (
-    <Boundary
-      label="<TodoList> (Loading...)"
-      size="small"
-      color="blue"
-      animateRerendering={false}
-    >
+    <Boundary label="TodoList (loading)" size="small" color="blue">
       <div className="flex flex-col gap-4">
-        {/* Stats skeleton */}
-        <div className="flex items-center gap-4">
-          <div className="h-4 w-20 animate-pulse rounded bg-gray-800" />
-          <div className="h-4 w-24 animate-pulse rounded bg-gray-800" />
-          <div className="h-4 w-28 animate-pulse rounded bg-gray-800" />
-        </div>
-
-        {/* Item skeletons */}
+        <div className="h-6 w-32 animate-pulse rounded bg-gray-200 dark:bg-gray-800" />
         <div className="flex flex-col gap-2">
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="flex items-center gap-3 rounded-lg border border-gray-800 bg-gray-900/50 p-4"
+              className="flex items-center gap-3 rounded-lg bg-gray-100 p-4 dark:bg-gray-900/50"
             >
-              <div className="size-5 animate-pulse rounded bg-gray-700" />
-              <div className="h-4 flex-1 animate-pulse rounded bg-gray-800" />
-              <div className="h-8 w-16 animate-pulse rounded bg-gray-800" />
+              <div className="size-5 animate-pulse rounded bg-gray-300 dark:bg-gray-700" />
+              <div className="h-4 flex-1 animate-pulse rounded bg-gray-200 dark:bg-gray-800" />
             </div>
           ))}
         </div>

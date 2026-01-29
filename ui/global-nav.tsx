@@ -2,7 +2,8 @@
 
 import { type Demo, type DemoCategory } from '#/lib/db';
 import { LinkStatus } from '#/ui/link-status';
-import { NextLogoDark } from '#/ui/logo-next';
+import { NextLogoDark, NextLogoLight } from '#/ui/logo-next';
+import { ThemeToggle } from '#/ui/theme-toggle';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -15,47 +16,59 @@ export function GlobalNav({ items }: { items: DemoCategory[] }) {
 
   return (
     <>
-      <div className="flex h-14 items-center px-4 py-4 lg:h-auto">
+      <div className="flex h-14 items-center justify-between px-4 py-4 lg:h-auto">
         <Link
           href="/"
-          className="group flex w-full items-center gap-x-2.5"
+          className="group flex items-center gap-x-2.5"
           onClick={close}
         >
-          <div className="size-9 rounded-full border-2 border-gray-800 group-hover:border-gray-700">
-            <NextLogoDark />
+          <div className="size-9 rounded-full border-2 border-gray-300 group-hover:border-gray-400 dark:border-gray-800 dark:group-hover:border-gray-700">
+            <span className="hidden dark:block">
+              <NextLogoDark />
+            </span>
+            <span className="block dark:hidden">
+              <NextLogoLight />
+            </span>
           </div>
 
-          <h3 className="text-lg font-medium text-gray-200 group-hover:text-white">
+          <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-700 dark:text-gray-200 dark:group-hover:text-white">
             Playground
           </h3>
         </Link>
+        <div className="hidden lg:block">
+          <ThemeToggle />
+        </div>
       </div>
       <button
         type="button"
         className="group absolute top-0 right-0 flex h-14 items-center gap-x-2 px-4 lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="font-medium text-gray-100 group-hover:text-gray-400">
+        <div className="font-medium text-gray-900 group-hover:text-gray-600 dark:text-gray-100 dark:group-hover:text-gray-400">
           Menu
         </div>
         {isOpen ? (
-          <XMarkIcon className="block w-6 text-gray-400" />
+          <XMarkIcon className="block w-6 text-gray-600 dark:text-gray-400" />
         ) : (
-          <Bars3Icon className="block w-6 text-gray-400" />
+          <Bars3Icon className="block w-6 text-gray-600 dark:text-gray-400" />
         )}
       </button>
 
       <div
         className={clsx('overflow-y-auto lg:static lg:block', {
-          'fixed inset-x-0 top-14 bottom-0 mt-px bg-black': isOpen,
+          'fixed inset-x-0 top-14 bottom-0 mt-px bg-white dark:bg-black':
+            isOpen,
           hidden: !isOpen,
         })}
       >
         <nav className="space-y-6 px-2 pt-5 pb-24">
+          <div className="px-3 lg:hidden">
+            <ThemeToggle />
+          </div>
           {items.map((section) => {
             return (
               <div key={section.name}>
-                <div className="mb-2 px-3 font-mono text-xs font-semibold tracking-wide text-gray-600 uppercase">
+                <div className="mb-2 px-3 font-mono text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-600">
                   <div>{section.name}</div>
                 </div>
 
@@ -108,10 +121,11 @@ function NavItem({
       onClick={close}
       href={`/${item.slug}`}
       className={clsx(
-        'flex justify-between rounded-md px-3 py-2 text-sm font-medium hover:text-gray-300',
+        'flex justify-between rounded-md px-3 py-2 text-sm font-medium',
         {
-          'text-gray-400 hover:bg-gray-800': !isActive,
-          'text-white': isActive,
+          'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300':
+            !isActive,
+          'text-gray-900 dark:text-white': isActive,
         },
       )}
     >

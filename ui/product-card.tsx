@@ -30,7 +30,7 @@ export function ProductCard<E extends ElementType = 'div'>({
   const Component = as || 'div';
   return (
     <Component className="group flex flex-col gap-2.5" {...rest}>
-      <div className="overflow-hidden rounded-md bg-gray-900/50 p-8 group-hover:bg-gray-900">
+      <div className="overflow-hidden rounded-md bg-gray-100 p-8 group-hover:bg-gray-200 dark:bg-gray-900/50 dark:group-hover:bg-gray-900">
         <Image
           className={clsx(animateEnter && 'transition-enter')}
           src={`/shop/${product.image}`}
@@ -42,8 +42,8 @@ export function ProductCard<E extends ElementType = 'div'>({
       </div>
 
       <div className="flex flex-col gap-2">
-        <div className="h-2 w-4/5 rounded-full bg-gray-800" />
-        <div className="h-2 w-1/3 rounded-full bg-gray-800" />
+        <div className="h-2 w-4/5 rounded-full bg-gray-200 dark:bg-gray-800" />
+        <div className="h-2 w-1/3 rounded-full bg-gray-200 dark:bg-gray-800" />
       </div>
     </Component>
   );
@@ -54,17 +54,17 @@ export function ProductCardSkeleton() {
     <div className="group flex flex-col gap-2.5">
       <div
         className={clsx(
-          'aspect-square overflow-hidden rounded-md bg-gray-900/50',
+          'aspect-square overflow-hidden rounded-md bg-gray-100 dark:bg-gray-900/50',
           'relative before:absolute before:inset-0',
-          'before:bg-gradient-to-r before:from-transparent before:via-white/5 before:to-transparent',
+          'before:bg-gradient-to-r before:from-transparent before:via-gray-300/50 before:to-transparent dark:before:via-white/5',
           'before:translate-x-[-50%] before:opacity-0',
           'before:animate-shimmer',
         )}
       />
 
       <div className="flex flex-col gap-2">
-        <div className="h-2 w-4/5 rounded-full bg-gray-800" />
-        <div className="h-2 w-1/3 rounded-full bg-gray-800" />
+        <div className="h-2 w-4/5 rounded-full bg-gray-200 dark:bg-gray-800" />
+        <div className="h-2 w-1/3 rounded-full bg-gray-200 dark:bg-gray-800" />
       </div>
     </div>
   );
@@ -81,9 +81,9 @@ export function ProductList({
 }) {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="flex items-center gap-2 text-xl font-medium text-gray-300">
+      <h1 className="flex items-center gap-2 text-xl font-medium text-gray-700 dark:text-gray-300">
         <div>{title}</div>
-        <span className="font-mono tracking-tighter text-gray-600">
+        <span className="font-mono tracking-tighter text-gray-500 dark:text-gray-600">
           ({count})
         </span>
       </h1>
@@ -101,7 +101,9 @@ export function ProductListSkeleton({
 }) {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-xl font-medium text-gray-600">{title}</h1>
+      <h1 className="text-xl font-medium text-gray-500 dark:text-gray-600">
+        {title}
+      </h1>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {Array.from({ length: count }).map((_, i) => (
           <ProductCardSkeleton key={i} />

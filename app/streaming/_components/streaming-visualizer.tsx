@@ -68,14 +68,16 @@ export function StreamingVisualizer() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <h3 className="font-medium text-gray-200">Streaming Timeline</h3>
+        <h3 className="font-medium text-gray-700 dark:text-gray-200">
+          Streaming Timeline
+        </h3>
         <div className="flex items-center gap-3">
-          <span className="font-mono text-sm text-gray-400">
+          <span className="font-mono text-sm text-gray-600 dark:text-gray-400">
             {elapsed.toFixed(0)}ms
           </span>
           <button
             onClick={handleReset}
-            className="rounded bg-gray-700 px-3 py-1 text-xs font-medium text-gray-300 hover:bg-gray-600"
+            className="rounded bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
           >
             Reset
           </button>
@@ -83,18 +85,18 @@ export function StreamingVisualizer() {
       </div>
 
       {/* Progress bar */}
-      <div className="relative h-8 overflow-hidden rounded-lg bg-gray-800">
+      <div className="relative h-8 overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800">
         {/* Markers */}
         {timeline.slice(1).map((item) => (
           <div
             key={item.label}
-            className="absolute top-0 h-full w-px bg-gray-600"
+            className="absolute top-0 h-full w-px bg-gray-400 dark:bg-gray-600"
             style={{ left: `${(item.duration / maxDuration) * 100}%` }}
           >
             <div
               className={clsx(
                 'absolute -top-0.5 left-1/2 size-2 -translate-x-1/2 rounded-full transition-colors',
-                item.completed ? item.color : 'bg-gray-600',
+                item.completed ? item.color : 'bg-gray-400 dark:bg-gray-600',
               )}
             />
           </div>
@@ -117,14 +119,14 @@ export function StreamingVisualizer() {
             className={clsx(
               'flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium transition-all',
               item.completed
-                ? 'bg-gray-800 text-gray-300'
-                : 'bg-gray-900 text-gray-600',
+                ? 'bg-gray-200 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                : 'bg-gray-100 text-gray-500 dark:bg-gray-900 dark:text-gray-600',
             )}
           >
             <span
               className={clsx(
                 'size-2 rounded-full transition-colors',
-                item.completed ? item.color : 'bg-gray-700',
+                item.completed ? item.color : 'bg-gray-400 dark:bg-gray-700',
               )}
             />
             {item.label}
@@ -146,11 +148,13 @@ export function StreamingVisualizer() {
       </div>
 
       {/* Explanation */}
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-gray-600 dark:text-gray-500">
         Watch how components stream in progressively. The page shell renders
         immediately, then each component appears as its data becomes available.
         {elapsed >= 3000 && (
-          <span className="ml-1 text-green-400">All components loaded!</span>
+          <span className="ml-1 text-green-600 dark:text-green-400">
+            All components loaded!
+          </span>
         )}
       </p>
     </div>

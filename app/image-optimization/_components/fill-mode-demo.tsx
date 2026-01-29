@@ -12,12 +12,12 @@ export function FillModeDemo() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <h3 className="text-lg font-medium text-gray-200">
+        <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">
           Fill Mode with object-fit
         </h3>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-600 dark:text-gray-500">
           Use{' '}
-          <code className="rounded bg-gray-800 px-1 py-0.5 font-mono text-xs">
+          <code className="rounded bg-gray-200 px-1 py-0.5 font-mono text-xs dark:bg-gray-800">
             fill
           </code>{' '}
           prop when the image should fill its parent container. Combine with
@@ -43,20 +43,22 @@ export function FillModeDemo() {
               />
             </div>
             <div className="text-center">
-              <code className="text-sm font-medium text-gray-300">
+              <code className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 {option.value}
               </code>
-              <p className="text-xs text-gray-600">{option.description}</p>
+              <p className="text-xs text-gray-600 dark:text-gray-600">
+                {option.description}
+              </p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="flex flex-col gap-2 rounded-lg border border-gray-800 bg-gray-900/30 p-3">
-        <h4 className="text-sm font-medium text-gray-300">
+      <div className="flex flex-col gap-2 rounded-lg border border-gray-200 bg-gray-100/50 p-3 dark:border-gray-800 dark:bg-gray-900/30">
+        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">
           When to use fill mode
         </h4>
-        <ul className="flex flex-col gap-1 text-xs text-gray-500">
+        <ul className="flex flex-col gap-1 text-xs text-gray-600 dark:text-gray-500">
           <li className="flex items-center gap-2">
             <span className="size-1 rounded-full bg-orange-500" />
             Unknown image dimensions (user uploads, CMS content)
@@ -70,10 +72,12 @@ export function FillModeDemo() {
             Card layouts with consistent aspect ratios
           </li>
         </ul>
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-gray-600 dark:text-gray-500">
           <strong className="text-orange-400">Important:</strong> Parent element
           must have{' '}
-          <code className="rounded bg-gray-800 px-1">position: relative</code>{' '}
+          <code className="rounded bg-gray-200 px-1 dark:bg-gray-800">
+            position: relative
+          </code>{' '}
           for fill to work correctly.
         </p>
       </div>

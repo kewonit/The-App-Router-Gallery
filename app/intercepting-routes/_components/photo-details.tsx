@@ -11,7 +11,7 @@ export function PhotoDetails({
   return (
     <div className={`flex flex-col gap-4 ${isModal ? 'p-6 pt-12' : ''}`}>
       {/* Image */}
-      <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-900">
+      <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-900">
         <Image
           src={product.image}
           alt={product.name}
@@ -25,20 +25,24 @@ export function PhotoDetails({
       {/* Details */}
       <div className="flex flex-col gap-3">
         <div>
-          <h2 className="text-xl font-semibold text-gray-100">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
             {product.name}
           </h2>
-          <p className="text-sm text-gray-500">{product.category}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-500">
+            {product.category}
+          </p>
         </div>
 
-        <p className="text-sm text-gray-400">{product.description}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          {product.description}
+        </p>
 
         <div className="flex items-center gap-4">
-          <span className="text-lg font-bold text-green-400">
+          <span className="text-lg font-bold text-green-600 dark:text-green-400">
             ${product.price.toFixed(2)}
           </span>
           {product.originalPrice && (
-            <span className="text-sm text-gray-600 line-through">
+            <span className="text-sm text-gray-500 line-through dark:text-gray-600">
               ${product.originalPrice.toFixed(2)}
             </span>
           )}
@@ -49,7 +53,7 @@ export function PhotoDetails({
           {product.features.map((feature) => (
             <span
               key={feature}
-              className="rounded bg-gray-800 px-2 py-1 text-xs text-gray-400"
+              className="rounded bg-gray-200 px-2 py-1 text-xs text-gray-600 dark:bg-gray-800 dark:text-gray-400"
             >
               {feature}
             </span>
@@ -60,8 +64,8 @@ export function PhotoDetails({
         <div
           className={`mt-2 rounded-lg p-3 text-xs ${
             isModal
-              ? 'border border-cyan-900/50 bg-cyan-950/30 text-cyan-300'
-              : 'border border-violet-900/50 bg-violet-950/30 text-violet-300'
+              ? 'border border-cyan-300/50 bg-cyan-100/50 text-cyan-800 dark:border-cyan-900/50 dark:bg-cyan-950/30 dark:text-cyan-300'
+              : 'border border-violet-300/50 bg-violet-100/50 text-violet-800 dark:border-violet-900/50 dark:bg-violet-950/30 dark:text-violet-300'
           }`}
         >
           <strong>Render mode:</strong>{' '}

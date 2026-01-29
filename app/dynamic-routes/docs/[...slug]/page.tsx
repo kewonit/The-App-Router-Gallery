@@ -56,14 +56,14 @@ export default async function DocsPage({
     <Boundary label="docs/[...slug]/page.tsx" animateRerendering={false}>
       <div className="flex flex-col gap-6">
         {/* Params display */}
-        <div className="flex flex-col gap-2 rounded-lg border border-violet-900/50 bg-violet-950/20 p-4">
-          <h3 className="text-sm font-medium text-violet-400">
+        <div className="flex flex-col gap-2 rounded-lg border border-violet-300/50 bg-violet-100/50 p-4 dark:border-violet-900/50 dark:bg-violet-950/20">
+          <h3 className="text-sm font-medium text-violet-700 dark:text-violet-400">
             Catch-all: [...slug]
           </h3>
-          <pre className="text-xs text-gray-400">
+          <pre className="text-xs text-gray-600 dark:text-gray-400">
             <code>params.slug = {JSON.stringify(slug)}</code>
           </pre>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-600 dark:text-gray-500">
             Segments: {slug.length} • Path: /{path}
           </p>
         </div>
@@ -72,23 +72,25 @@ export default async function DocsPage({
         <nav className="flex flex-wrap items-center gap-2 text-sm">
           <Link
             href="/dynamic-routes"
-            className="text-gray-500 transition-colors hover:text-gray-300"
+            className="text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
           >
             Dynamic Routes
           </Link>
-          <span className="text-gray-700">/</span>
+          <span className="text-gray-400 dark:text-gray-700">/</span>
           <Link
             href="/dynamic-routes/docs/getting-started"
-            className="text-gray-500 transition-colors hover:text-gray-300"
+            className="text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
           >
             Docs
           </Link>
           {slug.map((segment, index) => (
             <span key={index} className="flex items-center gap-2">
-              <span className="text-gray-700">/</span>
+              <span className="text-gray-400 dark:text-gray-700">/</span>
               <span
                 className={
-                  index === slug.length - 1 ? 'text-gray-300' : 'text-gray-500'
+                  index === slug.length - 1
+                    ? 'text-gray-900 dark:text-gray-300'
+                    : 'text-gray-600 dark:text-gray-500'
                 }
               >
                 {segment}
@@ -100,15 +102,17 @@ export default async function DocsPage({
         {/* Content */}
         {doc ? (
           <article className="flex flex-col gap-4">
-            <h1 className="text-2xl font-bold text-gray-100">{doc.title}</h1>
-            <p className="text-gray-400">{doc.content}</p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              {doc.title}
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400">{doc.content}</p>
           </article>
         ) : (
-          <div className="rounded-lg border border-pink-900/50 bg-pink-950/20 p-6 text-center">
-            <h2 className="text-lg font-medium text-pink-300">
+          <div className="rounded-lg border border-pink-300/50 bg-pink-100/50 p-6 text-center dark:border-pink-900/50 dark:bg-pink-950/20">
+            <h2 className="text-lg font-medium text-pink-700 dark:text-pink-300">
               Documentation Not Found
             </h2>
-            <p className="mt-2 text-sm text-gray-400">
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               No documentation exists for path: /{path}
             </p>
           </div>
@@ -116,7 +120,7 @@ export default async function DocsPage({
 
         {/* Related docs */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-sm font-medium text-gray-400">
+          <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
             Other documentation pages:
           </h3>
           <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
@@ -127,12 +131,12 @@ export default async function DocsPage({
                 <Link
                   key={docPath}
                   href={`/dynamic-routes/docs/${docPath}`}
-                  className="rounded-lg border border-gray-800 bg-gray-900/30 p-3 transition-colors hover:border-gray-700"
+                  className="rounded-lg border border-gray-200 bg-gray-100/50 p-3 transition-colors hover:border-gray-300 dark:border-gray-800 dark:bg-gray-900/30 dark:hover:border-gray-700"
                 >
-                  <span className="text-sm font-medium text-gray-300">
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     {docInfo.title}
                   </span>
-                  <code className="mt-1 block text-xs text-gray-600">
+                  <code className="mt-1 block text-xs text-gray-500 dark:text-gray-600">
                     /docs/{docPath}
                   </code>
                 </Link>
@@ -143,7 +147,7 @@ export default async function DocsPage({
         {/* Navigation */}
         <Link
           href="/dynamic-routes"
-          className="inline-flex w-fit rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-700"
+          className="inline-flex w-fit rounded-lg bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
         >
           ← Back to Overview
         </Link>

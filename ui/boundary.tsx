@@ -30,13 +30,13 @@ export const Boundary = ({
     <div
       className={clsx('relative border', {
         'border-dashed': kind === 'dashed',
-        'border-gray-800': color === 'gray',
-        'border-pink-800': color === 'pink',
-        'border-blue-800': color === 'blue',
-        'border-cyan-800': color === 'cyan',
-        'border-violet-800': color === 'violet',
-        'border-orange-900': color === 'orange',
-        'border-red-900': color === 'red',
+        'border-gray-300 dark:border-gray-800': color === 'gray',
+        'border-pink-300 dark:border-pink-800': color === 'pink',
+        'border-blue-300 dark:border-blue-800': color === 'blue',
+        'border-cyan-300 dark:border-cyan-800': color === 'cyan',
+        'border-violet-300 dark:border-violet-800': color === 'violet',
+        'border-orange-300 dark:border-orange-900': color === 'orange',
+        'border-red-300 dark:border-red-900': color === 'red',
         'animate-[rerender_1s_ease-in-out_1] text-blue-600': animateRerendering,
         'animate-pulse': pulse,
       })}
@@ -101,9 +101,10 @@ const Label = ({
   return (
     <div
       className={clsx(
-        'px-1.5 font-mono leading-4 font-medium tracking-widest uppercase ring-6 ring-gray-950',
+        'px-1.5 font-mono leading-4 font-medium tracking-widest uppercase ring-6 ring-gray-50 dark:ring-gray-950',
         {
-          'bg-gray-800 text-gray-500': color === 'gray',
+          'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-500':
+            color === 'gray',
           'bg-pink-600 text-pink-200': color === 'pink',
           'bg-blue-600 text-blue-200': color === 'blue',
           'bg-cyan-500 text-cyan-100': color === 'cyan',

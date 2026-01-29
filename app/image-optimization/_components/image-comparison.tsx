@@ -2,22 +2,24 @@ export function ImageComparison() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <h3 className="text-lg font-medium text-gray-200">
+        <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">
           Optimization Benefits
         </h3>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-600 dark:text-gray-500">
           Compare Next.js Image component with native HTML img element.
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* Next.js Image */}
-        <div className="flex flex-col gap-3 rounded-lg border border-green-900/50 bg-green-950/20 p-4">
+        <div className="flex flex-col gap-3 rounded-lg border border-green-300/50 bg-green-100/50 p-4 dark:border-green-900/50 dark:bg-green-950/20">
           <div className="flex items-center gap-2">
             <div className="flex size-6 items-center justify-center rounded-full bg-green-600 text-xs font-bold text-white">
               ✓
             </div>
-            <h4 className="font-medium text-green-400">Next.js Image</h4>
+            <h4 className="font-medium text-green-700 dark:text-green-400">
+              Next.js Image
+            </h4>
           </div>
 
           <ul className="flex flex-col gap-2 text-sm">
@@ -41,8 +43,8 @@ export function ImageComparison() {
             </FeatureItem>
           </ul>
 
-          <pre className="mt-2 overflow-auto rounded bg-gray-900 p-3 text-xs">
-            <code className="text-green-300">{`import Image from 'next/image';
+          <pre className="mt-2 overflow-auto rounded bg-gray-100 p-3 text-xs dark:bg-gray-900">
+            <code className="text-green-700 dark:text-green-300">{`import Image from 'next/image';
 
 <Image
   src="/hero.jpg"
@@ -56,12 +58,14 @@ export function ImageComparison() {
         </div>
 
         {/* Native img */}
-        <div className="flex flex-col gap-3 rounded-lg border border-gray-800 bg-gray-900/30 p-4">
+        <div className="flex flex-col gap-3 rounded-lg border border-gray-200 bg-gray-100/50 p-4 dark:border-gray-800 dark:bg-gray-900/30">
           <div className="flex items-center gap-2">
-            <div className="flex size-6 items-center justify-center rounded-full bg-gray-600 text-xs font-bold text-white">
+            <div className="flex size-6 items-center justify-center rounded-full bg-gray-500 text-xs font-bold text-white dark:bg-gray-600">
               ○
             </div>
-            <h4 className="font-medium text-gray-400">Native HTML img</h4>
+            <h4 className="font-medium text-gray-600 dark:text-gray-400">
+              Native HTML img
+            </h4>
           </div>
 
           <ul className="flex flex-col gap-2 text-sm">
@@ -77,8 +81,8 @@ export function ImageComparison() {
             <FeatureItem>Requires manual image processing</FeatureItem>
           </ul>
 
-          <pre className="mt-2 overflow-auto rounded bg-gray-950 p-3 text-xs">
-            <code className="text-gray-400">{`<img
+          <pre className="mt-2 overflow-auto rounded bg-gray-200 p-3 text-xs dark:bg-gray-950">
+            <code className="text-gray-600 dark:text-gray-400">{`<img
   src="/hero.jpg"
   alt="Hero"
   width="1200"
@@ -91,8 +95,8 @@ export function ImageComparison() {
       </div>
 
       {/* Performance Stats */}
-      <div className="rounded-lg border border-gray-800 bg-gray-900/30 p-4">
-        <h4 className="mb-3 font-medium text-gray-300">
+      <div className="rounded-lg border border-gray-200 bg-gray-100/50 p-4 dark:border-gray-800 dark:bg-gray-900/30">
+        <h4 className="mb-3 font-medium text-gray-700 dark:text-gray-300">
           Typical Performance Gains
         </h4>
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -117,10 +121,14 @@ function FeatureItem({
     <li className="flex items-start gap-2">
       <span
         className={`mt-1 size-1.5 shrink-0 rounded-full ${
-          positive ? 'bg-green-500' : 'bg-gray-600'
+          positive ? 'bg-green-500' : 'bg-gray-400 dark:bg-gray-600'
         }`}
       />
-      <span className={positive ? 'text-gray-300' : 'text-gray-500'}>
+      <span
+        className={
+          positive ? 'text-gray-700 dark:text-gray-300' : 'text-gray-500'
+        }
+      >
         {children}
       </span>
     </li>
@@ -137,16 +145,18 @@ function StatCard({
   color: 'green' | 'blue' | 'violet' | 'cyan';
 }) {
   const colorClasses = {
-    green: 'text-green-400 bg-green-900/30',
-    blue: 'text-blue-400 bg-blue-900/30',
-    violet: 'text-violet-400 bg-violet-900/30',
-    cyan: 'text-cyan-400 bg-cyan-900/30',
+    green:
+      'text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900/30',
+    blue: 'text-blue-700 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30',
+    violet:
+      'text-violet-700 bg-violet-100 dark:text-violet-400 dark:bg-violet-900/30',
+    cyan: 'text-cyan-700 bg-cyan-100 dark:text-cyan-400 dark:bg-cyan-900/30',
   };
 
   return (
     <div className={`rounded-lg p-3 text-center ${colorClasses[color]}`}>
       <div className="text-2xl font-bold">{value}</div>
-      <div className="text-xs text-gray-500">{label}</div>
+      <div className="text-xs text-gray-600 dark:text-gray-500">{label}</div>
     </div>
   );
 }

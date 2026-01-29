@@ -3,27 +3,27 @@ import { Boundary } from '#/ui/boundary';
 export default function Byline() {
   return (
     <Boundary kind="solid" animateRerendering={false}>
-      <div className="flex gap-4 text-sm font-medium text-gray-600">
+      <div className="flex gap-4 text-sm font-medium text-gray-500 dark:text-gray-600">
         <a
-          className="transition-colors hover:text-gray-200"
+          className="transition-colors hover:text-gray-900 dark:hover:text-gray-200"
           href="https://github.com/vercel/next-app-router-playground"
           target="_blank"
           rel="noreferrer"
         >
           Source code
         </a>
-        <span className="text-gray-800">/</span>
+        <span className="text-gray-300 dark:text-gray-800">/</span>
         <a
-          className="transition-colors hover:text-gray-200"
+          className="transition-colors hover:text-gray-900 dark:hover:text-gray-200"
           href="https://nextjs.org/docs"
           target="_blank"
           rel="noreferrer"
         >
           Docs
         </a>
-        <span className="text-gray-800">/</span>
+        <span className="text-gray-300 dark:text-gray-800">/</span>
         <a
-          className="flex items-center gap-2 transition-colors hover:text-gray-200"
+          className="flex items-center gap-2 transition-colors hover:text-gray-900 dark:hover:text-gray-200"
           href="https://vercel.com/templates/next.js/app-directory"
           target="_blank"
           rel="noreferrer"
@@ -32,7 +32,7 @@ export default function Byline() {
           <svg
             aria-label="Vercel logotype"
             role="img"
-            className="h-3 text-white"
+            className="h-3 text-gray-900 dark:text-white"
             viewBox="0 0 262 52"
             xmlns="http://www.w3.org/2000/svg"
           >

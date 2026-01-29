@@ -16,10 +16,10 @@ export function PlaceholderImages() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <h3 className="text-lg font-medium text-gray-200">
+        <h3 className="text-lg font-medium text-gray-700 dark:text-gray-200">
           Placeholder Strategies
         </h3>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-600 dark:text-gray-500">
           Show a placeholder while the image loads to improve perceived
           performance and prevent layout shift.
         </p>
@@ -44,17 +44,19 @@ export function PlaceholderImages() {
             />
             {!blurLoaded && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-gray-600 dark:text-gray-500">
                   Loading with blur...
                 </span>
               </div>
             )}
           </div>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-300">
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Blur Placeholder
             </p>
-            <code className="text-xs text-gray-600">placeholder="blur"</code>
+            <code className="text-xs text-gray-600 dark:text-gray-600">
+              placeholder="blur"
+            </code>
           </div>
         </div>
 
@@ -80,8 +82,12 @@ export function PlaceholderImages() {
             )}
           </div>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-300">Empty (Default)</p>
-            <code className="text-xs text-gray-600">placeholder="empty"</code>
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              Empty (Default)
+            </p>
+            <code className="text-xs text-gray-600 dark:text-gray-600">
+              placeholder="empty"
+            </code>
           </div>
         </div>
 
@@ -113,23 +119,27 @@ export function PlaceholderImages() {
             )}
           </div>
           <div className="text-center">
-            <p className="text-sm font-medium text-gray-300">
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Color Background
             </p>
-            <code className="text-xs text-gray-600">CSS background-color</code>
+            <code className="text-xs text-gray-600 dark:text-gray-600">
+              CSS background-color
+            </code>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 rounded-lg border border-gray-800 bg-gray-900/30 p-3">
-        <h4 className="text-sm font-medium text-gray-300">
+      <div className="flex flex-col gap-2 rounded-lg border border-gray-200 bg-gray-100/50 p-3 dark:border-gray-800 dark:bg-gray-900/30">
+        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">
           Generating blur placeholders
         </h4>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-600 dark:text-gray-500">
           For static imports, Next.js automatically generates blur placeholders.
           For remote images, you can use{' '}
-          <code className="rounded bg-gray-800 px-1">plaiceholder</code> or
-          similar tools to generate tiny base64 previews at build time.
+          <code className="rounded bg-gray-200 px-1 dark:bg-gray-800">
+            plaiceholder
+          </code>{' '}
+          or similar tools to generate tiny base64 previews at build time.
         </p>
       </div>
     </div>
