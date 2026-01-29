@@ -11,6 +11,16 @@ const nextConfig: NextConfig = {
     // inlineCss: true,
     viewTransition: true,
     prerenderEarlyExit: false,
+    // Best Practice 2.1: Avoid Barrel File Imports
+    // Optimizes imports from common libraries to reduce bundle size
+    // Direct imports: 15-70% faster dev boot, 28% faster builds, 40% faster cold starts
+    optimizePackageImports: [
+      '@heroicons/react',
+      'date-fns',
+      'clsx',
+      'lodash',
+      'lucide-react',
+    ],
   },
 };
 

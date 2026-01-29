@@ -1,0 +1,64 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+
+export const demo = db.demo.find({ where: { slug: 'intercepting-routes' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Intercepting routes** allow you to show a route within a different context while preserving the URL.
+- Perfect for **modal patterns** where you want a full page to open as a modal from a list.
+- Uses special folder naming conventions to define interception levels.
+- The **intercepted** version is shown on client navigation; the **full page** version on direct URL access or refresh.
+- Combines with **parallel routes** (`@folder`) to render modals alongside the main content.
+
+# !!col
+
+```text Folder Structure
+app/
+├── @modal/
+│   ├── default.tsx         # Returns null when no modal
+│   └── (.)photo/
+│       └── [id]/
+│           └── page.tsx    # Intercepted modal version
+├── photo/
+│   └── [id]/
+│       └── page.tsx        # Full page version
+├── layout.tsx              # Renders {children} and {modal}
+└── page.tsx                # Main gallery page
+```
+
+</Grid>
+
+### Convention Prefixes
+
+| Prefix | Description |
+|--------|-------------|
+| `(.)` | Match segments on the same level |
+| `(..)` | Match segments one level above |
+| `(..)(..)` | Match segments two levels above |
+| `(...)` | Match segments from the root |
+
+### Demo
+
+1. **Click a product** in the gallery to see it open in a modal.
+2. The **URL changes** but the gallery stays visible behind the modal.
+3. **Press Escape** or click outside to close the modal.
+4. **Open a product URL directly** (new tab) to see the full page version.
+5. **Refresh the page** while a modal is open to see the full page render.
+
+### Key Files
+
+- `@modal/default.tsx` - Returns `null` when no modal is active
+- `@modal/(.)photo/[id]/page.tsx` - The intercepted modal version
+- `photo/[id]/page.tsx` - The full page version
+- `layout.tsx` - Renders both `children` and `modal` slots
+
+### Links
+
+- [Intercepting Routes](https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes)
+- [Parallel Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes)
+- [Modal Example](https://github.com/vercel/nextjs-app-router-playground)

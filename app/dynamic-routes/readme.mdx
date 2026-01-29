@@ -1,0 +1,70 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+
+export const demo = db.demo.find({ where: { slug: 'dynamic-routes' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Dynamic routes** let you create pages from dynamic data using square bracket notation.
+- Three types: **single segment** `[slug]`, **catch-all** `[...slug]`, and **optional catch-all** `[[...slug]]`.
+- Use `generateStaticParams` to pre-render dynamic routes at build time.
+- Use `notFound()` to handle invalid params gracefully.
+- Access params via the async `params` prop in page components.
+- Combine with `generateMetadata` for dynamic SEO.
+
+# !!col
+
+```tsx app/post/[slug]/page.tsx
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    // !mark
+    slug: post.slug,
+  }));
+}
+
+export default async function Page({
+  // !mark
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  if (!post) {
+    // !mark
+    notFound();
+  }
+
+  return <Article post={post} />;
+}
+```
+
+</Grid>
+
+### Route Types
+
+| Type | Folder | Example URL | `params.slug` |
+|------|--------|-------------|---------------|
+| Single | `[slug]` | `/post/hello` | `"hello"` |
+| Catch-all | `[...slug]` | `/docs/a/b/c` | `["a","b","c"]` |
+| Optional | `[[...slug]]` | `/shop` | `undefined` |
+| Optional | `[[...slug]]` | `/shop/a/b` | `["a","b"]` |
+
+### Demo
+
+1. **Single Segment**: Click posts to see `[slug]` in action.
+2. **Catch-all**: Navigate docs with nested paths.
+3. **Optional Catch-all**: Browse shop with variable depth.
+4. **Not Found**: Try invalid URLs to see error handling.
+
+### Links
+
+- [Dynamic Routes](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes)
+- [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params)
+- [notFound](https://nextjs.org/docs/app/api-reference/functions/not-found)

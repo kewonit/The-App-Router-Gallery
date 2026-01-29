@@ -1,0 +1,75 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+
+export const demo = db.demo.find({ where: { slug: 'image-optimization' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- The Next.js `<Image>` component automatically optimizes images for **size**, **format**, and **loading**.
+- Images are **lazy loaded** by default - only loading when they enter the viewport.
+- Automatic **WebP/AVIF** conversion reduces file sizes by 30-50%.
+- Built-in **blur placeholders** improve perceived loading performance.
+- Use `priority` for above-the-fold images to optimize **Largest Contentful Paint (LCP)**.
+- The `fill` prop allows images to fill their parent container for responsive layouts.
+- Properly sized images prevent **Cumulative Layout Shift (CLS)**.
+
+# !!col
+
+```tsx app/page.tsx
+import Image from 'next/image';
+
+export default function Hero() {
+  return (
+    <Image
+      // !mark
+      src="/hero.jpg"
+      alt="Hero image"
+      width={1200}
+      height={600}
+      // !mark
+      priority              // Preload for LCP
+      placeholder="blur"    // Show blur while loading
+      quality={85}          // Compression (1-100)
+      // !mark
+      sizes="(max-width: 768px) 100vw, 50vw"
+    />
+  );
+}
+
+// Fill mode for unknown dimensions
+<div className="relative h-64">
+  // !mark
+  <Image src="/bg.jpg" alt="" fill className="object-cover" />
+</div>
+```
+
+</Grid>
+
+### Demo
+
+1. **Priority Loading**: Compare preloaded vs lazy-loaded images.
+2. **Basic Images**: Fixed dimensions prevent layout shift.
+3. **Placeholders**: Blur, empty, and color placeholder strategies.
+4. **Responsive**: Using `sizes` for optimal image selection.
+5. **Fill Mode**: Different `object-fit` behaviors.
+6. **Comparison**: Next.js Image vs native img benefits.
+
+### Key Props
+
+| Prop | Purpose |
+|------|---------|
+| `priority` | Preload image, disable lazy loading |
+| `placeholder` | `"blur"` or `"empty"` |
+| `sizes` | Responsive image sizing hints |
+| `fill` | Fill parent container |
+| `quality` | Compression level (1-100, default 75) |
+
+### Links
+
+- [Image Component Docs](https://nextjs.org/docs/app/api-reference/components/image)
+- [Image Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/images)
+- [Web Vitals](https://web.dev/vitals/)

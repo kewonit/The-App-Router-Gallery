@@ -185,6 +185,64 @@ const demos = [
     ],
   },
   {
+    name: 'Routing',
+    items: [
+      {
+        slug: 'dynamic-routes',
+        name: 'Dynamic Routes',
+        description:
+          'Create pages from dynamic data with [slug], [...slug], and [[...slug]]',
+      },
+      {
+        slug: 'intercepting-routes',
+        name: 'Intercepting Routes',
+        description:
+          'Show routes in a different context like modals while preserving URLs',
+      },
+    ],
+  },
+  {
+    name: 'Data & Forms',
+    items: [
+      {
+        slug: 'server-actions',
+        name: 'Server Actions',
+        description:
+          'Mutate data with async functions that run on the server',
+      },
+      {
+        slug: 'form-component',
+        name: 'Form Component',
+        nav_title: 'Form',
+        description:
+          'Enhanced form handling with progressive enhancement and client-side navigation',
+      },
+    ],
+  },
+  {
+    name: 'Rendering',
+    items: [
+      {
+        slug: 'streaming',
+        name: 'Streaming',
+        description:
+          'Progressive rendering with React Suspense for improved performance',
+      },
+    ],
+  },
+  {
+    name: 'Components',
+    items: [
+      {
+        slug: 'image-optimization',
+        name: 'Image Optimization',
+        nav_title: 'Image',
+        description:
+          'Automatic image optimization with next/image component',
+      },
+    ],
+  },
+  {
     name: 'APIs',
     items: [
       {
