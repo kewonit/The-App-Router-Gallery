@@ -72,10 +72,10 @@ function TabContent({
   return (
     <span
       className={clsx('flex rounded-md px-3 py-1 transition duration-75', {
-        'bg-gray-700 text-gray-100 hover:bg-gray-500 hover:text-white':
+        'bg-gray-200 text-gray-700 hover:bg-gray-300 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-500 dark:hover:text-white':
           !isActive && !isPending,
         'bg-blue-600 text-white': isActive,
-        'bg-gray-800 text-gray-500 delay-75': isPending,
+        'bg-gray-300 text-gray-500 delay-75 dark:bg-gray-800': isPending,
       })}
     >
       {children}

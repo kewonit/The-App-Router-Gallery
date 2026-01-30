@@ -8,7 +8,7 @@ export default async function Page() {
   return (
     <Boundary label="(main)/(shop)/page.tsx">
       <div className="flex flex-col gap-4">
-        <h1 className="text-xl font-semibold text-gray-300">
+        <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
           All{' '}
           <span className="font-mono tracking-tighter text-gray-600">
             ({products.length})

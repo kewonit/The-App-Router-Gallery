@@ -7,7 +7,7 @@ export default function Page() {
       size="small"
       className="flex flex-col gap-4"
     >
-      <h1 className="font-semibold text-gray-300">
+      <h1 className="font-semibold text-gray-700 dark:text-gray-300">
         Audience demographics stats
       </h1>
 

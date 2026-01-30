@@ -56,7 +56,7 @@ export default async function Page({
           <TransitionLink
             href={`/${demo.slug}`}
             type="transition-to-list"
-            className="flex items-center gap-2 font-medium text-gray-300 hover:text-white"
+            className="flex items-center gap-2 font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
           >
             <SharedTransition
               name="navigation-icon"
@@ -120,7 +120,7 @@ export default async function Page({
 
 function ProductDetails({ id: seed }: { id: string }) {
   return (
-    <div className="flex w-4/5 flex-col gap-[1.4em] text-sm text-gray-800">
+    <div className="flex w-4/5 flex-col gap-[1.4em] text-sm text-gray-500 dark:text-gray-800">
       <SkeletonText count={1} minLength={3} maxLength={12} seed={seed} />
       <SkeletonText count={2} minLength={26} maxLength={50} seed={seed} />
       <SkeletonText count={1} minLength={12} maxLength={18} seed={seed} />
@@ -130,7 +130,7 @@ function ProductDetails({ id: seed }: { id: string }) {
 
 function ProductImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="overflow-hidden rounded-md bg-gray-900/50 p-12">
+    <div className="overflow-hidden rounded-md bg-gray-100 p-12 dark:bg-gray-900/50">
       <Image
         className="brightness-150"
         src={`/shop/${src}`}

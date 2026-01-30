@@ -17,7 +17,7 @@ export async function ProductList() {
     >
       <div className="flex flex-col gap-4">
         <div className="flex justify-between">
-          <h1 className="text-xl font-semibold text-gray-300">
+          <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
             Available Products{' '}
             <span className="font-mono tracking-tighter text-gray-600">
               ({products.length})
@@ -64,15 +64,15 @@ export function ProductListSkeleton() {
       animateRerendering={false}
     >
       <div className="flex flex-col gap-4">
-        <div className="h-24 animate-pulse rounded-lg bg-gray-800" />
-        <h1 className="text-xl font-semibold text-gray-300">
+        <div className="h-24 animate-pulse rounded-lg bg-gray-200 dark:bg-gray-800" />
+        <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
           Available Products
         </h1>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div
               key={i}
-              className="h-48 animate-pulse rounded-lg bg-gray-800"
+              className="h-48 animate-pulse rounded-lg bg-gray-200 dark:bg-gray-800"
             />
           ))}
         </div>

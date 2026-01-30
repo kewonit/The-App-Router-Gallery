@@ -6,11 +6,13 @@ export default function Page() {
       label="(main)/(marketing)/blog/page.tsx"
       className="flex flex-col gap-4"
     >
-      <h1 className="text-xl font-semibold text-gray-300">Blog</h1>
+      <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
+        Blog
+      </h1>
 
       <div className="flex flex-col gap-2">
-        <div className="h-2 w-4/5 rounded-full bg-gray-800" />
-        <div className="h-2 w-1/3 rounded-full bg-gray-800" />
+        <div className="h-2 w-4/5 rounded-full bg-gray-200 dark:bg-gray-800" />
+        <div className="h-2 w-1/3 rounded-full bg-gray-200 dark:bg-gray-800" />
       </div>
     </Boundary>
   );

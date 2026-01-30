@@ -35,9 +35,9 @@ export default async function Page({
       <div className="flex flex-col gap-8">
         <Link
           href="/private-cache"
-          className="flex items-center gap-2 font-medium text-gray-300 hover:text-white"
+          className="flex items-center gap-2 font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
         >
-          <ChevronLeftIcon className="size-6 text-gray-600" />
+          <ChevronLeftIcon className="size-6 text-gray-400 dark:text-gray-600" />
           <div>Shop</div>
         </Link>
 
@@ -63,9 +63,11 @@ async function Recommendations({ productId }: { productId: string }) {
       animateRerendering={false}
     >
       <div className="flex flex-col gap-4">
-        <h2 className="text-lg font-semibold text-gray-300">Recommendations</h2>
+        <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+          Recommendations
+        </h2>
         {recommendations.length === 0 ? (
-          <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-8 text-center">
+          <div className="rounded-lg border border-gray-300 bg-gray-100 p-8 text-center dark:border-gray-800 dark:bg-gray-900/50">
             <p className="text-gray-500">No recommendations available</p>
           </div>
         ) : (
@@ -102,12 +104,14 @@ function RecommendationsSkeleton() {
       animateRerendering={false}
     >
       <div className="flex flex-col gap-4">
-        <h2 className="text-lg font-semibold text-gray-300">Recommendations</h2>
+        <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+          Recommendations
+        </h2>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="h-48 animate-pulse rounded-lg bg-gray-800"
+              className="h-48 animate-pulse rounded-lg bg-gray-200 dark:bg-gray-800"
             />
           ))}
         </div>

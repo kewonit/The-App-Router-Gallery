@@ -46,7 +46,9 @@ export default function Client({
       <div className="flex items-center gap-6">
         {options.map((option) => (
           <div key={option.name}>
-            <div className="text-gray-400">{option.name}</div>
+            <div className="text-gray-600 dark:text-gray-400">
+              {option.name}
+            </div>
 
             <div className="mt-1 flex gap-2">
               {option.items.map((item) => {
@@ -59,7 +61,7 @@ export default function Client({
                     className={clsx(
                       'rounded-lg px-3 py-1 text-sm font-medium',
                       {
-                        'bg-gray-700 text-gray-100 hover:bg-gray-500 hover:text-white':
+                        'bg-gray-200 text-gray-700 hover:bg-gray-300 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-500 dark:hover:text-white':
                           !isActive,
                         'bg-blue-600 text-white': isActive,
                       },

@@ -27,7 +27,7 @@ export default async function Page() {
     >
       <Boundary label="page.tsx" animateRerendering={true}>
         <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-2 text-xl font-medium text-gray-300">
+          <div className="flex items-center gap-2 text-xl font-medium text-gray-700 dark:text-gray-300">
             <SharedTransition name="navigation-title" share="animate-morph">
               <h1>Shop</h1>
             </SharedTransition>
@@ -51,7 +51,7 @@ export default async function Page() {
                     'transition-to-detail': 'animate-morph',
                   }}
                 >
-                  <div className="overflow-hidden rounded-md bg-gray-900/50 p-8 group-hover:bg-gray-900">
+                  <div className="overflow-hidden rounded-md bg-gray-100 p-8 group-hover:bg-gray-200 dark:bg-gray-900/50 dark:group-hover:bg-gray-900">
                     <Image
                       className="brightness-150"
                       src={`/shop/${product.image}`}
@@ -64,8 +64,8 @@ export default async function Page() {
                 </SharedTransition>
 
                 <div className="flex flex-col gap-2">
-                  <div className="h-2 w-4/5 rounded-full bg-gray-800" />
-                  <div className="h-2 w-1/3 rounded-full bg-gray-800" />
+                  <div className="h-2 w-4/5 rounded-full bg-gray-200 dark:bg-gray-800" />
+                  <div className="h-2 w-1/3 rounded-full bg-gray-200 dark:bg-gray-800" />
                 </div>
               </TransitionLink>
             ))}

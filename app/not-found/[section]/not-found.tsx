@@ -8,8 +8,10 @@ export default function NotFound() {
   return (
     <Boundary label="[section]/not-found.tsx" className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <h1 className="text-lg font-bold text-gray-100">Not Found</h1>
-        <div className="text-sm text-gray-400">
+        <h1 className="text-lg font-bold text-gray-800 dark:text-gray-100">
+          Not Found
+        </h1>
+        <div className="text-sm text-gray-500 dark:text-gray-400">
           Sorry, the requested resource could not be found
         </div>
       </div>

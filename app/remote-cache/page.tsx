@@ -24,7 +24,7 @@ async function ProductList() {
       animateRerendering={false}
     >
       <div className="flex flex-col gap-4">
-        <h1 className="text-xl font-semibold text-gray-300">
+        <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
           All{' '}
           <span className="font-mono tracking-tighter text-gray-600">
             ({products.length})
@@ -93,7 +93,7 @@ function ProductPriceSkeleton() {
       animateRerendering={false}
     >
       <div className="text-center text-sm">
-        <div className="inline-block h-4 w-24 animate-pulse rounded bg-gray-800" />
+        <div className="inline-block h-4 w-24 animate-pulse rounded bg-gray-200 dark:bg-gray-800" />
       </div>
     </Boundary>
   );

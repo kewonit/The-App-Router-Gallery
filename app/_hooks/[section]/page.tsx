@@ -15,7 +15,7 @@ export default async function Page({
 
   return (
     <div className="space-y-9">
-      <h1 className="text-xl font-semibold text-gray-300">
+      <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
         All {section.name}
       </h1>
 

@@ -3,6 +3,7 @@
 import { type Demo, type DemoCategory } from '#/lib/db';
 import { LinkStatus } from '#/ui/link-status';
 import { NextLogoDark, NextLogoLight } from '#/ui/logo-next';
+import { ScrollArea } from '#/ui/scroll-area';
 import { ThemeToggle } from '#/ui/theme-toggle';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
@@ -55,40 +56,42 @@ export function GlobalNav({ items }: { items: DemoCategory[] }) {
       </button>
 
       <div
-        className={clsx('overflow-y-auto lg:static lg:block', {
+        className={clsx('lg:static lg:block', {
           'fixed inset-x-0 top-14 bottom-0 mt-px bg-white dark:bg-black':
             isOpen,
           hidden: !isOpen,
         })}
       >
-        <nav className="space-y-6 px-2 pt-5 pb-24">
-          <div className="px-3 lg:hidden">
-            <ThemeToggle />
-          </div>
-          {items.map((section) => {
-            return (
-              <div key={section.name}>
-                <div className="mb-2 px-3 font-mono text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-600">
-                  <div>{section.name}</div>
-                </div>
+        <ScrollArea className="h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-4.5rem)]">
+          <nav className="space-y-5 px-3 pt-5 pb-24">
+            <div className="px-2 lg:hidden">
+              <ThemeToggle />
+            </div>
+            {items.map((section) => {
+              return (
+                <div key={section.name}>
+                  <div className="mb-2 px-2 font-mono text-[10px] font-bold tracking-widest text-gray-400 uppercase dark:text-gray-500">
+                    {section.name}
+                  </div>
 
-                <div className="flex flex-col gap-1">
-                  {section.items.map((item) => (
-                    // `useSelectedLayoutSegment` suspends, so we place
-                    // a Suspense boundary as deep as possible to allow
-                    // the route's fallback shell to include these elements
-                    <Suspense
-                      key={item.slug}
-                      fallback={<NavItem item={item} close={close} />}
-                    >
-                      <DynamicNavItem item={item} close={close} />
-                    </Suspense>
-                  ))}
+                  <div className="flex flex-col gap-0.5">
+                    {section.items.map((item) => (
+                      // `useSelectedLayoutSegment` suspends, so we place
+                      // a Suspense boundary as deep as possible to allow
+                      // the route's fallback shell to include these elements
+                      <Suspense
+                        key={item.slug}
+                        fallback={<NavItem item={item} close={close} />}
+                      >
+                        <DynamicNavItem item={item} close={close} />
+                      </Suspense>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </nav>
+              );
+            })}
+          </nav>
+        </ScrollArea>
       </div>
     </>
   );
@@ -121,15 +124,16 @@ function NavItem({
       onClick={close}
       href={`/${item.slug}`}
       className={clsx(
-        'flex justify-between rounded-md px-3 py-2 text-sm font-medium',
+        'flex items-center justify-between rounded-lg px-2.5 py-2 text-[13px] font-medium transition-colors',
         {
-          'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-300':
+          'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800/70 dark:hover:text-gray-200':
             !isActive,
-          'text-gray-900 dark:text-white': isActive,
+          'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white':
+            isActive,
         },
       )}
     >
-      {item.nav_title || item.name}
+      <span className="truncate">{item.nav_title || item.name}</span>
       <LinkStatus />
     </Link>
   );

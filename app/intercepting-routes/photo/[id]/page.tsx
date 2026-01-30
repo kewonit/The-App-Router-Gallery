@@ -79,7 +79,7 @@ export default async function PhotoPage({
         <div className="flex justify-center">
           <Link
             href="/intercepting-routes"
-            className="rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-700"
+            className="rounded-lg bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
           >
             ← Back to Gallery
           </Link>

@@ -140,7 +140,7 @@ export function Mdx({
   return (
     <Prose
       collapsed={collapsed}
-      className="prose prose-sm prose-invert prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium prose-pre:mt-0 prose-pre:mb-0 prose-pre:rounded-none prose-pre:bg-transparent max-w-none"
+      className="prose prose-sm prose-gray dark:prose-invert prose-h1:font-medium prose-h2:font-medium prose-h3:font-medium prose-h4:font-medium prose-h5:font-medium prose-h6:font-medium prose-pre:mt-0 prose-pre:mb-0 prose-pre:rounded-none prose-pre:bg-transparent max-w-none"
     >
       <MdxComponent
         components={{ MyCode, MyInlineCode, Image, ...components }}

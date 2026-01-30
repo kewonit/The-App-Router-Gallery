@@ -147,6 +147,24 @@ const demos = [
         name: 'Not Found',
         description: 'Create Not Found UI for specific parts of an app',
       },
+      {
+        slug: 'template-demo',
+        name: 'Template',
+        description:
+          'Create UI that re-renders on navigation unlike layouts',
+      },
+      {
+        slug: 'route-handlers',
+        name: 'Route Handlers',
+        description:
+          'Create API endpoints with Web Request and Response APIs',
+      },
+      {
+        slug: 'middleware-demo',
+        name: 'Middleware',
+        description:
+          'Run code before a request is completed for auth, redirects, and more',
+      },
     ],
   },
   {
@@ -239,6 +257,20 @@ const demos = [
         nav_title: 'Image',
         description:
           'Automatic image optimization with next/image component',
+      },
+      {
+        slug: 'font-optimization',
+        name: 'Font Optimization',
+        nav_title: 'Font',
+        description:
+          'Self-host fonts with automatic optimization using next/font',
+      },
+      {
+        slug: 'script-component',
+        name: 'Script Component',
+        nav_title: 'Script',
+        description:
+          'Load third-party scripts efficiently with different loading strategies',
       },
     ],
   },

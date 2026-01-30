@@ -12,7 +12,9 @@ export default function Error({ error, reset }: any) {
   return (
     <Boundary label="error.tsx" color="red">
       <div className="flex flex-col gap-4">
-        <h1 className="text-xl font-semibold text-gray-300">Error</h1>
+        <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
+          Error
+        </h1>
         <div className="text-sm text-gray-500">{error?.message}</div>
         <div className="flex">
           <Button onClick={() => reset()}>Try Again</Button>

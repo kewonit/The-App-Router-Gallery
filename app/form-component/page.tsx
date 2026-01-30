@@ -53,7 +53,7 @@ async function SearchFormContent({
 function SearchFormSkeleton() {
   return (
     <div className="flex flex-col gap-3">
-      <div className="h-10 animate-pulse rounded-lg bg-gray-800" />
+      <div className="h-10 animate-pulse rounded-lg bg-gray-200 dark:bg-gray-800" />
     </div>
   );
 }
