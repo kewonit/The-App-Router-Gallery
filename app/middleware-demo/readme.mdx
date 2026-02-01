@@ -1,0 +1,97 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'middleware-demo' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Middleware** runs before a request is completed, enabling auth, redirects, and rewrites.
+- Define middleware in a single `middleware.ts` file at your project root.
+- Middleware executes at the Edge for low-latency decisions close to users.
+- Use the `matcher` config to specify which routes trigger middleware.
+- Middleware can modify request headers, set cookies, redirect, or rewrite URLs.
+- Keep middleware fast — it runs on every matched request.
+
+# !!col
+
+```tsx middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  // !mark
+  // Check authentication
+  const token = request.cookies.get('session');
+
+  if (!token) {
+    // !mark
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // !mark
+  // Add custom header
+  const response = NextResponse.next();
+  response.headers.set('x-user-id', token.value);
+  return response;
+}
+
+// !mark
+export const config = { matcher: ['/dashboard/:path*', '/api/:path*'] };
+```
+
+</Grid>
+
+### Common Use Cases
+
+| Use Case       | Implementation                      |
+| -------------- | ----------------------------------- |
+| Authentication | Check tokens, redirect to login     |
+| Redirects      | Permanent or temporary URL changes  |
+| Rewrites       | Serve different content at same URL |
+| A/B Testing    | Route users to different variants   |
+| Geolocation    | Personalize based on user location  |
+
+### Demo
+
+1. **Navigate between sections** and observe URL rewrites.
+2. **Trigger redirects** and confirm query params are preserved.
+3. **Inspect response headers** to see middleware additions.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Middleware execution flow"
+  steps={[
+    { label: 'Request', type: 'request' },
+    { label: 'Matcher', type: 'server' },
+    { label: 'Middleware', type: 'server' },
+    { label: 'Route', type: 'response' },
+  ]}
+  note="Middleware runs at the Edge for low-latency decisions."
+/>
+
+### Key Takeaways
+
+| Topic       | Guidance                                         |
+| ----------- | ------------------------------------------------ |
+| Performance | Keep middleware lean; avoid heavy I/O            |
+| Security    | Validate auth tokens before routing              |
+| Scope       | Use matchers to limit which paths run middleware |
+| Runtime     | Edge runtime only — no Node.js-specific APIs     |
+
+### Pitfalls and Tips
+
+- Middleware cannot access Node.js-only APIs like `fs` or `crypto.randomBytes`.
+- Avoid fetching large payloads in middleware; use lightweight checks.
+- Always return a `NextResponse` — either `next()`, `redirect()`, or `rewrite()`.
+- Use precise matchers to avoid running middleware on static assets.
+
+### Learn More
+
+- [Middleware](https://nextjs.org/docs/app/building-your-application/routing/middleware)
+- [Matcher Config](https://nextjs.org/docs/app/building-your-application/routing/middleware#matching-paths)

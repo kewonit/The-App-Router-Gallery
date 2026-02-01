@@ -1,0 +1,92 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'layouts' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- A **layout** is UI that wraps child routes and persists across navigation without re-rendering.
+- Define layouts by exporting a default React component from `layout.tsx` that accepts a `children` prop.
+- Layouts at higher levels in the folder hierarchy wrap layouts below them, creating a nested structure.
+- Client state inside layouts survives navigation between sibling routes.
+- Layouts remain interactive while child routes load, enabling smooth user experiences.
+- Use layouts for persistent UI like headers, sidebars, and navigation menus.
+
+# !!col
+
+```tsx app/dashboard/layout.tsx
+export default function DashboardLayout({
+  // !mark
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="dashboard">
+      {/* Persistent sidebar */}
+      // !mark
+      <Sidebar />
+      {/* Child routes render here */}
+      // !mark
+      <main>{children}</main>
+    </div>
+  );
+}
+```
+
+</Grid>
+
+### Demo
+
+1. **Navigate between categories** using the tabs above (Clothing, Electronics, Sports).
+2. **Watch the borders** — layouts animate only on first render, not on navigation.
+3. **Click the counter** a few times, then navigate to a different category.
+4. **Notice the count persists** — client state survives navigation.
+5. **Click the counter while a route loads** — layouts remain interactive.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Layout persistence across navigation"
+  steps={[
+    { label: 'Layout renders', type: 'component' },
+    { label: 'User navigates', type: 'request' },
+    { label: 'Page swaps', type: 'response' },
+    { label: 'Layout persists', type: 'component' },
+  ]}
+  note="Layouts preserve state and remain interactive across navigation."
+/>
+
+### Key Takeaways
+
+| Topic                    | Guidance                                     |
+| ------------------------ | -------------------------------------------- |
+| Re-renders on navigation | No — layouts stay mounted                    |
+| Client state             | Preserved across child route changes         |
+| Interactivity            | Remains interactive during page loads        |
+| Best for                 | Headers, sidebars, navigation, persistent UI |
+
+### Pitfalls and Tips
+
+- Avoid putting per-page state in layouts unless it should persist across navigation.
+- Keep layout components lean since they render on every page under them.
+- Use the `template.tsx` file convention when you need UI that re-mounts on navigation.
+
+### Continue Learning
+
+| Demo                          | Description                            |
+| ----------------------------- | -------------------------------------- |
+| [Loading](/loading)           | Add loading states to layouts          |
+| [Error](/error)               | Handle errors within layout boundaries |
+| [Route Groups](/route-groups) | Organize routes without affecting URLs |
+| [Template](/template-demo)    | Re-mount UI on navigation              |
+
+### Learn More
+
+- [Layouts and Pages](https://nextjs.org/docs/app/getting-started/layouts-and-pages)
+- [Nesting Layouts](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates#nesting-layouts)

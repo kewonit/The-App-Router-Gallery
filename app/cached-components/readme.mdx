@@ -1,0 +1,75 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'cached-components' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- Mark an individual React Server Component as _cacheable_ by adding the `use cache` directive to the top of the function definition.
+- When a cacheable component is called with the same inputs, it reuses the cached result if it exists, otherwise it renders and caches the output.
+
+# !!col
+
+```tsx app/page.tsx
+async function ProductList() {
+  // !mark
+  'use cache';
+  // ...
+}
+
+export default async function Page() {
+  return <ProductList />;
+}
+```
+
+</Grid>
+
+### Demo
+
+- A product list component is annotated with `use cache`.
+- An artificial one second delay is added to make the difference more noticeable.
+- Since the component is cacheable, the delay only happens the first time the component is rendered.
+- `layout.tsx` and `page.tsx` aren't explicitly annotated with `use cache`, but Next.js infers they're static because they do not use any Dynamic APIs. If they started to, Next.js will guide the developer to either add `use cache` or a `<Suspense>` boundary.
+
+### Notes
+
+- The `use cache` directive provides granular caching at the component level.
+- Cache entries are automatically invalidated when dependencies change.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Cached Server Component"
+  steps={['Render', 'Cache output', 'Reuse', 'Skip work']}
+  note="Same inputs reuse the cached render result."
+/>
+
+### Key Takeaways
+
+| Topic       | Guidance                               |
+| ----------- | -------------------------------------- |
+| Scope       | Cache at the component level           |
+| Inputs      | Cache key is based on component inputs |
+| Performance | Great for expensive server renders     |
+
+### Pitfalls & Tips
+
+- Avoid caching when results depend on per-request data.
+- Combine with `<Suspense>` for graceful loading of slow components.
+
+### Continue Learning
+
+| Demo                                  | Description                  |
+| ------------------------------------- | ---------------------------- |
+| [Cached Routes](/cached-routes)       | Cache entire route segments  |
+| [Cached Functions](/cached-functions) | Cache pure function results  |
+| [Revalidation](/revalidation)         | Invalidate cached components |
+
+### Learn More
+
+- [Caching](https://nextjs.org/docs/app/building-your-application/caching)

@@ -1,0 +1,104 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'revalidation' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Revalidation** refreshes cached data without rebuilding the entire site.
+- `revalidatePath` purges cache for a specific route or layout subtree.
+- `revalidateTag` purges all fetch requests tagged with a specific string.
+- Time-based revalidation uses `next: { revalidate: seconds }` in fetch options.
+- On-demand revalidation triggers from Server Actions, Route Handlers, or webhooks.
+- Combine strategies for optimal freshness and performance.
+
+# !!col
+
+```tsx app/actions.ts
+'use server';
+// !mark
+import { revalidatePath, revalidateTag } from 'next/cache';
+
+export async function updateProduct(id: string, data: ProductData) {
+  await db.product.update(id, data);
+
+  // Option 1: Revalidate specific path
+  // !mark
+  revalidatePath(`/products/${id}`);
+
+  // Option 2: Revalidate by tag
+  // !mark
+  revalidateTag('products');
+}
+
+// In fetch calls, add tags for targeted revalidation
+const data = await fetch(url, {
+  // !mark
+  next: { tags: ['products'], revalidate: 3600 },
+});
+```
+
+</Grid>
+
+### Revalidation Strategies
+
+| Strategy         | Trigger                   | Best For                               |
+| ---------------- | ------------------------- | -------------------------------------- |
+| Time-based       | Automatic after N seconds | News feeds, frequently updated content |
+| On-demand (path) | Manual after mutations    | Form submissions, single-page updates  |
+| On-demand (tag)  | Manual, cross-route       | CMS webhooks, shared data across pages |
+
+### Demo
+
+1. **Click revalidatePath** to increment views and revalidate this route.
+2. **Click revalidateTag** to see tag-based invalidation.
+3. **Simulate a webhook** that adds 10 views via external trigger.
+4. **Observe the timestamps** updating after each revalidation.
+
+### Visual Summary
+
+<FlowDiagram
+  title="On-demand revalidation"
+  steps={[
+    { label: 'Mutation', type: 'server' },
+    { label: 'revalidate*()', type: 'cache' },
+    { label: 'Cache purge', type: 'cache' },
+    { label: 'Fresh data', type: 'response' },
+  ]}
+  note="Next request fetches fresh data after cache invalidation."
+/>
+
+### Key Takeaways
+
+| Topic       | Guidance                                               |
+| ----------- | ------------------------------------------------------ |
+| Scope       | Use tags for cross-page data, paths for single routes  |
+| Performance | Revalidation is incremental, not a full rebuild        |
+| Webhooks    | Expose Route Handlers for external CMS triggers        |
+| Defaults    | Without revalidate option, data is cached indefinitely |
+
+### Pitfalls and Tips
+
+- Always add meaningful tags to fetch requests for fine-grained control.
+- Use `revalidatePath('/', 'layout')` to revalidate everything under root.
+- Time-based revalidation happens on first request after the interval, not automatically.
+- Combine with `generateStaticParams` for ISR (Incremental Static Regeneration).
+
+### Continue Learning
+
+| Demo                                  | Description                          |
+| ------------------------------------- | ------------------------------------ |
+| [Server Actions](/server-actions)     | Trigger revalidation after mutations |
+| [Cached Routes](/cached-routes)       | Understand what gets cached          |
+| [Static Rendering](/static-rendering) | ISR with generateStaticParams        |
+
+### Learn More
+
+- [Caching in Next.js](https://nextjs.org/docs/app/building-your-application/caching)
+- [revalidatePath](https://nextjs.org/docs/app/api-reference/functions/revalidatePath)
+- [revalidateTag](https://nextjs.org/docs/app/api-reference/functions/revalidateTag)

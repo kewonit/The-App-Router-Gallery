@@ -1,0 +1,91 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'streaming' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Streaming** allows you to progressively render UI from the server, sending HTML chunks as they become ready.
+- Use `<Suspense>` to wrap async Server Components that fetch data, showing a fallback until content is ready.
+- Components inside Suspense boundaries **stream in parallel** - they don't block each other.
+- The shell (layout + non-async content) renders **immediately**, improving Time to First Byte (TTFB).
+- **Skeleton components** should match the shape of actual content to prevent layout shift.
+- Nested Suspense boundaries create progressive loading patterns for complex UIs.
+
+# !!col
+
+```tsx app/streaming/page.tsx
+import { Suspense } from 'react';
+
+export default function Page() {
+  return (
+    <div>
+      {/* Shell renders immediately */}
+      <h1>Dashboard</h1>
+      {/* Each Suspense boundary streams independently */}
+      // !mark
+      <Suspense fallback={<FastSkeleton />}>
+        <FastComponent />
+      </Suspense>
+      // !mark
+      <Suspense fallback={<SlowSkeleton />}>
+        <SlowComponent />
+      </Suspense>
+    </div>
+  );
+}
+
+async function SlowComponent() {
+  const data = await fetchSlowData(); // 3 seconds
+  return <div>{data}</div>;
+}
+```
+
+</Grid>
+
+### Demo
+
+1. **Watch the timeline**: See how components stream in at different times.
+2. **Parallel loading**: Notice all components start loading simultaneously, not sequentially.
+3. **Skeleton matching**: Each skeleton matches the shape of its content.
+4. **Nested streaming**: Inner Suspense boundaries show progressive depth loading.
+5. **Refresh the page**: Reset to see the streaming behavior again.
+
+### Best Practices
+
+- **Match skeletons to content**: Prevent layout shift by matching dimensions
+- **Strategic boundaries**: Place Suspense around slow data, not fast data
+- **Avoid waterfalls**: Fetch data in parallel, not sequentially
+- **Use loading.tsx**: For route-level loading states
+
+### Visual Summary
+
+<FlowDiagram
+  title="Streaming with Suspense"
+  steps={['Shell', 'Suspense boundary', 'Stream chunk', 'UI swap']}
+  note="Multiple boundaries stream in parallel without blocking each other."
+/>
+
+### Key Takeaways
+
+| Topic       | Guidance                                           |
+| ----------- | -------------------------------------------------- |
+| UX          | Users see content sooner via incremental streaming |
+| Structure   | Place boundaries around slow data                  |
+| Performance | Parallelize data fetching to avoid waterfalls      |
+
+### Pitfalls & Tips
+
+- Avoid nesting slow components without boundaries.
+- Keep skeletons visually consistent with real content.
+
+### Links
+
+- [Streaming Docs](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
+- [Suspense](https://react.dev/reference/react/Suspense)
+- [Loading UI](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#instant-loading-states)

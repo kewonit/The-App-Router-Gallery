@@ -1,0 +1,102 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'font-optimization' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **next/font** provides automatic font optimization with zero layout shift.
+- Fonts are self-hosted at build time, eliminating external network requests.
+- Use `next/font/google` for Google Fonts or `next/font/local` for custom font files.
+- Font metrics are calculated automatically to prevent Cumulative Layout Shift (CLS).
+- Fonts are preloaded and served from your domain, improving privacy and performance.
+- Apply fonts via CSS variables for flexible styling across your application.
+
+# !!col
+
+```tsx app/layout.tsx
+import { Inter, Roboto_Mono } from 'next/font/google';
+
+// !mark
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+// !mark
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  variable: '--font-roboto-mono',
+});
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    // !mark
+    <html className={`${inter.variable} ${robotoMono.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+</Grid>
+
+### Font Loading Strategies
+
+| Option                | Behavior                                    |
+| --------------------- | ------------------------------------------- |
+| `display: 'swap'`     | Show fallback immediately, swap when loaded |
+| `display: 'block'`    | Hide text briefly, then show custom font    |
+| `display: 'optional'` | Use custom font only if already cached      |
+| `preload: true`       | Preload font files (default for used fonts) |
+
+### Demo
+
+1. **Inspect the rendered fonts** - notice no flash of unstyled text.
+2. **Check the network panel** - fonts are served from your domain.
+3. **Throttle the network** - content still renders cleanly with fallback fonts.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Font optimization pipeline"
+  steps={[
+    { label: 'Declare font', type: 'component' },
+    { label: 'Build-time fetch', type: 'server' },
+    { label: 'Self-host', type: 'cache' },
+    { label: 'Preload', type: 'request' },
+    { label: 'Render', type: 'response' },
+  ]}
+  note="Self-hosting removes third-party latency and improves privacy."
+/>
+
+### Key Takeaways
+
+| Topic       | Guidance                                        |
+| ----------- | ----------------------------------------------- |
+| Performance | No external DNS/TLS overhead for font loading   |
+| CLS         | Zero layout shift with precomputed font metrics |
+| Privacy     | No external font service calls in production    |
+| Flexibility | CSS variables enable theme-based font switching |
+
+### Pitfalls and Tips
+
+- Use `subsets` to include only the character sets you need, reducing file size.
+- Avoid loading multiple font families unless your design requires them.
+- Prefer `display: 'swap'` for body text to ensure content is readable immediately.
+- Use CSS variables to apply fonts consistently across components.
+
+### Learn More
+
+- [Font Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
+- [next/font API Reference](https://nextjs.org/docs/app/api-reference/components/font)

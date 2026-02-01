@@ -1,0 +1,103 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'react-19' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **React 19** introduces new hooks and patterns for handling async operations and forms.
+- `useActionState` combines form state, pending status, and action results in one hook.
+- `useOptimistic` enables instant UI updates that roll back if the server action fails.
+- The `use()` hook reads promises and context directly in render without useEffect.
+- `useFormStatus` provides form pending state to deeply nested submit buttons.
+- These hooks integrate seamlessly with Next.js Server Actions.
+
+# !!col
+
+```tsx app/page.tsx
+'use client';
+// !mark
+import { useActionState, useOptimistic } from 'react';
+
+function TodoForm() {
+  // !mark
+  const [state, action, isPending] = useActionState(async (prev, formData) => {
+    return await addTodo(formData);
+  }, null);
+
+  return (
+    <form action={action}>
+      <input name="text" disabled={isPending} />
+      // !mark
+      <button disabled={isPending}>{isPending ? 'Adding...' : 'Add'}</button>
+    </form>
+  );
+}
+```
+
+</Grid>
+
+### New React 19 Hooks
+
+| Hook             | Purpose                           | Key Benefit                   |
+| ---------------- | --------------------------------- | ----------------------------- |
+| `useActionState` | Form state + pending + result     | Single hook for form handling |
+| `useOptimistic`  | Instant UI before server confirms | Better perceived performance  |
+| `use()`          | Read promises/context in render   | Simpler async patterns        |
+| `useFormStatus`  | Nested form pending state         | No prop drilling              |
+
+### Demo
+
+1. **Add a todo** using the form and notice the pending state.
+2. **Toggle or delete todos** and watch instant updates with server sync.
+3. **Check the server time** to see the `use()` hook reading a promise.
+4. **Try rapid actions** to see optimistic updates in action.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Optimistic update flow"
+  steps={[
+    { label: 'User action', type: 'request' },
+    { label: 'Optimistic UI', type: 'client' },
+    { label: 'Server Action', type: 'server' },
+    { label: 'Confirm or rollback', type: 'response' },
+  ]}
+  note="UI updates instantly while the server processes the mutation."
+/>
+
+### Key Takeaways
+
+| Topic       | Guidance                                                    |
+| ----------- | ----------------------------------------------------------- |
+| Forms       | Use `useActionState` for form handling with Server Actions  |
+| Performance | `useOptimistic` makes apps feel instant                     |
+| Async       | `use()` simplifies promise handling without useEffect       |
+| Composition | `useFormStatus` eliminates prop drilling for loading states |
+
+### Pitfalls and Tips
+
+- Always handle the rollback case when using `useOptimistic`.
+- Use `useFormStatus` only inside form children, not the form component itself.
+- The `use()` hook can only be called conditionally, unlike other hooks.
+- Combine these hooks with proper error boundaries for robust UX.
+
+### Continue Learning
+
+| Demo                              | Description                                 |
+| --------------------------------- | ------------------------------------------- |
+| [Server Actions](/server-actions) | Foundation for React 19 hooks               |
+| [Form Component](/form-component) | Enhanced forms with progressive enhancement |
+| [Revalidation](/revalidation)     | Refresh cache after mutations               |
+
+### Learn More
+
+- [React 19 Blog Post](https://react.dev/blog/2024/12/05/react-19)
+- [useActionState](https://react.dev/reference/react/useActionState)
+- [useOptimistic](https://react.dev/reference/react/useOptimistic)
+- [use Hook](https://react.dev/reference/react/use)

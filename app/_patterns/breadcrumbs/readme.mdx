@@ -1,0 +1,44 @@
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+# Breadcrumbs Pattern (Server + URL Awareness)
+
+Breadcrumbs often need access to deeper URL segments, but layouts only receive params for their own segment. This pattern uses Parallel Routes to keep breadcrumbs server-rendered while still reacting to URL changes.
+
+## What You'll Learn
+
+- Why layouts can’t read deeper `params` or `searchParams`
+- How to place URL-aware UI in a catch-all route
+- When to choose Client Components vs. server-driven breadcrumbs
+
+## How It Works
+
+1. **Parallel route renders** a dedicated breadcrumbs slot
+2. **Catch-all segment** receives the full URL depth
+3. **Breadcrumbs derive** labels from the route state
+4. **Main content stays** in its own slot
+
+## Try the Demo
+
+1. **Navigate across categories** and watch the breadcrumb trail update
+2. **Deep-link into subcategories** to confirm it resolves correctly
+3. **Use back/forward** and verify breadcrumbs stay in sync
+
+## Visual Summary
+
+<FlowDiagram
+  title="Parallel routes for shared UI"
+  steps={['URL', 'Catch-all segment', 'Breadcrumbs slot', 'Main content']}
+  note="Parallel Routes let you keep URL-aware UI server-rendered without pushing everything to the client."
+/>
+
+## Key Takeaways
+
+| Topic         | Guidance                                                         |
+| ------------- | ---------------------------------------------------------------- |
+| Layout limits | Layouts only receive params for their segment                    |
+| Strategy      | Use Parallel Routes + catch-all for URL-aware shared UI          |
+| Alternatives  | Client Components can read URL state, but increase client bundle |
+
+## Learn More
+
+- [Parallel Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes)

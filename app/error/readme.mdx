@@ -1,0 +1,86 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'error' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- The `error.tsx` file convention creates **error boundaries** that catch runtime errors in route segments.
+- Error boundaries isolate failures — other parts of your app continue working normally.
+- The error component receives `error` and `reset` props for displaying messages and recovery.
+- Error boundaries must be Client Components since they use React's error boundary mechanism.
+- Errors bubble up to the nearest error boundary, allowing nested handling at different levels.
+- Use `global-error.tsx` at the root to catch errors in the root layout itself.
+
+# !!col
+
+```tsx app/dashboard/error.tsx
+// !mark
+'use client';
+
+export default function Error({
+  // !mark
+  error,
+  // !mark
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  return (
+    <div className="error-container">
+      <h2>Something went wrong</h2>
+      <p>{error.message}</p>
+      // !mark
+      <button onClick={() => reset()}>Try again</button>
+    </div>
+  );
+}
+```
+
+</Grid>
+
+### Demo
+
+1. **Navigate through categories** using the tabs above.
+2. **Trigger an error** by clicking the "Trigger Error" button.
+3. **Observe containment** — only the affected segment shows the error.
+4. **Try the reset button** — attempt to recover from the error state.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Error boundary flow"
+  steps={[
+    { label: 'Error thrown', type: 'error' },
+    { label: 'Boundary catches', type: 'component' },
+    { label: 'Fallback UI', type: 'error' },
+    { label: 'Reset or navigate', type: 'response' },
+  ]}
+  note="Error boundaries isolate failures to the nearest segment."
+/>
+
+### Key Takeaways
+
+| Topic           | Guidance                                           |
+| --------------- | -------------------------------------------------- |
+| Error isolation | Errors in one segment do not crash the app         |
+| Recovery        | Provide reset functionality and navigation options |
+| Nested handling | Place error boundaries at different route depths   |
+| Root errors     | Use `global-error.tsx` for root layout errors      |
+
+### Pitfalls and Tips
+
+- Always include a recovery path — reset button or navigation link.
+- Avoid leaking sensitive error details to users in production.
+- Log errors server-side for debugging while showing friendly messages client-side.
+
+### Learn More
+
+- [Error Handling](https://nextjs.org/docs/app/building-your-application/routing/error-handling)
+- [Recovering from Errors](https://nextjs.org/docs/app/building-your-application/routing/error-handling#recovering-from-errors)

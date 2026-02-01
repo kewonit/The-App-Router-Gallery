@@ -1,0 +1,99 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'server-actions' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Server Actions** are asynchronous functions that run on the server, invoked directly from your React components.
+- Use the `'use server'` directive at the top of a file or inside a function to mark it as a Server Action.
+- Server Actions can be used in both Server and Client Components for data mutations.
+- They integrate seamlessly with forms using the `action` prop or can be called directly with `startTransition`.
+- **Optimistic Updates** with `useOptimistic` provide instant feedback before server confirmation.
+- **Form Status** with `useFormStatus` shows loading states during form submission.
+- **Action State** with `useActionState` manages form state including validation errors.
+
+# !!col
+
+```tsx app/server-actions/actions.ts
+// !mark
+'use server';
+
+import { revalidatePath } from 'next/cache';
+
+export async function addTodo(
+  prevState: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  const text = formData.get('text');
+
+  // Validation
+  if (!text || text.length < 3) {
+    return {
+      success: false,
+      // !mark
+      errors: { text: ['Must be at least 3 characters'] },
+    };
+  }
+
+  // Save to database
+  await db.todo.create({ text: text.toString() });
+
+  // !mark
+  revalidatePath('/server-actions');
+
+  return { success: true, message: 'Todo added!' };
+}
+```
+
+</Grid>
+
+### Demo
+
+1. **Add a todo** using the form. Watch the loading state and success/error messages.
+2. **Toggle completion** by clicking the checkbox. Notice the instant optimistic update.
+3. **Delete a todo** by hovering and clicking "Delete". The item fades while the server processes.
+4. **Try validation** by entering less than 3 characters or duplicate todos.
+5. **Bulk actions**: Clear all completed items or reset the demo to initial state.
+6. **Observe revalidation**: After mutations, the server revalidates and updates the UI.
+
+### Key Patterns
+
+- **`useActionState`**: Manages form state with automatic error handling and reset
+- **`useFormStatus`**: Shows pending state inside form components
+- **`useOptimistic`**: Applies changes immediately, reverts on error
+- **`useTransition`**: Non-blocking updates for non-form actions
+- **`revalidatePath`**: Refreshes cached data after mutations
+
+### Visual Summary
+
+<FlowDiagram
+  title="Action → Mutation → Revalidate"
+  steps={['User intent', 'Server Action', 'Data change', 'UI refresh']}
+  note="Server Actions keep mutations on the server while preserving UX."
+/>
+
+### Pitfalls & Tips
+
+- Validate inputs on the server for security.
+- Prefer optimistic updates only when failure states are well-defined.
+
+### Continue Learning
+
+| Demo                              | Description                                         |
+| --------------------------------- | --------------------------------------------------- |
+| [Form Component](/form-component) | Enhanced form handling with progressive enhancement |
+| [React 19 Hooks](/react-19)       | Deep dive into useActionState, useOptimistic, use() |
+| [Revalidation](/revalidation)     | Control cache refresh after mutations               |
+
+### Links
+
+- [Server Actions Docs](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations)
+- [useActionState Hook](https://react.dev/reference/react/useActionState)
+- [useOptimistic Hook](https://react.dev/reference/react/useOptimistic)
+- [useFormStatus Hook](https://react.dev/reference/react-dom/hooks/useFormStatus)

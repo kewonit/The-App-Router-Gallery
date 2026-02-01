@@ -1,0 +1,135 @@
+````mdx
+{/\*
+DOCUMENTATION TEMPLATE
+
+This template defines the standard structure for all readme.mdx files.
+Every demo should follow this pattern for consistency and quality.
+
+REQUIRED IMPORTS:
+
+- db from '#/lib/db' for dynamic title
+- Grid from '#/ui/codehike' for side-by-side explanation + code
+- FlowDiagram from '#/ui/flow-diagram' for visual summaries
+  \*/}
+
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+{/* Dynamic title from database - ensures consistency with navigation */}
+export const demo = db.demo.find({ where: { slug: 'DEMO_SLUG' } });
+
+# {demo.name}
+
+{/\*
+SECTION 1: Grid with Explanation + Code
+
+Left column: Key concepts as bullet points (5-8 bullets)
+Right column: Annotated code example with !mark highlights
+
+Guidelines:
+
+- Start with what the feature IS
+- Explain the key mechanism
+- Mention integration points
+- Highlight important patterns
+  \*/}
+
+<Grid>
+
+# !!col
+
+- **Primary concept** explained in one clear sentence.
+- Secondary concept that builds on the first.
+- How the feature integrates with the broader framework.
+- Common patterns and best practices.
+- Performance or UX considerations.
+
+# !!col
+
+```tsx app/example/page.tsx
+// File path appears as the code block label
+
+export default async function Page() {
+  // !mark
+  // Lines with !mark get highlighted
+  const data = await fetchData();
+
+  return <Component data={data} />;
+}
+```
+
+</Grid>
+
+{/\*
+SECTION 2: Demo Instructions
+
+Guide users through the interactive demo with numbered steps.
+Each step should highlight a specific behavior or concept.
+\*/}
+
+### Demo
+
+1. **Action to take** and what to observe.
+2. **Second interaction** with expected behavior.
+3. **Edge case to try** demonstrating error handling or fallbacks.
+4. **Comparison step** showing before/after or alternative behavior.
+
+{/\*
+SECTION 3: Visual Summary
+
+FlowDiagram provides a scannable mental model.
+
+- Title: Describes the flow in 3-5 words
+- Steps: 4-6 key stages in the process
+- Note: One-sentence clarification
+  \*/}
+
+### Visual Summary
+
+<FlowDiagram
+  title="Process name"
+  steps={['Step 1', 'Step 2', 'Step 3', 'Result']}
+  note="Brief clarification of the overall flow or important consideration."
+/>
+
+{/\*
+SECTION 4: Key Takeaways
+
+Table format for scannable reference.
+3-5 rows covering the most important guidance.
+\*/}
+
+### Key Takeaways
+
+| Topic       | Guidance                                       |
+| ----------- | ---------------------------------------------- |
+| When to use | Specific scenarios where this feature shines   |
+| Performance | Impact on load time, caching, or bundle size   |
+| Patterns    | Recommended approaches and common integrations |
+
+{/\*
+SECTION 5: Pitfalls and Tips
+
+Short list of common mistakes and pro tips.
+Keep practical and actionable.
+\*/}
+
+### Pitfalls and Tips
+
+- Avoid doing X when Y because Z.
+- Prefer A over B for better performance.
+- Always validate or sanitize when dealing with user input.
+
+{/\*
+SECTION 6: Learn More
+
+External links to official documentation.
+Use descriptive link text, not "click here".
+\*/}
+
+### Learn More
+
+- [Official Documentation](https://nextjs.org/docs/...)
+- [Related React API](https://react.dev/reference/...)
+````

@@ -1,0 +1,109 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'static-rendering' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Static Generation (SSG)** pre-renders pages at build time for maximum performance.
+- Use `generateStaticParams` to define which dynamic routes to pre-render.
+- **ISR** combines static performance with the ability to update content without redeploying.
+- Set `export const revalidate = N` to enable time-based revalidation.
+- Use `dynamicParams` to control behavior for slugs not in generateStaticParams.
+- Static pages are served from CDN edge locations for minimal latency.
+
+# !!col
+
+```tsx app/blog/[slug]/page.tsx
+// !mark
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  // !mark
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
+// !mark
+// Time-based revalidation (ISR)
+export const revalidate = 3600; // 1 hour
+
+// !mark
+// Reject unknown slugs with 404
+export const dynamicParams = false;
+
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  return <Article post={post} />;
+}
+```
+
+</Grid>
+
+### Static vs Dynamic Rendering
+
+| Aspect    | Static (SSG)         | ISR                | Dynamic (SSR)    |
+| --------- | -------------------- | ------------------ | ---------------- |
+| Built     | Once at deploy       | Build + background | Every request    |
+| Speed     | Fastest (CDN)        | Fast (cached)      | Slowest (origin) |
+| Freshness | Stale until redeploy | Configurable       | Always fresh     |
+| Use case  | Docs, marketing      | Blog, e-commerce   | Dashboards       |
+
+### Demo
+
+1. **Review the comparison table** to understand when to use each strategy.
+2. **Check the static pages example** showing generateStaticParams usage.
+3. **Explore ISR options** for time-based and on-demand revalidation.
+4. **Understand fallback behavior** with dynamicParams settings.
+
+### Visual Summary
+
+<FlowDiagram
+  title="ISR revalidation cycle"
+  steps={[
+    { label: 'Build', type: 'server' },
+    { label: 'Serve cached', type: 'cache' },
+    { label: 'Stale request', type: 'request' },
+    { label: 'Background regen', type: 'server' },
+    { label: 'Fresh cache', type: 'cache' },
+  ]}
+  note="Users always get fast cached responses while regeneration happens in background."
+/>
+
+### Key Takeaways
+
+| Topic       | Guidance                                        |
+| ----------- | ----------------------------------------------- |
+| Performance | Static pages load fastest from edge CDN         |
+| Freshness   | Use ISR revalidate for content that changes     |
+| Build time  | generateStaticParams runs at build, not runtime |
+| Fallback    | dynamicParams controls unknown slug behavior    |
+
+### Pitfalls and Tips
+
+- Return all possible slugs from generateStaticParams for full static generation.
+- Use `dynamicParams = false` for strict static-only sites.
+- Combine ISR with on-demand revalidation for immediate updates when needed.
+- Check build output to verify which routes are static vs dynamic.
+
+### Continue Learning
+
+| Demo                                          | Description                         |
+| --------------------------------------------- | ----------------------------------- |
+| [Dynamic Routes](/dynamic-routes)             | Create routes from dynamic data     |
+| [Revalidation](/revalidation)                 | Update static content on-demand     |
+| [Partial Prerendering](/partial-prerendering) | Mix static and dynamic in one route |
+
+### Learn More
+
+- [Static Generation](https://nextjs.org/docs/app/building-your-application/rendering/server-components#static-rendering-default)
+- [generateStaticParams](https://nextjs.org/docs/app/api-reference/functions/generate-static-params)
+- [ISR](https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration)

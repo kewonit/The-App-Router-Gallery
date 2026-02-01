@@ -1,0 +1,99 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'view-transitions' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **View Transitions** create smooth animations between page navigations using the browser's native API.
+- Next.js automatically coordinates transitions when navigating between routes.
+- Transitions capture snapshots of the old and new UI, then animate between them.
+- Enable view transitions in `next.config.ts` with the `experimental.viewTransition` flag.
+- CSS controls how elements morph, fade, or slide during transitions.
+- Transitions gracefully degrade on unsupported browsers or when reduced motion is preferred.
+
+# !!col
+
+```tsx next.config.ts
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+  experimental: {
+    // !mark
+    viewTransition: true,
+  },
+};
+
+export default nextConfig;
+```
+
+```css app/globals.css
+/* Customize the transition animation */
+// !mark
+::view-transition-old(root) {
+  animation: fade-out 0.2s ease-out;
+}
+
+// !mark
+::view-transition-new(root) {
+  animation: fade-in 0.2s ease-in;
+}
+
+/* Respect reduced motion preference */
+// !mark
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+```
+
+</Grid>
+
+### Demo
+
+1. **Navigate between items** and watch the cross-fade/slide behavior.
+2. **Use browser back/forward** to see transitions on history navigation.
+3. **Resize the viewport** and confirm transitions remain smooth.
+
+### Visual Summary
+
+<FlowDiagram
+  title="View transition lifecycle"
+  steps={[
+    { label: 'User click', type: 'request' },
+    { label: 'Snapshot old', type: 'component' },
+    { label: 'Route change', type: 'server' },
+    { label: 'Animate', type: 'client' },
+    { label: 'Interactive', type: 'response' },
+  ]}
+  note="Transitions skip if the browser lacks support or reduced motion is preferred."
+/>
+
+### Key Takeaways
+
+| Topic           | Guidance                                         |
+| --------------- | ------------------------------------------------ |
+| Best fit        | Page navigations where visual continuity matters |
+| Browser support | Progressive enhancement with graceful fallback   |
+| Accessibility   | Always respect `prefers-reduced-motion`          |
+| Performance     | Keep DOM changes moderate for smooth animations  |
+
+### Pitfalls and Tips
+
+- Avoid heavy layout shifts during transitions; keep container sizes stable.
+- Use motion sparingly on content-heavy pages to prevent cognitive overload.
+- Test with reduced motion settings to ensure no critical information is motion-only.
+- Named view transitions can animate specific elements across routes.
+
+### Learn More
+
+- [View Transitions](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#view-transitions)
+- [View Transitions API (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)

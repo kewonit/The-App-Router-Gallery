@@ -1,0 +1,82 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'form-component' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- The Next.js `<Form>` component extends the HTML `<form>` element with **prefetching**, **client-side navigation**, and **progressive enhancement**.
+- On submit, the `loading.js` and shared layouts are prefetched for instant navigation.
+- Works seamlessly with **Server Actions** for mutations and **GET** requests for navigation.
+- **Progressive enhancement**: Forms work even with JavaScript disabled.
+- For mutations, combine with `useActionState` for form state and validation errors.
+- Use `useFormStatus` inside form components to show pending states.
+
+# !!col
+
+```tsx app/form-component/page.tsx
+import Form from 'next/form';
+import { submitForm, FormState } from './actions';
+
+export default function ContactPage() {
+  // !mark
+  const [state, formAction] = useActionState(submitForm, initialState);
+
+  return (
+    // !mark
+    <Form action={formAction}>
+      <input
+        name="email"
+        type="email"
+        // !mark
+        aria-invalid={state.errors?.email ? 'true' : undefined}
+      />
+
+      {state.errors?.email && <p role="alert">{state.errors.email[0]}</p>}
+
+      <SubmitButton />
+    </Form>
+  );
+}
+```
+
+</Grid>
+
+### Demo
+
+1. **Contact Form**: Complete form with field validation, error messages, and success state.
+2. **Search Form**: Demonstrates prefetching - watch the URL update without full reload.
+3. **Newsletter Form**: Inline feedback pattern for simple subscription forms.
+4. **Comparison**: See the differences between Next.js Form and native HTML forms.
+
+### Key Features
+
+- **Prefetching**: Loading UI and layouts are prefetched on hover
+- **Client Navigation**: No full page reload, preserves client state
+- **Progressive Enhancement**: Works without JavaScript
+- **Accessible**: ARIA attributes for screen readers
+
+### Visual Summary
+
+<FlowDiagram
+  title="Form → Action → UI"
+  steps={['User submit', 'Server Action', 'Revalidate', 'UI update']}
+  note="`next/form` pairs well with Server Actions for low-friction mutations."
+/>
+
+### Pitfalls & Tips
+
+- Validate on the server for authoritative results.
+- Use `useActionState` to surface field-level errors.
+
+### Links
+
+- [Form Component Docs](https://nextjs.org/docs/app/api-reference/components/form)
+- [useActionState](https://react.dev/reference/react/useActionState)
+- [useFormStatus](https://react.dev/reference/react-dom/hooks/useFormStatus)
+- [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations)

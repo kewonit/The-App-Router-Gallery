@@ -1,0 +1,104 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'context' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Client Context** shares state across Client Components while preserving Server Component composition.
+- Context providers must be Client Components (marked with `'use client'`).
+- Pass Server Components as children through Client Component providers to keep server rendering.
+- Context values update all consuming Client Components without re-rendering Server Components.
+- This pattern enables shared state like themes, user preferences, or shopping carts.
+- Place providers high in the tree but as low as practical to limit re-renders.
+
+# !!col
+
+```tsx app/providers.tsx
+// !mark
+'use client';
+
+import { createContext, useContext, useState } from 'react';
+
+const CounterContext = createContext<{
+  count: number;
+  increment: () => void;
+} | null>(null);
+
+// !mark
+export function CounterProvider({ children }: { children: React.ReactNode }) {
+  const [count, setCount] = useState(0);
+
+  return (
+    // !mark
+    <CounterContext.Provider
+      value={{ count, increment: () => setCount((c) => c + 1) }}
+    >
+      {/* Server Components can be passed as children */}
+      // !mark
+      {children}
+    </CounterContext.Provider>
+  );
+}
+
+export function useCounter() {
+  const context = useContext(CounterContext);
+  if (!context)
+    throw new Error('useCounter must be used within CounterProvider');
+  return context;
+}
+```
+
+</Grid>
+
+### Server and Client Boundary
+
+| Component Type   | Can Use Context | Can Import Server Components |
+| ---------------- | --------------- | ---------------------------- |
+| Server Component | No              | Yes                          |
+| Client Component | Yes             | No (use children pattern)    |
+| Client Provider  | Yes             | Via children prop            |
+
+### Demo
+
+1. **Increment the counter** and navigate between categories.
+2. **Verify state persists** while server-rendered content updates.
+3. **Refresh the page** to see the counter reset to initial state.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Client provider with server children"
+  steps={[
+    { label: 'Client Provider', type: 'client' },
+    { label: 'Server Content', type: 'server' },
+    { label: 'Client Consumers', type: 'client' },
+  ]}
+  note="Pass Server Components as children to keep data fetching on the server."
+/>
+
+### Key Takeaways
+
+| Topic       | Guidance                                                 |
+| ----------- | -------------------------------------------------------- |
+| Composition | Client providers can wrap Server Components via children |
+| State       | Shared client state persists across navigation           |
+| Performance | Server data fetching stays on the server                 |
+| Boundaries  | Client providers create the client/server boundary       |
+
+### Pitfalls and Tips
+
+- Never import Server Components directly into Client Components - use children instead.
+- Keep context providers as low in the tree as possible to minimize re-renders.
+- Use multiple small contexts rather than one large context for better performance.
+- Remember that context state resets on full page refresh.
+
+### Learn More
+
+- [Context in Server Components](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#using-context-providers)
+- [React useContext](https://react.dev/reference/react/useContext)

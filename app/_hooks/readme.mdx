@@ -1,0 +1,103 @@
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+# Client Component Hooks
+
+<Grid>
+
+# !!col
+
+- **Navigation hooks** expose routing state and navigation helpers in Client Components.
+- `usePathname()` returns the current URL path without query parameters.
+- `useSearchParams()` provides read-only access to URL query parameters.
+- `useParams()` returns dynamic route parameters from the URL.
+- `useRouter()` enables programmatic navigation, refresh, and prefetching.
+- All hooks require the `'use client'` directive and trigger re-renders on URL changes.
+
+# !!col
+
+```tsx app/components/navigation.tsx
+// !mark
+'use client';
+
+import {
+  usePathname,
+  useSearchParams,
+  useParams,
+  useRouter,
+} from 'next/navigation';
+
+export function NavigationInfo() {
+  // !mark
+  const pathname = usePathname();
+  // !mark
+  const searchParams = useSearchParams();
+  // !mark
+  const params = useParams();
+  // !mark
+  const router = useRouter();
+
+  return (
+    <div>
+      <p>Path: {pathname}</p>
+      <p>Query: {searchParams.get('q')}</p>
+      <p>Slug: {params.slug}</p>
+      <button onClick={() => router.push('/home')}>Go Home</button>
+    </div>
+  );
+}
+```
+
+</Grid>
+
+### Hook Reference
+
+| Hook                         | Returns                | Use Case                 |
+| ---------------------------- | ---------------------- | ------------------------ |
+| `usePathname()`              | Current path string    | Active link highlighting |
+| `useSearchParams()`          | URLSearchParams object | Filter/search state      |
+| `useParams()`                | Dynamic segment values | Display current item     |
+| `useRouter()`                | Router object          | Programmatic navigation  |
+| `useSelectedLayoutSegment()` | Active child segment   | Navigation menus         |
+
+### Demo
+
+1. **Navigate between categories** and watch hook outputs update.
+2. **Change query params** in the URL and confirm `useSearchParams()` reflects changes.
+3. **Use back/forward navigation** to validate segment tracking.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Route state to UI updates"
+  steps={[
+    { label: 'URL change', type: 'request' },
+    { label: 'Router state', type: 'server' },
+    { label: 'Hooks update', type: 'client' },
+    { label: 'UI re-render', type: 'component' },
+  ]}
+  note="Hooks re-render only the Client Components that subscribe to them."
+/>
+
+### Key Takeaways
+
+| Topic             | Guidance                                                               |
+| ----------------- | ---------------------------------------------------------------------- |
+| Server boundaries | Use hooks only in Client Components                                    |
+| Performance       | Subscribe only to the state you need                                   |
+| Navigation        | Prefer `<Link>` for navigation; use `useRouter()` for imperative flows |
+| Suspense          | Wrap `useSearchParams()` in Suspense when needed                       |
+
+### Pitfalls and Tips
+
+- Remember that `useSearchParams()` may need a Suspense boundary during static rendering.
+- Prefer declarative `<Link>` navigation over imperative `router.push()` when possible.
+- Use `useSelectedLayoutSegment()` for building navigation that highlights the active section.
+- Combine hooks thoughtfully to avoid unnecessary re-renders.
+
+### Learn More
+
+- [usePathname](https://nextjs.org/docs/app/api-reference/functions/use-pathname)
+- [useSearchParams](https://nextjs.org/docs/app/api-reference/functions/use-search-params)
+- [useParams](https://nextjs.org/docs/app/api-reference/functions/use-params)
+- [useRouter](https://nextjs.org/docs/app/api-reference/functions/use-router)
