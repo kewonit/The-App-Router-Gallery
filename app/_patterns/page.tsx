@@ -49,7 +49,7 @@ export default function Page() {
       </div>
 
       <div className="flex gap-2">
-        <ExternalLink href="https://github.com/kewonit/nextjs16-showcase/tree/main/app/_patterns">
+        <ExternalLink href="https://github.com/kewonit/The-App-Router-Gallery/tree/main/app/_patterns">
           Code
         </ExternalLink>
       </div>

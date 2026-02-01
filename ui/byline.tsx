@@ -11,7 +11,7 @@ export default function Byline() {
         >
           <a
             className="group inline-flex items-center gap-1.5 text-gray-500 transition-colors hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-            href="https://github.com/kewonit/nextjs16-showcase"
+            href="https://github.com/kewonit/The-App-Router-Gallery"
             target="_blank"
             rel="noreferrer"
           >
