@@ -14,18 +14,18 @@ import { FlowDiagram } from '#/ui/flow-diagram';
 ## Visual Summary
 
 <FlowDiagram
-	title="Pending → Loading"
-	steps={["Click", "Pending state", "URL update", "Loading UI"]}
-	note="`useLinkStatus` covers the pending phase before the URL changes."
+  title="Pending → Loading"
+  steps={['Click', 'Pending state', 'URL update', 'Loading UI']}
+  note="`useLinkStatus` covers the pending phase before the URL changes."
 />
 
 ## Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Best use | When prefetching is off or dynamic routes are slow |
-| UX | Keep indicators subtle and close to the interaction |
-| Pairing | Combine with `loading.js` for full coverage |
+| Topic    | Guidance                                            |
+| -------- | --------------------------------------------------- |
+| Best use | When prefetching is off or dynamic routes are slow  |
+| UX       | Keep indicators subtle and close to the interaction |
+| Pairing  | Combine with `loading.js` for full coverage         |
 
 ### Demo
 

@@ -26,20 +26,15 @@ import { useActionState, useOptimistic } from 'react';
 
 function TodoForm() {
   // !mark
-  const [state, action, isPending] = useActionState(
-    async (prev, formData) => {
-      return await addTodo(formData);
-    },
-    null
-  );
+  const [state, action, isPending] = useActionState(async (prev, formData) => {
+    return await addTodo(formData);
+  }, null);
 
   return (
     <form action={action}>
       <input name="text" disabled={isPending} />
       // !mark
-      <button disabled={isPending}>
-        {isPending ? 'Adding...' : 'Add'}
-      </button>
+      <button disabled={isPending}>{isPending ? 'Adding...' : 'Add'}</button>
     </form>
   );
 }
@@ -49,12 +44,12 @@ function TodoForm() {
 
 ### New React 19 Hooks
 
-| Hook | Purpose | Key Benefit |
-| --- | --- | --- |
-| `useActionState` | Form state + pending + result | Single hook for form handling |
-| `useOptimistic` | Instant UI before server confirms | Better perceived performance |
-| `use()` | Read promises/context in render | Simpler async patterns |
-| `useFormStatus` | Nested form pending state | No prop drilling |
+| Hook             | Purpose                           | Key Benefit                   |
+| ---------------- | --------------------------------- | ----------------------------- |
+| `useActionState` | Form state + pending + result     | Single hook for form handling |
+| `useOptimistic`  | Instant UI before server confirms | Better perceived performance  |
+| `use()`          | Read promises/context in render   | Simpler async patterns        |
+| `useFormStatus`  | Nested form pending state         | No prop drilling              |
 
 ### Demo
 
@@ -68,21 +63,21 @@ function TodoForm() {
 <FlowDiagram
   title="Optimistic update flow"
   steps={[
-    { label: "User action", type: "request" },
-    { label: "Optimistic UI", type: "client" },
-    { label: "Server Action", type: "server" },
-    { label: "Confirm or rollback", type: "response" }
+    { label: 'User action', type: 'request' },
+    { label: 'Optimistic UI', type: 'client' },
+    { label: 'Server Action', type: 'server' },
+    { label: 'Confirm or rollback', type: 'response' },
   ]}
   note="UI updates instantly while the server processes the mutation."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Forms | Use `useActionState` for form handling with Server Actions |
-| Performance | `useOptimistic` makes apps feel instant |
-| Async | `use()` simplifies promise handling without useEffect |
+| Topic       | Guidance                                                    |
+| ----------- | ----------------------------------------------------------- |
+| Forms       | Use `useActionState` for form handling with Server Actions  |
+| Performance | `useOptimistic` makes apps feel instant                     |
+| Async       | `use()` simplifies promise handling without useEffect       |
 | Composition | `useFormStatus` eliminates prop drilling for loading states |
 
 ### Pitfalls and Tips
@@ -94,11 +89,11 @@ function TodoForm() {
 
 ### Continue Learning
 
-| Demo | Description |
-| --- | --- |
-| [Server Actions](/server-actions) | Foundation for React 19 hooks |
+| Demo                              | Description                                 |
+| --------------------------------- | ------------------------------------------- |
+| [Server Actions](/server-actions) | Foundation for React 19 hooks               |
 | [Form Component](/form-component) | Enhanced forms with progressive enhancement |
-| [Revalidation](/revalidation) | Refresh cache after mutations |
+| [Revalidation](/revalidation)     | Refresh cache after mutations               |
 
 ### Learn More
 

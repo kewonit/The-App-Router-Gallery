@@ -27,13 +27,11 @@ export default function Page() {
     <div>
       {/* Shell renders immediately */}
       <h1>Dashboard</h1>
-
       {/* Each Suspense boundary streams independently */}
       // !mark
       <Suspense fallback={<FastSkeleton />}>
         <FastComponent />
       </Suspense>
-
       // !mark
       <Suspense fallback={<SlowSkeleton />}>
         <SlowComponent />
@@ -69,17 +67,17 @@ async function SlowComponent() {
 
 <FlowDiagram
   title="Streaming with Suspense"
-  steps={["Shell", "Suspense boundary", "Stream chunk", "UI swap"]}
+  steps={['Shell', 'Suspense boundary', 'Stream chunk', 'UI swap']}
   note="Multiple boundaries stream in parallel without blocking each other."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| UX | Users see content sooner via incremental streaming |
-| Structure | Place boundaries around slow data |
-| Performance | Parallelize data fetching to avoid waterfalls |
+| Topic       | Guidance                                           |
+| ----------- | -------------------------------------------------- |
+| UX          | Users see content sooner via incremental streaming |
+| Structure   | Place boundaries around slow data                  |
+| Performance | Parallelize data fetching to avoid waterfalls      |
 
 ### Pitfalls & Tips
 

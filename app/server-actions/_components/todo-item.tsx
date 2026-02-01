@@ -38,11 +38,12 @@ export function TodoItem({ todo }: { todo: Todo }) {
         onClick={handleToggle}
         disabled={isPending || isDeleting}
         className={clsx(
-          'flex size-5 shrink-0 items-center justify-center rounded border-2',
+          'flex size-5 shrink-0 items-center justify-center rounded-md border-2 transition-all duration-150',
           {
-            'border-gray-400 hover:border-gray-500 dark:border-gray-600 dark:hover:border-gray-400':
+            'border-gray-300 bg-white hover:border-blue-400 hover:bg-blue-50 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-blue-500 dark:hover:bg-blue-950':
               !optimisticTodo.completed,
-            'border-green-600 bg-green-600': optimisticTodo.completed,
+            'border-green-500 bg-green-500 shadow-sm shadow-green-200 dark:shadow-green-900/50':
+              optimisticTodo.completed,
           },
         )}
       >

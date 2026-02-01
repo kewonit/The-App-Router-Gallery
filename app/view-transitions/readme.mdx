@@ -68,23 +68,23 @@ export default nextConfig;
 <FlowDiagram
   title="View transition lifecycle"
   steps={[
-    { label: "User click", type: "request" },
-    { label: "Snapshot old", type: "component" },
-    { label: "Route change", type: "server" },
-    { label: "Animate", type: "client" },
-    { label: "Interactive", type: "response" }
+    { label: 'User click', type: 'request' },
+    { label: 'Snapshot old', type: 'component' },
+    { label: 'Route change', type: 'server' },
+    { label: 'Animate', type: 'client' },
+    { label: 'Interactive', type: 'response' },
   ]}
   note="Transitions skip if the browser lacks support or reduced motion is preferred."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Best fit | Page navigations where visual continuity matters |
-| Browser support | Progressive enhancement with graceful fallback |
-| Accessibility | Always respect `prefers-reduced-motion` |
-| Performance | Keep DOM changes moderate for smooth animations |
+| Topic           | Guidance                                         |
+| --------------- | ------------------------------------------------ |
+| Best fit        | Page navigations where visual continuity matters |
+| Browser support | Progressive enhancement with graceful fallback   |
+| Accessibility   | Always respect `prefers-reduced-motion`          |
+| Performance     | Keep DOM changes moderate for smooth animations  |
 
 ### Pitfalls and Tips
 

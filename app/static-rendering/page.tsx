@@ -1,6 +1,5 @@
 import { Boundary } from '#/ui/boundary';
 
-// Simulated static data
 const staticPosts = [
   {
     slug: 'getting-started',

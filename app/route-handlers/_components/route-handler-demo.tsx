@@ -56,21 +56,21 @@ export function RouteHandlerDemo() {
           <button
             onClick={() => testEndpoint('get')}
             disabled={loading}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-blue-200 transition-all duration-150 hover:cursor-pointer hover:bg-blue-500 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-blue-900/30 dark:focus-visible:ring-offset-gray-950"
           >
             GET /api/hello
           </button>
           <button
             onClick={() => testEndpoint('post')}
             disabled={loading}
-            className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 disabled:opacity-50"
+            className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-green-200 transition-all duration-150 hover:cursor-pointer hover:bg-green-500 hover:shadow-md focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-green-900/30 dark:focus-visible:ring-offset-gray-950"
           >
             POST /api/hello
           </button>
           <button
             onClick={() => testEndpoint('stream')}
             disabled={loading}
-            className="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700 disabled:opacity-50"
+            className="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-purple-200 transition-all duration-150 hover:cursor-pointer hover:bg-purple-500 hover:shadow-md focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-purple-900/30 dark:focus-visible:ring-offset-gray-950"
           >
             Stream
           </button>

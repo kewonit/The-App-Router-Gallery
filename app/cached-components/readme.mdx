@@ -45,17 +45,17 @@ export default async function Page() {
 
 <FlowDiagram
   title="Cached Server Component"
-  steps={["Render", "Cache output", "Reuse", "Skip work"]}
+  steps={['Render', 'Cache output', 'Reuse', 'Skip work']}
   note="Same inputs reuse the cached render result."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Scope | Cache at the component level |
-| Inputs | Cache key is based on component inputs |
-| Performance | Great for expensive server renders |
+| Topic       | Guidance                               |
+| ----------- | -------------------------------------- |
+| Scope       | Cache at the component level           |
+| Inputs      | Cache key is based on component inputs |
+| Performance | Great for expensive server renders     |
 
 ### Pitfalls & Tips
 
@@ -64,11 +64,11 @@ export default async function Page() {
 
 ### Continue Learning
 
-| Demo | Description |
-| --- | --- |
-| [Cached Routes](/cached-routes) | Cache entire route segments |
-| [Cached Functions](/cached-functions) | Cache pure function results |
-| [Revalidation](/revalidation) | Invalidate cached components |
+| Demo                                  | Description                  |
+| ------------------------------------- | ---------------------------- |
+| [Cached Routes](/cached-routes)       | Cache entire route segments  |
+| [Cached Functions](/cached-functions) | Cache pure function results  |
+| [Revalidation](/revalidation)         | Invalidate cached components |
 
 ### Learn More
 

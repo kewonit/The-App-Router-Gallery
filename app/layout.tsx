@@ -48,7 +48,7 @@ export default function RootLayout({
           </div>
 
           <div className="lg:pl-72">
-            <div className="mx-auto mt-12 mb-24 max-w-4xl -space-y-[1px] lg:px-8 lg:py-8">
+            <div className="mx-auto mt-12 mb-24 max-w-4xl -space-y-px lg:px-8 lg:py-8">
               {children}
 
               <Byline />

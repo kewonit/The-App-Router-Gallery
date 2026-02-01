@@ -36,12 +36,12 @@ app/
 
 ### Convention Prefixes
 
-| Prefix | Description |
-|--------|-------------|
-| `(.)` | Match segments on the same level |
-| `(..)` | Match segments one level above |
-| `(..)(..)` | Match segments two levels above |
-| `(...)` | Match segments from the root |
+| Prefix     | Description                      |
+| ---------- | -------------------------------- |
+| `(.)`      | Match segments on the same level |
+| `(..)`     | Match segments one level above   |
+| `(..)(..)` | Match segments two levels above  |
+| `(...)`    | Match segments from the root     |
 
 ### Demo
 
@@ -61,17 +61,17 @@ app/
 ### Visual Summary
 
 <FlowDiagram
-	title="Gallery → Modal → Full page"
-	steps={["List view", "Intercepted modal", "Direct URL", "Full page"]}
-	note="Client navigation shows the modal; direct access renders the full page."
+  title="Gallery → Modal → Full page"
+  steps={['List view', 'Intercepted modal', 'Direct URL', 'Full page']}
+  note="Client navigation shows the modal; direct access renders the full page."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| UX | Use for modals or contextual overlays |
-| Routing | Intercepted routes preserve URLs |
+| Topic    | Guidance                                      |
+| -------- | --------------------------------------------- |
+| UX       | Use for modals or contextual overlays         |
+| Routing  | Intercepted routes preserve URLs              |
 | Fallback | Full page renders on refresh or direct access |
 
 ### Pitfalls & Tips

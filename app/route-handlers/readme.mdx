@@ -32,16 +32,16 @@ export async function GET(request: NextRequest) {
 // !mark
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  
+
   // Validate input
   if (!body.email) {
     return NextResponse.json(
       { error: 'Email required' },
       // !mark
-      { status: 400 }
+      { status: 400 },
     );
   }
-  
+
   const user = await db.user.create(body);
   return NextResponse.json(user, { status: 201 });
 }
@@ -51,11 +51,11 @@ export async function POST(request: NextRequest) {
 
 ### When to Use Each
 
-| Approach | Best For |
-| --- | --- |
-| Route Handlers | External API consumers, webhooks, file downloads |
-| Server Actions | Form submissions, mutations from React components |
-| Server Components | Data fetching for rendering |
+| Approach          | Best For                                          |
+| ----------------- | ------------------------------------------------- |
+| Route Handlers    | External API consumers, webhooks, file downloads  |
+| Server Actions    | Form submissions, mutations from React components |
+| Server Components | Data fetching for rendering                       |
 
 ### Demo
 
@@ -68,22 +68,22 @@ export async function POST(request: NextRequest) {
 <FlowDiagram
   title="Request to response flow"
   steps={[
-    { label: "HTTP Request", type: "request" },
-    { label: "route.ts", type: "server" },
-    { label: "Process", type: "server" },
-    { label: "Response", type: "response" }
+    { label: 'HTTP Request', type: 'request' },
+    { label: 'route.ts', type: 'server' },
+    { label: 'Process', type: 'server' },
+    { label: 'Response', type: 'response' },
   ]}
   note="Handlers run in Node.js or Edge runtime based on your export config."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| API design | One route handler per resource, small and focused |
-| Runtime | Node.js for full APIs, Edge for low-latency endpoints |
-| Caching | GET requests cache by default; use headers to control |
-| Security | Always validate input and sanitize output |
+| Topic      | Guidance                                              |
+| ---------- | ----------------------------------------------------- |
+| API design | One route handler per resource, small and focused     |
+| Runtime    | Node.js for full APIs, Edge for low-latency endpoints |
+| Caching    | GET requests cache by default; use headers to control |
+| Security   | Always validate input and sanitize output             |
 
 ### Pitfalls and Tips
 

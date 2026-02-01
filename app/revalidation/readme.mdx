@@ -26,11 +26,11 @@ import { revalidatePath, revalidateTag } from 'next/cache';
 
 export async function updateProduct(id: string, data: ProductData) {
   await db.product.update(id, data);
-  
+
   // Option 1: Revalidate specific path
   // !mark
   revalidatePath(`/products/${id}`);
-  
+
   // Option 2: Revalidate by tag
   // !mark
   revalidateTag('products');
@@ -39,7 +39,7 @@ export async function updateProduct(id: string, data: ProductData) {
 // In fetch calls, add tags for targeted revalidation
 const data = await fetch(url, {
   // !mark
-  next: { tags: ['products'], revalidate: 3600 }
+  next: { tags: ['products'], revalidate: 3600 },
 });
 ```
 
@@ -47,11 +47,11 @@ const data = await fetch(url, {
 
 ### Revalidation Strategies
 
-| Strategy | Trigger | Best For |
-| --- | --- | --- |
-| Time-based | Automatic after N seconds | News feeds, frequently updated content |
-| On-demand (path) | Manual after mutations | Form submissions, single-page updates |
-| On-demand (tag) | Manual, cross-route | CMS webhooks, shared data across pages |
+| Strategy         | Trigger                   | Best For                               |
+| ---------------- | ------------------------- | -------------------------------------- |
+| Time-based       | Automatic after N seconds | News feeds, frequently updated content |
+| On-demand (path) | Manual after mutations    | Form submissions, single-page updates  |
+| On-demand (tag)  | Manual, cross-route       | CMS webhooks, shared data across pages |
 
 ### Demo
 
@@ -65,22 +65,22 @@ const data = await fetch(url, {
 <FlowDiagram
   title="On-demand revalidation"
   steps={[
-    { label: "Mutation", type: "server" },
-    { label: "revalidate*()", type: "cache" },
-    { label: "Cache purge", type: "cache" },
-    { label: "Fresh data", type: "response" }
+    { label: 'Mutation', type: 'server' },
+    { label: 'revalidate*()', type: 'cache' },
+    { label: 'Cache purge', type: 'cache' },
+    { label: 'Fresh data', type: 'response' },
   ]}
   note="Next request fetches fresh data after cache invalidation."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Scope | Use tags for cross-page data, paths for single routes |
-| Performance | Revalidation is incremental, not a full rebuild |
-| Webhooks | Expose Route Handlers for external CMS triggers |
-| Defaults | Without revalidate option, data is cached indefinitely |
+| Topic       | Guidance                                               |
+| ----------- | ------------------------------------------------------ |
+| Scope       | Use tags for cross-page data, paths for single routes  |
+| Performance | Revalidation is incremental, not a full rebuild        |
+| Webhooks    | Expose Route Handlers for external CMS triggers        |
+| Defaults    | Without revalidate option, data is cached indefinitely |
 
 ### Pitfalls and Tips
 
@@ -91,11 +91,11 @@ const data = await fetch(url, {
 
 ### Continue Learning
 
-| Demo | Description |
-| --- | --- |
-| [Server Actions](/server-actions) | Trigger revalidation after mutations |
-| [Cached Routes](/cached-routes) | Understand what gets cached |
-| [Static Rendering](/static-rendering) | ISR with generateStaticParams |
+| Demo                                  | Description                          |
+| ------------------------------------- | ------------------------------------ |
+| [Server Actions](/server-actions)     | Trigger revalidation after mutations |
+| [Cached Routes](/cached-routes)       | Understand what gets cached          |
+| [Static Rendering](/static-rendering) | ISR with generateStaticParams        |
 
 ### Learn More
 

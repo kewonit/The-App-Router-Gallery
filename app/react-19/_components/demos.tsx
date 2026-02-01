@@ -4,7 +4,6 @@ import { useActionState, useOptimistic, useTransition, use } from 'react';
 import { addTodo, toggleTodo, deleteTodo } from '../actions';
 import { Boundary } from '#/ui/boundary';
 
-// Demo 1: useActionState for form handling
 function AddTodoForm() {
   const [state, formAction, isPending] = useActionState(
     async (
@@ -40,9 +39,9 @@ function AddTodoForm() {
           <button
             type="submit"
             disabled={isPending}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm shadow-blue-200 transition-all duration-150 hover:cursor-pointer hover:bg-blue-500 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-blue-900/30 dark:focus-visible:ring-offset-gray-950"
           >
-            {isPending ? 'Adding...' : 'Add'}
+            {isPending ? 'Adding…' : 'Add'}
           </button>
         </form>
 
@@ -61,7 +60,6 @@ function AddTodoForm() {
   );
 }
 
-// Demo 2: useOptimistic for instant UI updates
 function OptimisticTodoList({
   todos,
 }: {
@@ -191,7 +189,6 @@ function OptimisticTodoList({
   );
 }
 
-// Demo 3: use() hook with Promise
 function UseHookDemo({ dataPromise }: { dataPromise: Promise<string> }) {
   const data = use(dataPromise);
 

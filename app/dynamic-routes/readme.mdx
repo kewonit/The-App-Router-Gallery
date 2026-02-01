@@ -50,12 +50,12 @@ export default async function Page({
 
 ### Route Types
 
-| Type | Folder | Example URL | `params.slug` |
-|------|--------|-------------|---------------|
-| Single | `[slug]` | `/post/hello` | `"hello"` |
-| Catch-all | `[...slug]` | `/docs/a/b/c` | `["a","b","c"]` |
-| Optional | `[[...slug]]` | `/shop` | `undefined` |
-| Optional | `[[...slug]]` | `/shop/a/b` | `["a","b"]` |
+| Type      | Folder        | Example URL   | `params.slug`   |
+| --------- | ------------- | ------------- | --------------- |
+| Single    | `[slug]`      | `/post/hello` | `"hello"`       |
+| Catch-all | `[...slug]`   | `/docs/a/b/c` | `["a","b","c"]` |
+| Optional  | `[[...slug]]` | `/shop`       | `undefined`     |
+| Optional  | `[[...slug]]` | `/shop/a/b`   | `["a","b"]`     |
 
 ### Demo
 
@@ -68,17 +68,17 @@ export default async function Page({
 
 <FlowDiagram
   title="Dynamic route resolution"
-  steps={["URL", "Segment match", "params", "Render"]}
+  steps={['URL', 'Segment match', 'params', 'Render']}
   note="Use `generateStaticParams` to pre-render and `notFound()` for invalid paths."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Types | Single, catch-all, optional catch-all |
-| Data | Use `params` and `generateStaticParams` for SSG |
-| Errors | Call `notFound()` when data is missing |
+| Topic  | Guidance                                        |
+| ------ | ----------------------------------------------- |
+| Types  | Single, catch-all, optional catch-all           |
+| Data   | Use `params` and `generateStaticParams` for SSG |
+| Errors | Call `notFound()` when data is missing          |
 
 ### Pitfalls & Tips
 

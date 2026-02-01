@@ -22,9 +22,9 @@ export function Grid(props: unknown) {
   const data = parseProps(props, Schema);
 
   return (
-    <div className="my-5 grid grid-cols-1 gap-6 lg:grid-cols-2 [&:first-child]:mt-0 [&:last-child]:mb-0">
+    <div className="my-5 grid grid-cols-1 gap-6 first:mt-0 last:mb-0 lg:grid-cols-2">
       {data.col.map((col, index) => (
-        <div className="[&>:first-child]:mt-0 [&>:last-child]:mb-0" key={index}>
+        <div className="*:first:mt-0 *:last:mb-0" key={index}>
           {col.children}
         </div>
       ))}
@@ -65,7 +65,6 @@ const mark: AnnotationHandler = {
       pink: 'border-l-pink-600 bg-pink-600/10',
     };
 
-    // TODO: setup zod
     const color = (annotation?.query || 'blue') as keyof typeof colors;
 
     return (
@@ -100,12 +99,11 @@ async function MyCode({ codeblock }: { codeblock: RawCode }) {
   const { background, ...style } = highlighted.style;
   return (
     <Boundary
-      // TODO: Instead of using boundary, replicate boundary styles
       label={highlighted.meta}
       kind="solid"
       animateRerendering={false}
       size="small"
-      className="not-prose !px-0 !py-0 text-xs"
+      className="not-prose px-0! py-0! text-xs"
     >
       <ScrollArea className="w-full">
         <Pre

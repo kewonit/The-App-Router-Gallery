@@ -81,7 +81,12 @@ export const products: Product[] = [
       'Professional training gloves with wrist support and padded palms.',
     image: '/shop/gloves.png',
     price: 49.99,
-    features: ['Wrist Support', 'Padded Palm', 'Breathable', 'Machine Washable'],
+    features: [
+      'Wrist Support',
+      'Padded Palm',
+      'Breathable',
+      'Machine Washable',
+    ],
   },
   {
     id: 'top',

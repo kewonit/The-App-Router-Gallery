@@ -77,7 +77,7 @@ export function ScriptDemo() {
                   : 'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-400'
               }`}
             >
-              {s}: {loaded.includes(s) ? '✓' : '...'}
+              {s}: {loaded.includes(s) ? '✓' : '…'}
             </span>
           ))}
         </div>

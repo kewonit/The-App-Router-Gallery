@@ -21,11 +21,7 @@ export const demo = db.demo.find({ where: { slug: 'template-demo' } });
 
 ```tsx app/dashboard/template.tsx
 // !mark
-export default function Template({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Template({ children }: { children: React.ReactNode }) {
   return (
     // !mark
     <div className="animate-fade-in">
@@ -40,12 +36,12 @@ export default function Template({
 
 ### Layout vs Template
 
-| Aspect | Layout | Template |
-| --- | --- | --- |
-| Re-mounts on navigation | No | Yes |
-| Client state | Preserved | Reset |
-| Effects run | Once | Every navigation |
-| Animation replay | No | Yes |
+| Aspect                  | Layout    | Template         |
+| ----------------------- | --------- | ---------------- |
+| Re-mounts on navigation | No        | Yes              |
+| Client state            | Preserved | Reset            |
+| Effects run             | Once      | Every navigation |
+| Animation replay        | No        | Yes              |
 
 ### Demo
 
@@ -58,22 +54,22 @@ export default function Template({
 <FlowDiagram
   title="Template lifecycle"
   steps={[
-    { label: "Navigate", type: "request" },
-    { label: "Unmount", type: "component" },
-    { label: "Remount", type: "component" },
-    { label: "Fresh state", type: "response" }
+    { label: 'Navigate', type: 'request' },
+    { label: 'Unmount', type: 'component' },
+    { label: 'Remount', type: 'component' },
+    { label: 'Fresh state', type: 'response' },
   ]}
   note="Templates provide a clean slate on every navigation."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| State reset | Use templates when fresh state is required |
-| Animations | Perfect for entrance animations that should replay |
-| Performance | Templates add remount cost — use sparingly |
-| Default choice | Prefer layouts unless reset behavior is needed |
+| Topic          | Guidance                                           |
+| -------------- | -------------------------------------------------- |
+| State reset    | Use templates when fresh state is required         |
+| Animations     | Perfect for entrance animations that should replay |
+| Performance    | Templates add remount cost — use sparingly         |
+| Default choice | Prefer layouts unless reset behavior is needed     |
 
 ### Pitfalls and Tips
 

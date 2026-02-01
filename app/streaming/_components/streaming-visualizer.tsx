@@ -77,7 +77,7 @@ export function StreamingVisualizer() {
           </span>
           <button
             onClick={handleReset}
-            className="rounded bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+            className="rounded-lg bg-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 transition-all duration-150 hover:cursor-pointer hover:bg-gray-300 focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:focus-visible:ring-offset-gray-950"
           >
             Reset
           </button>
@@ -104,7 +104,7 @@ export function StreamingVisualizer() {
 
         {/* Progress */}
         <div
-          className="absolute inset-y-0 left-0 bg-gradient-to-r from-cyan-600 to-cyan-500 transition-all duration-100"
+          className="absolute inset-y-0 left-0 bg-linear-to-r from-cyan-600 to-cyan-500 transition-all duration-100"
           style={{ width: `${progressWidth}%` }}
         >
           <div className="absolute inset-y-0 right-0 w-4 animate-pulse bg-white/20" />

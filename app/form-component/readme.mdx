@@ -37,9 +37,7 @@ export default function ContactPage() {
         aria-invalid={state.errors?.email ? 'true' : undefined}
       />
 
-      {state.errors?.email && (
-        <p role="alert">{state.errors.email[0]}</p>
-      )}
+      {state.errors?.email && <p role="alert">{state.errors.email[0]}</p>}
 
       <SubmitButton />
     </Form>
@@ -67,7 +65,7 @@ export default function ContactPage() {
 
 <FlowDiagram
   title="Form → Action → UI"
-  steps={["User submit", "Server Action", "Revalidate", "UI update"]}
+  steps={['User submit', 'Server Action', 'Revalidate', 'UI update']}
   note="`next/form` pairs well with Server Actions for low-friction mutations."
 />
 

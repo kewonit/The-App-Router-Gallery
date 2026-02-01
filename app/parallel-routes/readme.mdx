@@ -47,12 +47,12 @@ export default function DashboardLayout({
 
 ### Slot Structure
 
-| Folder | Purpose | Rendered As |
-| --- | --- | --- |
-| `@analytics/page.tsx` | Analytics panel | `analytics` prop |
-| `@team/page.tsx` | Team panel | `team` prop |
-| `page.tsx` | Main content | `children` prop |
-| `@*/default.tsx` | Fallback when no match | Same as page |
+| Folder                | Purpose                | Rendered As      |
+| --------------------- | ---------------------- | ---------------- |
+| `@analytics/page.tsx` | Analytics panel        | `analytics` prop |
+| `@team/page.tsx`      | Team panel             | `team` prop      |
+| `page.tsx`            | Main content           | `children` prop  |
+| `@*/default.tsx`      | Fallback when no match | Same as page     |
 
 ### Demo
 
@@ -65,22 +65,22 @@ export default function DashboardLayout({
 <FlowDiagram
   title="Multiple slots in one layout"
   steps={[
-    { label: "Layout", type: "component" },
-    { label: "@slot A", type: "component" },
-    { label: "@slot B", type: "component" },
-    { label: "Combined UI", type: "response" }
+    { label: 'Layout', type: 'component' },
+    { label: '@slot A', type: 'component' },
+    { label: '@slot B', type: 'component' },
+    { label: 'Combined UI', type: 'response' },
   ]}
   note="Each slot resolves independently, enabling split-view interfaces."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Use case | Dashboards, modals, split views |
-| Navigation | Slots update independently |
-| Fallbacks | Provide `default.tsx` for unmatched states |
-| Patterns | Combine with intercepting routes for modals |
+| Topic      | Guidance                                    |
+| ---------- | ------------------------------------------- |
+| Use case   | Dashboards, modals, split views             |
+| Navigation | Slots update independently                  |
+| Fallbacks  | Provide `default.tsx` for unmatched states  |
+| Patterns   | Combine with intercepting routes for modals |
 
 ### Pitfalls and Tips
 

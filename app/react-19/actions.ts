@@ -2,7 +2,6 @@
 
 import { revalidatePath } from 'next/cache';
 
-// Simulated database
 let todos: { id: number; text: string; completed: boolean }[] = [
   { id: 1, text: 'Learn React 19 features', completed: true },
   { id: 2, text: 'Try useOptimistic hook', completed: false },
@@ -12,7 +11,6 @@ let todos: { id: number; text: string; completed: boolean }[] = [
 let nextId = 4;
 
 export async function getTodos() {
-  // Simulate network delay
   await new Promise((resolve) => setTimeout(resolve, 500));
   return [...todos];
 }

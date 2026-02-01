@@ -1,113 +1,57 @@
-# The App Router Gallery
+# Next.js App Router Showcase
 
-An interactive showcase of **Next.js App Router** features. Each demo includes working code examples, live demonstrations, and links to official documentation.
+A hands-on exploration of Next.js App Router patterns and APIs. Built with Next.js 16, React 19, and the latest caching primitives.
 
-## Features Demonstrated
+[Live Demo →](https://nextjs16-showcase.vercel.app)
 
-### Layouts & Routing
+## What's Inside
 
-- **Nested Layouts** — Shared UI that persists across routes
-- **Route Groups** — Organize routes without affecting URLs
-- **Parallel Routes** — Render multiple pages simultaneously
-- **Dynamic Routes** — Create pages from dynamic data with `[slug]`
-- **Intercepting Routes** — Show routes in modals while preserving URLs
+**30+ interactive demos** covering routing, caching, data fetching, and React 19 features.
 
-### File Conventions
+| Category             | Topics                                                                               |
+| -------------------- | ------------------------------------------------------------------------------------ |
+| **Routing**          | Nested layouts, route groups, parallel routes, intercepting routes, dynamic segments |
+| **File Conventions** | `loading.tsx`, `error.tsx`, `not-found.tsx`, templates, middleware                   |
+| **Caching**          | `use cache`, remote cache, private cache, revalidation strategies                    |
+| **Data**             | Server Actions, forms, ISR, SSG                                                      |
+| **Components**       | `next/image`, `next/font`, `next/script`, view transitions                           |
+| **React 19**         | `useActionState`, `useOptimistic`, `use()` hook                                      |
 
-- **Loading UI** — Instant loading states with `loading.js`
-- **Error Handling** — Graceful error boundaries with `error.js`
-- **Not Found** — Custom 404 pages with `not-found.js`
-- **Templates** — Re-render on navigation (unlike layouts)
-- **Route Handlers** — Build API endpoints with Web APIs
-- **Middleware** — Run code before requests complete
-
-### Caching (Next.js 15+)
-
-- **Cached Routes** — Cache entire route segments with `use cache`
-- **Cached Components** — Cache individual Server Components
-- **Cached Functions** — Cache function return values
-- **Remote Cache** — Runtime caching in dynamic contexts
-- **Private Cache** — User-specific caching with cookies/headers
-
-### Data & Forms
-
-- **Server Actions** — Mutate data with server-side functions
-- **Form Component** — Progressive enhancement for forms
-
-### Components & APIs
-
-- **Image Optimization** — Automatic image optimization with `next/image`
-- **Font Optimization** — Self-hosted fonts with `next/font`
-- **Script Component** — Efficient third-party script loading
-- **useLinkStatus** — Visual feedback for link interactions
-- **View Transitions** — Smooth animated page transitions
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18.17 or later
-- pnpm (recommended) or npm
-
-### Installation
+## Quick Start
 
 ```sh
-# Clone the repository
 git clone https://github.com/kewonit/nextjs16-showcase.git
 cd nextjs16-showcase
-
-# Install dependencies
 pnpm install
-
-# Start the development server
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to explore the demos.
+Requires Node.js 18.17+ and pnpm.
 
-## Project Structure
+## Structure
 
 ```
 app/
-├── layouts/          # Nested layouts demo
-├── loading/          # Loading UI demo
-├── error/            # Error handling demo
-├── streaming/        # Streaming & Suspense demo
-├── server-actions/   # Server Actions demo
-├── cached-routes/    # Route caching demo
-└── ...               # More demos
+├── cached-routes/     # use cache directive demos
+├── server-actions/    # mutations and form handling
+├── streaming/         # Suspense and async UI
+├── parallel-routes/   # simultaneous route rendering
+└── [30+ more demos]
 
-ui/
-├── global-nav.tsx    # Main navigation component
-├── boundary.tsx      # Visual boundary component
-├── tabs.tsx          # Tab navigation component
-└── ...               # Reusable UI components
-
-lib/
-└── db.ts             # Mock database/ORM
+ui/                    # shared components
+lib/db.ts              # mock data layer
 ```
 
-## How Each Demo Works
+## Links
 
-1. **Navigate** to any demo from the sidebar
-2. **Read the explanation** at the top (click "Show more" for details)
-3. **Interact with the demo** following the instructions
-4. **Explore the code** via the links at the bottom
-
-## Documentation
-
-- [Next.js Documentation](https://nextjs.org/docs)
+- [Next.js Docs](https://nextjs.org/docs)
 - [App Router Guide](https://nextjs.org/docs/app)
-- [React Documentation](https://react.dev)
+- [React 19](https://react.dev)
 
 ## Credits
 
-This project was built upon the foundation of the [Vercel Next.js App Router Playground](https://github.com/vercel/next-app-router-playground), which served as the template and starting point for this showcase.
-
-## Contributing
-
-Contributions are welcome! Feel free to open issues or submit pull requests.
+Based on the [Vercel App Router Playground](https://github.com/vercel/next-app-router-playground).
 
 ## License
 
-MIT License - see [LICENSE.md](license.md) for details.
+MIT

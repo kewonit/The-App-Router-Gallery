@@ -4,12 +4,12 @@ import { Boundary } from '#/ui/boundary';
 import Image from 'next/image';
 
 const images = [
-  { src: '/shop/headphones.png', name: 'Headphones' },
   { src: '/shop/laptop.png', name: 'Laptop' },
   { src: '/shop/phone.png', name: 'Phone' },
   { src: '/shop/tablet.png', name: 'Tablet' },
   { src: '/shop/shoes.png', name: 'Shoes' },
   { src: '/shop/top.png', name: 'Top' },
+  { src: '/shop/weights.png', name: 'Weights' },
 ];
 
 export default async function Page() {

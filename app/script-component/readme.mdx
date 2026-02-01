@@ -31,7 +31,6 @@ export default function RootLayout({
     <html>
       <body>
         {children}
-        
         {/* Analytics - load after page is interactive */}
         // !mark
         <Script
@@ -39,7 +38,6 @@ export default function RootLayout({
           // !mark
           strategy="afterInteractive"
         />
-        
         {/* Low-priority widget */}
         // !mark
         <Script
@@ -57,12 +55,12 @@ export default function RootLayout({
 
 ### Loading Strategies
 
-| Strategy | When It Loads | Best For |
-| --- | --- | --- |
-| `beforeInteractive` | Before hydration | Consent managers, bot detection |
-| `afterInteractive` | After hydration | Analytics, tag managers |
-| `lazyOnload` | During browser idle | Chat widgets, social embeds |
-| `worker` | In a web worker | Heavy scripts that can run off-thread |
+| Strategy            | When It Loads       | Best For                              |
+| ------------------- | ------------------- | ------------------------------------- |
+| `beforeInteractive` | Before hydration    | Consent managers, bot detection       |
+| `afterInteractive`  | After hydration     | Analytics, tag managers               |
+| `lazyOnload`        | During browser idle | Chat widgets, social embeds           |
+| `worker`            | In a web worker     | Heavy scripts that can run off-thread |
 
 ### Demo
 
@@ -75,22 +73,22 @@ export default function RootLayout({
 <FlowDiagram
   title="Script loading lifecycle"
   steps={[
-    { label: "HTML", type: "server" },
-    { label: "Hydration", type: "client" },
-    { label: "Interactive", type: "response" },
-    { label: "Idle", type: "component" }
+    { label: 'HTML', type: 'server' },
+    { label: 'Hydration', type: 'client' },
+    { label: 'Interactive', type: 'response' },
+    { label: 'Idle', type: 'component' },
   ]}
   note="Choose the latest possible timing that meets your business needs."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Performance | Delay scripts that are not critical for initial render |
-| User experience | Never block interactivity for non-essential scripts |
-| Security | Audit third-party scripts regularly |
-| Monitoring | Track script impact on Core Web Vitals |
+| Topic           | Guidance                                               |
+| --------------- | ------------------------------------------------------ |
+| Performance     | Delay scripts that are not critical for initial render |
+| User experience | Never block interactivity for non-essential scripts    |
+| Security        | Audit third-party scripts regularly                    |
+| Monitoring      | Track script impact on Core Web Vitals                 |
 
 ### Pitfalls and Tips
 

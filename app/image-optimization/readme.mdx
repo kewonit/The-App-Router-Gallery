@@ -32,9 +32,9 @@ export default function Hero() {
       width={1200}
       height={600}
       // !mark
-      priority              // Preload for LCP
-      placeholder="blur"    // Show blur while loading
-      quality={85}          // Compression (1-100)
+      priority // Preload for LCP
+      placeholder="blur" // Show blur while loading
+      quality={85} // Compression (1-100)
       // !mark
       sizes="(max-width: 768px) 100vw, 50vw"
     />
@@ -45,7 +45,7 @@ export default function Hero() {
 <div className="relative h-64">
   // !mark
   <Image src="/bg.jpg" alt="" fill className="object-cover" />
-</div>
+</div>;
 ```
 
 </Grid>
@@ -61,29 +61,29 @@ export default function Hero() {
 
 ### Key Props
 
-| Prop | Purpose |
-|------|---------|
-| `priority` | Preload image, disable lazy loading |
-| `placeholder` | `"blur"` or `"empty"` |
-| `sizes` | Responsive image sizing hints |
-| `fill` | Fill parent container |
-| `quality` | Compression level (1-100, default 75) |
+| Prop          | Purpose                               |
+| ------------- | ------------------------------------- |
+| `priority`    | Preload image, disable lazy loading   |
+| `placeholder` | `"blur"` or `"empty"`                 |
+| `sizes`       | Responsive image sizing hints         |
+| `fill`        | Fill parent container                 |
+| `quality`     | Compression level (1-100, default 75) |
 
 ### Visual Summary
 
 <FlowDiagram
   title="Image optimization pipeline"
-  steps={["Source image", "Resize/format", "Cache", "Client"]}
+  steps={['Source image', 'Resize/format', 'Cache', 'Client']}
   note="`next/image` serves the smallest viable image for the device."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| LCP | Use `priority` on hero images |
-| CLS | Always provide dimensions or use `fill` in a sized container |
-| Formats | Let Next.js serve WebP/AVIF automatically |
+| Topic   | Guidance                                                     |
+| ------- | ------------------------------------------------------------ |
+| LCP     | Use `priority` on hero images                                |
+| CLS     | Always provide dimensions or use `fill` in a sized container |
+| Formats | Let Next.js serve WebP/AVIF automatically                    |
 
 ### Pitfalls & Tips
 

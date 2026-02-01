@@ -16,12 +16,7 @@ export type FormState = {
     message?: string[];
     general?: string[];
   };
-  data?: {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-  };
+  data?: { name: string; email: string; subject: string; message: string };
   timestamp?: number;
 };
 
@@ -63,8 +58,10 @@ export async function submitContactForm(
 
   const name = typeof rawName === 'string' ? sanitizeInput(rawName) : '';
   const email = typeof rawEmail === 'string' ? sanitizeInput(rawEmail) : '';
-  const subject = typeof rawSubject === 'string' ? sanitizeInput(rawSubject) : '';
-  const message = typeof rawMessage === 'string' ? sanitizeInput(rawMessage) : '';
+  const subject =
+    typeof rawSubject === 'string' ? sanitizeInput(rawSubject) : '';
+  const message =
+    typeof rawMessage === 'string' ? sanitizeInput(rawMessage) : '';
 
   // Validation
   const errors: FormState['errors'] = {};
@@ -135,7 +132,7 @@ export async function submitContactForm(
  */
 export async function handleSearch(formData: FormData): Promise<void> {
   const query = formData.get('query');
-  
+
   if (typeof query === 'string' && query.trim()) {
     // Redirect to search results (simulated)
     redirect(`/form-component?search=${encodeURIComponent(query.trim())}`);

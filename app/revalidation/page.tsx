@@ -166,7 +166,6 @@ export default function RevalidationPage() {
     setRefreshKey((k) => k + 1);
   }, []);
 
-  // Simulated initial data (in real app, this comes from server)
   const initialData = {
     views: 1234,
     lastUpdated: 'N/A (click to fetch)',

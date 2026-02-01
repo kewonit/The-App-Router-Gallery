@@ -51,11 +51,11 @@ export async function generateMetadata({
 
 ### Static vs Dynamic Metadata
 
-| Approach | Use When | Example |
-| --- | --- | --- |
-| Static `metadata` export | Content is known at build time | About page, Contact page |
-| `generateMetadata` function | Content depends on route params or fetched data | Blog posts, Product pages |
-| Template pattern | Consistent title suffix across pages | Template with `%s` placeholder |
+| Approach                    | Use When                                        | Example                        |
+| --------------------------- | ----------------------------------------------- | ------------------------------ |
+| Static `metadata` export    | Content is known at build time                  | About page, Contact page       |
+| `generateMetadata` function | Content depends on route params or fetched data | Blog posts, Product pages      |
+| Template pattern            | Consistent title suffix across pages            | Template with `%s` placeholder |
 
 ### Demo
 
@@ -69,22 +69,22 @@ export async function generateMetadata({
 <FlowDiagram
   title="Metadata resolution"
   steps={[
-    { label: "Root layout", type: "component" },
-    { label: "Child layout", type: "component" },
-    { label: "Page", type: "component" },
-    { label: "Merged metadata", type: "response" }
+    { label: 'Root layout', type: 'component' },
+    { label: 'Child layout', type: 'component' },
+    { label: 'Page', type: 'component' },
+    { label: 'Merged metadata', type: 'response' },
   ]}
   note="Child metadata extends and overrides parent metadata automatically."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| SEO | Use descriptive titles and meta descriptions |
-| Social | Always provide OG images for rich link previews |
-| Performance | Metadata fetches are deduped with page data |
-| Templates | Use title templates for consistent branding |
+| Topic       | Guidance                                        |
+| ----------- | ----------------------------------------------- |
+| SEO         | Use descriptive titles and meta descriptions    |
+| Social      | Always provide OG images for rich link previews |
+| Performance | Metadata fetches are deduped with page data     |
+| Templates   | Use title templates for consistent branding     |
 
 ### Pitfalls and Tips
 
@@ -95,11 +95,11 @@ export async function generateMetadata({
 
 ### Continue Learning
 
-| Demo | Description |
-| --- | --- |
-| [Layouts](/layouts) | Where metadata is typically defined |
-| [Dynamic Routes](/dynamic-routes) | Generate metadata from route params |
-| [Image Optimization](/image-optimization) | Optimize OG images with next/image |
+| Demo                                      | Description                         |
+| ----------------------------------------- | ----------------------------------- |
+| [Layouts](/layouts)                       | Where metadata is typically defined |
+| [Dynamic Routes](/dynamic-routes)         | Generate metadata from route params |
+| [Image Optimization](/image-optimization) | Optimize OG images with next/image  |
 
 ### Learn More
 

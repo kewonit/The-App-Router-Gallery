@@ -37,9 +37,15 @@ function SubscribeButton() {
     <button
       type="submit"
       disabled={pending}
-      className="rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-violet-500 disabled:opacity-50"
+      className="rounded-lg bg-violet-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm shadow-violet-200 transition-all duration-150 hover:cursor-pointer hover:bg-violet-500 hover:shadow-md focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-violet-900/30 dark:focus-visible:ring-offset-gray-950"
     >
-      {pending ? '...' : 'Subscribe'}
+      {pending ? (
+        <span className="flex items-center gap-2">
+          <span className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+        </span>
+      ) : (
+        'Subscribe'
+      )}
     </button>
   );
 }

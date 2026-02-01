@@ -144,11 +144,7 @@ export async function toggleTodo(id: string): Promise<ActionState> {
   const todo = todoStore.get(id);
 
   if (!todo) {
-    return {
-      success: false,
-      message: 'Todo not found',
-      timestamp: Date.now(),
-    };
+    return { success: false, message: 'Todo not found', timestamp: Date.now() };
   }
 
   // Toggle the completed status
@@ -174,22 +170,14 @@ export async function deleteTodo(id: string): Promise<ActionState> {
   const todo = todoStore.get(id);
 
   if (!todo) {
-    return {
-      success: false,
-      message: 'Todo not found',
-      timestamp: Date.now(),
-    };
+    return { success: false, message: 'Todo not found', timestamp: Date.now() };
   }
 
   todoStore.delete(id);
 
   revalidatePath('/server-actions');
 
-  return {
-    success: true,
-    message: 'Todo deleted',
-    timestamp: Date.now(),
-  };
+  return { success: true, message: 'Todo deleted', timestamp: Date.now() };
 }
 
 /**
@@ -226,11 +214,7 @@ export async function updateTodo(
   const todo = todoStore.get(id);
 
   if (!todo) {
-    return {
-      success: false,
-      message: 'Todo not found',
-      timestamp: Date.now(),
-    };
+    return { success: false, message: 'Todo not found', timestamp: Date.now() };
   }
 
   todo.text = text.trim();
@@ -238,11 +222,7 @@ export async function updateTodo(
 
   revalidatePath('/server-actions');
 
-  return {
-    success: true,
-    message: 'Todo updated',
-    timestamp: Date.now(),
-  };
+  return { success: true, message: 'Todo updated', timestamp: Date.now() };
 }
 
 /**

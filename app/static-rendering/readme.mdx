@@ -50,12 +50,12 @@ export default async function BlogPost({
 
 ### Static vs Dynamic Rendering
 
-| Aspect | Static (SSG) | ISR | Dynamic (SSR) |
-| --- | --- | --- | --- |
-| Built | Once at deploy | Build + background | Every request |
-| Speed | Fastest (CDN) | Fast (cached) | Slowest (origin) |
-| Freshness | Stale until redeploy | Configurable | Always fresh |
-| Use case | Docs, marketing | Blog, e-commerce | Dashboards |
+| Aspect    | Static (SSG)         | ISR                | Dynamic (SSR)    |
+| --------- | -------------------- | ------------------ | ---------------- |
+| Built     | Once at deploy       | Build + background | Every request    |
+| Speed     | Fastest (CDN)        | Fast (cached)      | Slowest (origin) |
+| Freshness | Stale until redeploy | Configurable       | Always fresh     |
+| Use case  | Docs, marketing      | Blog, e-commerce   | Dashboards       |
 
 ### Demo
 
@@ -69,23 +69,23 @@ export default async function BlogPost({
 <FlowDiagram
   title="ISR revalidation cycle"
   steps={[
-    { label: "Build", type: "server" },
-    { label: "Serve cached", type: "cache" },
-    { label: "Stale request", type: "request" },
-    { label: "Background regen", type: "server" },
-    { label: "Fresh cache", type: "cache" }
+    { label: 'Build', type: 'server' },
+    { label: 'Serve cached', type: 'cache' },
+    { label: 'Stale request', type: 'request' },
+    { label: 'Background regen', type: 'server' },
+    { label: 'Fresh cache', type: 'cache' },
   ]}
   note="Users always get fast cached responses while regeneration happens in background."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Performance | Static pages load fastest from edge CDN |
-| Freshness | Use ISR revalidate for content that changes |
-| Build time | generateStaticParams runs at build, not runtime |
-| Fallback | dynamicParams controls unknown slug behavior |
+| Topic       | Guidance                                        |
+| ----------- | ----------------------------------------------- |
+| Performance | Static pages load fastest from edge CDN         |
+| Freshness   | Use ISR revalidate for content that changes     |
+| Build time  | generateStaticParams runs at build, not runtime |
+| Fallback    | dynamicParams controls unknown slug behavior    |
 
 ### Pitfalls and Tips
 
@@ -96,10 +96,10 @@ export default async function BlogPost({
 
 ### Continue Learning
 
-| Demo | Description |
-| --- | --- |
-| [Dynamic Routes](/dynamic-routes) | Create routes from dynamic data |
-| [Revalidation](/revalidation) | Update static content on-demand |
+| Demo                                          | Description                         |
+| --------------------------------------------- | ----------------------------------- |
+| [Dynamic Routes](/dynamic-routes)             | Create routes from dynamic data     |
+| [Revalidation](/revalidation)                 | Update static content on-demand     |
 | [Partial Prerendering](/partial-prerendering) | Mix static and dynamic in one route |
 
 ### Learn More

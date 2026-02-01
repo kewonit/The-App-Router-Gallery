@@ -28,7 +28,7 @@ import { revalidatePath } from 'next/cache';
 
 export async function addTodo(
   prevState: ActionState,
-  formData: FormData
+  formData: FormData,
 ): Promise<ActionState> {
   const text = formData.get('text');
 
@@ -74,7 +74,7 @@ export async function addTodo(
 
 <FlowDiagram
   title="Action → Mutation → Revalidate"
-  steps={["User intent", "Server Action", "Data change", "UI refresh"]}
+  steps={['User intent', 'Server Action', 'Data change', 'UI refresh']}
   note="Server Actions keep mutations on the server while preserving UX."
 />
 
@@ -85,11 +85,11 @@ export async function addTodo(
 
 ### Continue Learning
 
-| Demo | Description |
-| --- | --- |
+| Demo                              | Description                                         |
+| --------------------------------- | --------------------------------------------------- |
 | [Form Component](/form-component) | Enhanced form handling with progressive enhancement |
-| [React 19 Hooks](/react-19) | Deep dive into useActionState, useOptimistic, use() |
-| [Revalidation](/revalidation) | Control cache refresh after mutations |
+| [React 19 Hooks](/react-19)       | Deep dive into useActionState, useOptimistic, use() |
+| [Revalidation](/revalidation)     | Control cache refresh after mutations               |
 
 ### Links
 

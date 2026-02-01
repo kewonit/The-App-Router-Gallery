@@ -65,22 +65,22 @@ export default function NotFound() {
 <FlowDiagram
   title="Not found resolution"
   steps={[
-    { label: "Request", type: "request" },
-    { label: "Data lookup", type: "server" },
-    { label: "notFound()", type: "error" },
-    { label: "Fallback UI", type: "component" }
+    { label: 'Request', type: 'request' },
+    { label: 'Data lookup', type: 'server' },
+    { label: 'notFound()', type: 'error' },
+    { label: 'Fallback UI', type: 'component' },
   ]}
   note="The closest not-found.tsx in the folder tree handles the error."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Scope | Nearest `not-found.tsx` in the hierarchy wins |
-| Trigger | Call `notFound()` when data is missing |
-| UX | Provide clear next steps - home, search, categories |
-| Root fallback | `app/not-found.tsx` catches all unmatched routes |
+| Topic         | Guidance                                            |
+| ------------- | --------------------------------------------------- |
+| Scope         | Nearest `not-found.tsx` in the hierarchy wins       |
+| Trigger       | Call `notFound()` when data is missing              |
+| UX            | Provide clear next steps - home, search, categories |
+| Root fallback | `app/not-found.tsx` catches all unmatched routes    |
 
 ### Pitfalls and Tips
 

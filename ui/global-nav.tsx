@@ -39,7 +39,7 @@ export function GlobalNav({ items }: { items: DemoCategory[] }) {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex h-14 flex-shrink-0 items-center justify-between px-4 py-4 lg:h-auto">
+      <div className="flex h-14 shrink-0 items-center justify-between px-4 py-4 lg:h-auto">
         <Link
           href="/"
           className="group flex items-center gap-x-2.5"
@@ -102,7 +102,7 @@ export function GlobalNav({ items }: { items: DemoCategory[] }) {
           </nav>
         </ScrollArea>
 
-        <div className="flex-shrink-0 border-t border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900">
+        <div className="shrink-0 border-t border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900">
           <div className="flex items-center justify-between gap-3">
             <ThemeToggle />
             <a

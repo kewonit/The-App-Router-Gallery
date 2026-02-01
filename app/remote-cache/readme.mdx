@@ -61,17 +61,17 @@ export default async function Page() {
 
 <FlowDiagram
   title="Dynamic request → Remote cache"
-  steps={["Dynamic context", "use cache: remote", "Remote store", "Reuse"]}
+  steps={['Dynamic context', 'use cache: remote', 'Remote store', 'Reuse']}
   note="Remote cache persists across requests even after dynamic APIs are used."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Use case | Dynamic data that must still be cached |
-| Invalidations | Use tags for targeted refresh |
-| Latency | Remote caching reduces origin load |
+| Topic         | Guidance                               |
+| ------------- | -------------------------------------- |
+| Use case      | Dynamic data that must still be cached |
+| Invalidations | Use tags for targeted refresh          |
+| Latency       | Remote caching reduces origin load     |
 
 ### Pitfalls & Tips
 

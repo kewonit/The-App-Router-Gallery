@@ -2,7 +2,6 @@
 
 import { revalidatePath, revalidateTag } from 'next/cache';
 
-// Simulated database
 let productViews = 1234;
 let lastUpdated = new Date().toISOString();
 

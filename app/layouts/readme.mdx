@@ -31,7 +31,6 @@ export default function DashboardLayout({
       {/* Persistent sidebar */}
       // !mark
       <Sidebar />
-      
       {/* Child routes render here */}
       // !mark
       <main>{children}</main>
@@ -55,22 +54,22 @@ export default function DashboardLayout({
 <FlowDiagram
   title="Layout persistence across navigation"
   steps={[
-    { label: "Layout renders", type: "component" },
-    { label: "User navigates", type: "request" },
-    { label: "Page swaps", type: "response" },
-    { label: "Layout persists", type: "component" }
+    { label: 'Layout renders', type: 'component' },
+    { label: 'User navigates', type: 'request' },
+    { label: 'Page swaps', type: 'response' },
+    { label: 'Layout persists', type: 'component' },
   ]}
   note="Layouts preserve state and remain interactive across navigation."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Re-renders on navigation | No — layouts stay mounted |
-| Client state | Preserved across child route changes |
-| Interactivity | Remains interactive during page loads |
-| Best for | Headers, sidebars, navigation, persistent UI |
+| Topic                    | Guidance                                     |
+| ------------------------ | -------------------------------------------- |
+| Re-renders on navigation | No — layouts stay mounted                    |
+| Client state             | Preserved across child route changes         |
+| Interactivity            | Remains interactive during page loads        |
+| Best for                 | Headers, sidebars, navigation, persistent UI |
 
 ### Pitfalls and Tips
 
@@ -80,12 +79,12 @@ export default function DashboardLayout({
 
 ### Continue Learning
 
-| Demo | Description |
-| --- | --- |
-| [Loading](/loading) | Add loading states to layouts |
-| [Error](/error) | Handle errors within layout boundaries |
+| Demo                          | Description                            |
+| ----------------------------- | -------------------------------------- |
+| [Loading](/loading)           | Add loading states to layouts          |
+| [Error](/error)               | Handle errors within layout boundaries |
 | [Route Groups](/route-groups) | Organize routes without affecting URLs |
-| [Template](/template-demo) | Re-mount UI on navigation |
+| [Template](/template-demo)    | Re-mount UI on navigation              |
 
 ### Learn More
 

@@ -26,18 +26,18 @@ Breadcrumbs often need access to deeper URL segments, but layouts only receive p
 ## Visual Summary
 
 <FlowDiagram
-	title="Parallel routes for shared UI"
-	steps={["URL", "Catch-all segment", "Breadcrumbs slot", "Main content"]}
-	note="Parallel Routes let you keep URL-aware UI server-rendered without pushing everything to the client."
+  title="Parallel routes for shared UI"
+  steps={['URL', 'Catch-all segment', 'Breadcrumbs slot', 'Main content']}
+  note="Parallel Routes let you keep URL-aware UI server-rendered without pushing everything to the client."
 />
 
 ## Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Layout limits | Layouts only receive params for their segment |
-| Strategy | Use Parallel Routes + catch-all for URL-aware shared UI |
-| Alternatives | Client Components can read URL state, but increase client bundle |
+| Topic         | Guidance                                                         |
+| ------------- | ---------------------------------------------------------------- |
+| Layout limits | Layouts only receive params for their segment                    |
+| Strategy      | Use Parallel Routes + catch-all for URL-aware shared UI          |
+| Alternatives  | Client Components can read URL state, but increase client bundle |
 
 ## Learn More
 

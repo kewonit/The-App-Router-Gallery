@@ -27,14 +27,12 @@ export function middleware(request: NextRequest) {
   // !mark
   // Check authentication
   const token = request.cookies.get('session');
-  
+
   if (!token) {
     // !mark
-    return NextResponse.redirect(
-      new URL('/login', request.url)
-    );
+    return NextResponse.redirect(new URL('/login', request.url));
   }
-  
+
   // !mark
   // Add custom header
   const response = NextResponse.next();
@@ -43,22 +41,20 @@ export function middleware(request: NextRequest) {
 }
 
 // !mark
-export const config = {
-  matcher: ['/dashboard/:path*', '/api/:path*'],
-};
+export const config = { matcher: ['/dashboard/:path*', '/api/:path*'] };
 ```
 
 </Grid>
 
 ### Common Use Cases
 
-| Use Case | Implementation |
-| --- | --- |
-| Authentication | Check tokens, redirect to login |
-| Redirects | Permanent or temporary URL changes |
-| Rewrites | Serve different content at same URL |
-| A/B Testing | Route users to different variants |
-| Geolocation | Personalize based on user location |
+| Use Case       | Implementation                      |
+| -------------- | ----------------------------------- |
+| Authentication | Check tokens, redirect to login     |
+| Redirects      | Permanent or temporary URL changes  |
+| Rewrites       | Serve different content at same URL |
+| A/B Testing    | Route users to different variants   |
+| Geolocation    | Personalize based on user location  |
 
 ### Demo
 
@@ -71,22 +67,22 @@ export const config = {
 <FlowDiagram
   title="Middleware execution flow"
   steps={[
-    { label: "Request", type: "request" },
-    { label: "Matcher", type: "server" },
-    { label: "Middleware", type: "server" },
-    { label: "Route", type: "response" }
+    { label: 'Request', type: 'request' },
+    { label: 'Matcher', type: 'server' },
+    { label: 'Middleware', type: 'server' },
+    { label: 'Route', type: 'response' },
   ]}
   note="Middleware runs at the Edge for low-latency decisions."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Performance | Keep middleware lean; avoid heavy I/O |
-| Security | Validate auth tokens before routing |
-| Scope | Use matchers to limit which paths run middleware |
-| Runtime | Edge runtime only — no Node.js-specific APIs |
+| Topic       | Guidance                                         |
+| ----------- | ------------------------------------------------ |
+| Performance | Keep middleware lean; avoid heavy I/O            |
+| Security    | Validate auth tokens before routing              |
+| Scope       | Use matchers to limit which paths run middleware |
+| Runtime     | Edge runtime only — no Node.js-specific APIs     |
 
 ### Pitfalls and Tips
 

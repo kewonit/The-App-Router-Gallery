@@ -236,7 +236,7 @@ export const metadata = {
             </div>
 
             <div className="overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="aspect-[1.91/1] bg-gradient-to-br from-gray-900 to-gray-800 p-6">
+              <div className="aspect-[1.91/1] bg-linear-to-br from-gray-900 to-gray-800 p-6">
                 <div className="flex h-full flex-col items-center justify-center text-center">
                   <p className="text-lg font-bold text-white">
                     {current.metadata.title}

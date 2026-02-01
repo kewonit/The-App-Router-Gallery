@@ -211,8 +211,7 @@ const demos = [
       {
         slug: 'template-demo',
         name: 'Template',
-        description:
-          'Create UI that re-renders on navigation unlike layouts',
+        description: 'Create UI that re-renders on navigation unlike layouts',
         difficulty: 'intermediate',
         estimatedMinutes: 5,
         prerequisites: ['layouts'],
@@ -237,8 +236,7 @@ const demos = [
         slug: 'image-optimization',
         name: 'Image Optimization',
         nav_title: 'Image',
-        description:
-          'Automatic image optimization with next/image component',
+        description: 'Automatic image optimization with next/image component',
         difficulty: 'beginner',
         estimatedMinutes: 5,
         prerequisites: [],
@@ -274,8 +272,7 @@ const demos = [
       {
         slug: 'route-handlers',
         name: 'Route Handlers',
-        description:
-          'Create API endpoints with Web Request and Response APIs',
+        description: 'Create API endpoints with Web Request and Response APIs',
         difficulty: 'intermediate',
         estimatedMinutes: 6,
         prerequisites: [],
@@ -284,8 +281,7 @@ const demos = [
       {
         slug: 'server-actions',
         name: 'Server Actions',
-        description:
-          'Mutate data with async functions that run on the server',
+        description: 'Mutate data with async functions that run on the server',
         difficulty: 'intermediate',
         estimatedMinutes: 8,
         prerequisites: [],

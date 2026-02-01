@@ -27,7 +27,7 @@ function StaticHeader() {
     <Boundary label="Static Header (Prerendered)" color="cyan">
       <header className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 font-bold text-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-blue-500 to-purple-600 font-bold text-white">
             P
           </div>
           <div>

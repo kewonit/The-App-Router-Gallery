@@ -50,17 +50,17 @@ export default async function Page() {
 
 <FlowDiagram
   title="Cached function"
-  steps={["Call", "Compute", "Cache result", "Reuse"]}
+  steps={['Call', 'Compute', 'Cache result', 'Reuse']}
   note="Cache keys are based on function inputs."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Granularity | Cache expensive helper functions |
+| Topic       | Guidance                              |
+| ----------- | ------------------------------------- |
+| Granularity | Cache expensive helper functions      |
 | Determinism | Only cache pure, input-driven results |
-| Performance | Reduces repeated data fetching |
+| Performance | Reduces repeated data fetching        |
 
 ### Pitfalls & Tips
 

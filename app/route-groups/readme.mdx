@@ -68,22 +68,22 @@ export default function ShopLayout({
 <FlowDiagram
   title="Route group organization"
   steps={[
-    { label: "(group)", type: "component" },
-    { label: "Layout", type: "component" },
-    { label: "Page", type: "component" },
-    { label: "Clean URL", type: "response" }
+    { label: '(group)', type: 'component' },
+    { label: 'Layout', type: 'component' },
+    { label: 'Page', type: 'component' },
+    { label: 'Clean URL', type: 'response' },
   ]}
   note="Group folders organize code without affecting URL structure."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| URL impact | None — parentheses are stripped from paths |
-| Layout control | Each group can have its own layout tree |
-| Organization | Group by product area, auth state, or UX shell |
-| Multiple roots | Create separate root layouts per group |
+| Topic          | Guidance                                       |
+| -------------- | ---------------------------------------------- |
+| URL impact     | None — parentheses are stripped from paths     |
+| Layout control | Each group can have its own layout tree        |
+| Organization   | Group by product area, auth state, or UX shell |
+| Multiple roots | Create separate root layouts per group         |
 
 ### Pitfalls and Tips
 

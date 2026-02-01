@@ -42,9 +42,7 @@ export function NavigationInfo() {
       <p>Path: {pathname}</p>
       <p>Query: {searchParams.get('q')}</p>
       <p>Slug: {params.slug}</p>
-      <button onClick={() => router.push('/home')}>
-        Go Home
-      </button>
+      <button onClick={() => router.push('/home')}>Go Home</button>
     </div>
   );
 }
@@ -54,13 +52,13 @@ export function NavigationInfo() {
 
 ### Hook Reference
 
-| Hook | Returns | Use Case |
-| --- | --- | --- |
-| `usePathname()` | Current path string | Active link highlighting |
-| `useSearchParams()` | URLSearchParams object | Filter/search state |
-| `useParams()` | Dynamic segment values | Display current item |
-| `useRouter()` | Router object | Programmatic navigation |
-| `useSelectedLayoutSegment()` | Active child segment | Navigation menus |
+| Hook                         | Returns                | Use Case                 |
+| ---------------------------- | ---------------------- | ------------------------ |
+| `usePathname()`              | Current path string    | Active link highlighting |
+| `useSearchParams()`          | URLSearchParams object | Filter/search state      |
+| `useParams()`                | Dynamic segment values | Display current item     |
+| `useRouter()`                | Router object          | Programmatic navigation  |
+| `useSelectedLayoutSegment()` | Active child segment   | Navigation menus         |
 
 ### Demo
 
@@ -73,22 +71,22 @@ export function NavigationInfo() {
 <FlowDiagram
   title="Route state to UI updates"
   steps={[
-    { label: "URL change", type: "request" },
-    { label: "Router state", type: "server" },
-    { label: "Hooks update", type: "client" },
-    { label: "UI re-render", type: "component" }
+    { label: 'URL change', type: 'request' },
+    { label: 'Router state', type: 'server' },
+    { label: 'Hooks update', type: 'client' },
+    { label: 'UI re-render', type: 'component' },
   ]}
   note="Hooks re-render only the Client Components that subscribe to them."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Server boundaries | Use hooks only in Client Components |
-| Performance | Subscribe only to the state you need |
-| Navigation | Prefer `<Link>` for navigation; use `useRouter()` for imperative flows |
-| Suspense | Wrap `useSearchParams()` in Suspense when needed |
+| Topic             | Guidance                                                               |
+| ----------------- | ---------------------------------------------------------------------- |
+| Server boundaries | Use hooks only in Client Components                                    |
+| Performance       | Subscribe only to the state you need                                   |
+| Navigation        | Prefer `<Link>` for navigation; use `useRouter()` for imperative flows |
+| Suspense          | Wrap `useSearchParams()` in Suspense when needed                       |
 
 ### Pitfalls and Tips
 

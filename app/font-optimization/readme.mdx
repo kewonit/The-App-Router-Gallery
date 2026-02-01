@@ -53,12 +53,12 @@ export default function RootLayout({
 
 ### Font Loading Strategies
 
-| Option | Behavior |
-| --- | --- |
-| `display: 'swap'` | Show fallback immediately, swap when loaded |
-| `display: 'block'` | Hide text briefly, then show custom font |
-| `display: 'optional'` | Use custom font only if already cached |
-| `preload: true` | Preload font files (default for used fonts) |
+| Option                | Behavior                                    |
+| --------------------- | ------------------------------------------- |
+| `display: 'swap'`     | Show fallback immediately, swap when loaded |
+| `display: 'block'`    | Hide text briefly, then show custom font    |
+| `display: 'optional'` | Use custom font only if already cached      |
+| `preload: true`       | Preload font files (default for used fonts) |
 
 ### Demo
 
@@ -71,22 +71,22 @@ export default function RootLayout({
 <FlowDiagram
   title="Font optimization pipeline"
   steps={[
-    { label: "Declare font", type: "component" },
-    { label: "Build-time fetch", type: "server" },
-    { label: "Self-host", type: "cache" },
-    { label: "Preload", type: "request" },
-    { label: "Render", type: "response" }
+    { label: 'Declare font', type: 'component' },
+    { label: 'Build-time fetch', type: 'server' },
+    { label: 'Self-host', type: 'cache' },
+    { label: 'Preload', type: 'request' },
+    { label: 'Render', type: 'response' },
   ]}
   note="Self-hosting removes third-party latency and improves privacy."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Performance | No external DNS/TLS overhead for font loading |
-| CLS | Zero layout shift with precomputed font metrics |
-| Privacy | No external font service calls in production |
+| Topic       | Guidance                                        |
+| ----------- | ----------------------------------------------- |
+| Performance | No external DNS/TLS overhead for font loading   |
+| CLS         | Zero layout shift with precomputed font metrics |
+| Privacy     | No external font service calls in production    |
 | Flexibility | CSS variables enable theme-based font switching |
 
 ### Pitfalls and Tips

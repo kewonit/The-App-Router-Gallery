@@ -59,9 +59,9 @@ export function FlowDiagram({
   const isVertical = direction === 'vertical';
 
   return (
-    <section className="my-6 rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm dark:border-gray-800/70 dark:from-gray-900/40 dark:to-gray-950/40 dark:shadow-none">
+    <section className="my-6 rounded-xl border border-gray-200 bg-linear-to-br from-gray-50 to-white p-6 shadow-sm dark:border-gray-800/70 dark:from-gray-900/40 dark:to-gray-950/40 dark:shadow-none">
       <div className="mb-4 flex items-center justify-between">
-        <h4 className="bg-gradient-to-r from-gray-700 to-gray-900 bg-clip-text text-sm font-bold tracking-wide text-transparent uppercase dark:from-gray-300 dark:to-gray-100">
+        <h4 className="bg-linear-to-r from-gray-700 to-gray-900 bg-clip-text text-sm font-bold tracking-wide text-transparent uppercase dark:from-gray-300 dark:to-gray-100">
           {title}
         </h4>
       </div>
@@ -82,7 +82,7 @@ export function FlowDiagram({
               </span>
               {index < steps.length - 1 ? (
                 <svg
-                  className={`h-4 w-4 flex-shrink-0 text-gray-400 dark:text-gray-500 ${isVertical ? 'rotate-90' : ''}`}
+                  className={`h-4 w-4 shrink-0 text-gray-400 dark:text-gray-500 ${isVertical ? 'rotate-90' : ''}`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

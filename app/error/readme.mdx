@@ -37,9 +37,7 @@ export default function Error({
       <h2>Something went wrong</h2>
       <p>{error.message}</p>
       // !mark
-      <button onClick={() => reset()}>
-        Try again
-      </button>
+      <button onClick={() => reset()}>Try again</button>
     </div>
   );
 }
@@ -59,22 +57,22 @@ export default function Error({
 <FlowDiagram
   title="Error boundary flow"
   steps={[
-    { label: "Error thrown", type: "error" },
-    { label: "Boundary catches", type: "component" },
-    { label: "Fallback UI", type: "error" },
-    { label: "Reset or navigate", type: "response" }
+    { label: 'Error thrown', type: 'error' },
+    { label: 'Boundary catches', type: 'component' },
+    { label: 'Fallback UI', type: 'error' },
+    { label: 'Reset or navigate', type: 'response' },
   ]}
   note="Error boundaries isolate failures to the nearest segment."
 />
 
 ### Key Takeaways
 
-| Topic | Guidance |
-| --- | --- |
-| Error isolation | Errors in one segment do not crash the app |
-| Recovery | Provide reset functionality and navigation options |
-| Nested handling | Place error boundaries at different route depths |
-| Root errors | Use `global-error.tsx` for root layout errors |
+| Topic           | Guidance                                           |
+| --------------- | -------------------------------------------------- |
+| Error isolation | Errors in one segment do not crash the app         |
+| Recovery        | Provide reset functionality and navigation options |
+| Nested handling | Place error boundaries at different route depths   |
+| Root errors     | Use `global-error.tsx` for root layout errors      |
 
 ### Pitfalls and Tips
 
