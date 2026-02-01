@@ -1,18 +1,94 @@
-# Parallel Routes
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
-- Parallel Routes allow you to simultaneously or conditionally render
-  multiple pages, with independent navigation, in the same layout.
-- Parallel Routes can be used for advanced routing patterns like [Conditional Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes#conditional-routes) and [Intercepted Routes](https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes).
-- Try using the tabs in one parallel route to navigate. Notice the URL
-  changes but the unaffected parallel route is preserved.
-- Try using the browser's backwards and forwards navigation.
-  Notice the browser's URL history state and active UI state is
-  correctly synced.
-- Try navigating to a tab in one parallel route and refreshing the
-  browser. Notice you can choose what UI to show parallel routes that
-  don't match the initial URL.
+export const demo = db.demo.find({ where: { slug: 'parallel-routes' } });
 
-### Links
+# {demo.name}
 
-- [Docs](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes)
-- [Code](https://github.com/vercel/next-app-router-playground/tree/main/app/parallel-routes)
+<Grid>
+
+# !!col
+
+- **Parallel routes** render multiple route segments simultaneously within the same layout.
+- Create slots using the `@folder` naming convention, like `@analytics`, `@team`, or `@feed`.
+- Each slot receives its own navigation state and can be updated independently.
+- Slots are passed as props to the parent layout alongside `children`.
+- Use `default.tsx` to define fallback content when a slot has no matching route.
+- Parallel routes enable complex UIs like dashboards, split views, and conditional panels.
+
+# !!col
+
+```tsx app/dashboard/layout.tsx
+export default function DashboardLayout({
+  children,
+  // !mark
+  analytics,
+  // !mark
+  team,
+}: {
+  children: React.ReactNode;
+  analytics: React.ReactNode;
+  team: React.ReactNode;
+}) {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      <main>{children}</main>
+      // !mark
+      <aside>{analytics}</aside>
+      // !mark
+      <aside>{team}</aside>
+    </div>
+  );
+}
+```
+
+</Grid>
+
+### Slot Structure
+
+| Folder | Purpose | Rendered As |
+| --- | --- | --- |
+| `@analytics/page.tsx` | Analytics panel | `analytics` prop |
+| `@team/page.tsx` | Team panel | `team` prop |
+| `page.tsx` | Main content | `children` prop |
+| `@*/default.tsx` | Fallback when no match | Same as page |
+
+### Demo
+
+1. **Switch tabs** in one slot and observe the other slot stays unchanged.
+2. **Use browser back/forward** — each slot maintains independent history.
+3. **Refresh the page** — notice default content renders for unmatched slots.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Multiple slots in one layout"
+  steps={[
+    { label: "Layout", type: "component" },
+    { label: "@slot A", type: "component" },
+    { label: "@slot B", type: "component" },
+    { label: "Combined UI", type: "response" }
+  ]}
+  note="Each slot resolves independently, enabling split-view interfaces."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Use case | Dashboards, modals, split views |
+| Navigation | Slots update independently |
+| Fallbacks | Provide `default.tsx` for unmatched states |
+| Patterns | Combine with intercepting routes for modals |
+
+### Pitfalls and Tips
+
+- Always provide `default.tsx` files to prevent rendering errors on hard refresh.
+- Keep slot logic focused; avoid complex dependencies between slots.
+- Use parallel routes when UI sections have truly independent navigation needs.
+
+### Learn More
+
+- [Parallel Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes)
+- [Conditional Routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes#conditional-routes)

@@ -1,5 +1,6 @@
 import { Boundary } from '#/ui/boundary';
 import { Prose } from '#/ui/prose';
+import { ScrollArea } from '#/ui/scroll-area';
 import clsx from 'clsx';
 import { Block, parseProps } from 'codehike/blocks';
 import {
@@ -106,14 +107,16 @@ async function MyCode({ codeblock }: { codeblock: RawCode }) {
       size="small"
       className="not-prose !px-0 !py-0 text-xs"
     >
-      <Pre
-        className={clsx('overflow-x-auto px-0 py-2 font-mono leading-5', {
-          'pt-3.5': highlighted.meta,
-        })}
-        code={highlighted}
-        handlers={[mark, lineNumbers]}
-        style={{ ...style }}
-      />
+      <ScrollArea className="w-full">
+        <Pre
+          className={clsx('min-w-max px-0 py-2 font-mono leading-5', {
+            'pt-3.5': highlighted.meta,
+          })}
+          code={highlighted}
+          handlers={[mark, lineNumbers]}
+          style={{ ...style }}
+        />
+      </ScrollArea>
     </Boundary>
   );
 }

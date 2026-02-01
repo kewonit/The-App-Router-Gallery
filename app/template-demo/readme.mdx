@@ -1,9 +1,87 @@
-# Template
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
-Like a layout, but re-mounts on every navigation.
+export const demo = db.demo.find({ where: { slug: 'template-demo' } });
 
-Use `template.tsx` when you need fresh component state, page transition animations, or effects that should run on each page visit.
+# {demo.name}
 
-### Links
+<Grid>
 
-- [Docs](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#templates)
+# !!col
+
+- A **template** is similar to a layout but **re-mounts on every navigation**, resetting all state.
+- Define templates by exporting a default React component from `template.tsx`.
+- Templates are ideal for entrance animations that should replay on each page visit.
+- Use templates when you need fresh component state for each route, like form resets.
+- Templates wrap page content but unmount and remount between sibling routes.
+- The key difference: layouts persist, templates reset.
+
+# !!col
+
+```tsx app/dashboard/template.tsx
+// !mark
+export default function Template({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    // !mark
+    <div className="animate-fade-in">
+      {/* Re-runs on every navigation */}
+      {children}
+    </div>
+  );
+}
+```
+
+</Grid>
+
+### Layout vs Template
+
+| Aspect | Layout | Template |
+| --- | --- | --- |
+| Re-mounts on navigation | No | Yes |
+| Client state | Preserved | Reset |
+| Effects run | Once | Every navigation |
+| Animation replay | No | Yes |
+
+### Demo
+
+1. **Navigate between categories** and notice the entrance animation replays.
+2. **Interact with any stateful elements** then navigate away and back.
+3. **Compare with the layouts demo** where state persists across navigation.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Template lifecycle"
+  steps={[
+    { label: "Navigate", type: "request" },
+    { label: "Unmount", type: "component" },
+    { label: "Remount", type: "component" },
+    { label: "Fresh state", type: "response" }
+  ]}
+  note="Templates provide a clean slate on every navigation."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| State reset | Use templates when fresh state is required |
+| Animations | Perfect for entrance animations that should replay |
+| Performance | Templates add remount cost — use sparingly |
+| Default choice | Prefer layouts unless reset behavior is needed |
+
+### Pitfalls and Tips
+
+- Avoid unnecessary templates; the remount cost adds up in complex UIs.
+- Keep template components lightweight to minimize remount overhead.
+- Use templates for page transitions, not for state management workarounds.
+
+### Learn More
+
+- [Templates](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates#templates)
+- [Layouts vs Templates](https://nextjs.org/docs/app/building-your-application/routing/layouts-and-templates)

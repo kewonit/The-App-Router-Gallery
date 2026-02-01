@@ -1,5 +1,6 @@
 import db from '#/lib/db';
 import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
 export const demo = db.demo.find({ where: { slug: 'cached-functions' } });
 
@@ -42,4 +43,30 @@ export default async function Page() {
 
 ### Notes
 
-- This demo uses the experimental `use cache` directive and describes caching behavior once stable.
+- The `use cache` directive enables caching at the function level for expensive computations.
+- Cache keys are derived from function arguments, so ensure inputs are serializable.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Cached function"
+  steps={["Call", "Compute", "Cache result", "Reuse"]}
+  note="Cache keys are based on function inputs."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Granularity | Cache expensive helper functions |
+| Determinism | Only cache pure, input-driven results |
+| Performance | Reduces repeated data fetching |
+
+### Pitfalls & Tips
+
+- Avoid caching when results depend on auth/session state.
+- Ensure inputs are serializable and stable.
+
+### Learn More
+
+- [Caching](https://nextjs.org/docs/app/building-your-application/caching)

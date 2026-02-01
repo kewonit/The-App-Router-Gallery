@@ -30,7 +30,7 @@ const codeHikeConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [['remark-codehike', codeHikeConfig]],
+    remarkPlugins: ['remark-gfm', ['remark-codehike', codeHikeConfig]],
     recmaPlugins: [['recma-codehike', codeHikeConfig]],
   },
 });

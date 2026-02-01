@@ -1,16 +1,94 @@
-# Not Found
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
-`not-found.js` is a file convention that lets you define fallback UI for a route segment when the `notFound()` function is thrown or an unmatched URL is visited.
+export const demo = db.demo.find({ where: { slug: 'not-found' } });
 
-Use filesytem hierarchy to define more or less specific fallback UI.
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- The `not-found.tsx` file convention defines fallback UI when `notFound()` is called or a URL has no match.
+- Call `notFound()` in your page or layout when data lookup fails for a valid-looking URL.
+- The nearest `not-found.tsx` in the folder hierarchy handles the error.
+- Place `not-found.tsx` at different route levels for context-appropriate messaging.
+- The root `app/not-found.tsx` catches all unmatched URLs across the application.
+- Not Found pages should provide clear recovery paths back to valid content.
+
+# !!col
+
+```tsx app/blog/[slug]/page.tsx
+import { notFound } from 'next/navigation';
+
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  // !mark
+  if (!post) {
+    // !mark
+    notFound();
+  }
+
+  return <Article post={post} />;
+}
+```
+
+```tsx app/blog/not-found.tsx
+export default function NotFound() {
+  return (
+    <div>
+      <h2>Post Not Found</h2>
+      // !mark
+      <Link href="/blog">Browse all posts</Link>
+    </div>
+  );
+}
+```
+
+</Grid>
 
 ### Demo
 
-- Navigate to non-existent categories or sub-categories:
-  - [Non-existent Category](/not-found/does-not-exist)
-  - [Non-existent Sub-category](/not-found/electronics/does-not-exist)
+1. **Visit a non-existent category**: [/not-found/does-not-exist](/not-found/does-not-exist)
+2. **Visit a non-existent sub-category**: [/not-found/electronics/does-not-exist](/not-found/electronics/does-not-exist)
+3. **Notice the different fallback UI** based on where `not-found.tsx` is placed.
 
-### Links
+### Visual Summary
 
-- [Docs](https://nextjs.org/docs/app/api-reference/file-conventions/not-found)
-- [Code](https://github.com/vercel/next-app-router-playground/tree/main/app/not-found)
+<FlowDiagram
+  title="Not found resolution"
+  steps={[
+    { label: "Request", type: "request" },
+    { label: "Data lookup", type: "server" },
+    { label: "notFound()", type: "error" },
+    { label: "Fallback UI", type: "component" }
+  ]}
+  note="The closest not-found.tsx in the folder tree handles the error."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Scope | Nearest `not-found.tsx` in the hierarchy wins |
+| Trigger | Call `notFound()` when data is missing |
+| UX | Provide clear next steps - home, search, categories |
+| Root fallback | `app/not-found.tsx` catches all unmatched routes |
+
+### Pitfalls and Tips
+
+- Always provide helpful navigation in Not Found pages - do not leave users stranded.
+- Use route-specific Not Found pages for better context (e.g., "Post not found" vs generic "Page not found").
+- Call `notFound()` early before expensive operations when you detect invalid params.
+
+### Learn More
+
+- [not-found.tsx](https://nextjs.org/docs/app/api-reference/file-conventions/not-found)
+- [notFound function](https://nextjs.org/docs/app/api-reference/functions/not-found)

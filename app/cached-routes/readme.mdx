@@ -115,3 +115,20 @@ export default async function Page() {
 ### Notes
 
 - This demo uses the experimental `use cache` directive and describes caching behavior once stable.
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Scope | Cache at the route segment level |
+| Client | Router reuses cached segments to avoid network requests |
+| Server | Renderer reuses cached output when valid |
+
+### Pitfalls & Tips
+
+- Avoid `use cache` for per-user or rapidly changing data.
+- Combine with revalidation strategies when data updates.
+
+### Learn More
+
+- [Caching](https://nextjs.org/docs/app/building-your-application/caching)

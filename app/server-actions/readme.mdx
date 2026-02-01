@@ -1,5 +1,6 @@
 import db from '#/lib/db';
 import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
 export const demo = db.demo.find({ where: { slug: 'server-actions' } });
 
@@ -68,6 +69,27 @@ export async function addTodo(
 - **`useOptimistic`**: Applies changes immediately, reverts on error
 - **`useTransition`**: Non-blocking updates for non-form actions
 - **`revalidatePath`**: Refreshes cached data after mutations
+
+### Visual Summary
+
+<FlowDiagram
+  title="Action → Mutation → Revalidate"
+  steps={["User intent", "Server Action", "Data change", "UI refresh"]}
+  note="Server Actions keep mutations on the server while preserving UX."
+/>
+
+### Pitfalls & Tips
+
+- Validate inputs on the server for security.
+- Prefer optimistic updates only when failure states are well-defined.
+
+### Continue Learning
+
+| Demo | Description |
+| --- | --- |
+| [Form Component](/form-component) | Enhanced form handling with progressive enhancement |
+| [React 19 Hooks](/react-19) | Deep dive into useActionState, useOptimistic, use() |
+| [Revalidation](/revalidation) | Control cache refresh after mutations |
 
 ### Links
 

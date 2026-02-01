@@ -9,11 +9,15 @@ export type Item = { text: string; slug?: string; segment?: string };
 
 export function Tabs({ basePath, items }: { basePath: string; items: Item[] }) {
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <nav
+      className="flex flex-wrap items-center gap-2"
+      role="tablist"
+      aria-label="Demo sections"
+    >
       {items.map((item) => (
         <Tab key={basePath + item.slug} item={item} basePath={basePath} />
       ))}
-    </div>
+    </nav>
   );
 }
 
@@ -27,7 +31,11 @@ export function Tab({
   const href = item.slug ? `${basePath}/${item.slug}` : basePath;
 
   return (
-    <Link href={href} className="text-sm font-semibold">
+    <Link
+      href={href}
+      className="text-sm font-semibold focus-visible:outline-none"
+      role="tab"
+    >
       {/*
        * `useSelectedLayoutSegment` suspends, so we place a Suspense boundary
        * as deep as possible to allow the route's fallback shell to include
@@ -71,11 +79,9 @@ function TabContent({
 }) {
   return (
     <span
-      className={clsx('flex rounded-md px-3 py-1 transition duration-75', {
-        'bg-gray-200 text-gray-700 hover:bg-gray-300 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-500 dark:hover:text-white':
-          !isActive && !isPending,
-        'bg-blue-600 text-white': isActive,
-        'bg-gray-300 text-gray-500 delay-75 dark:bg-gray-800': isPending,
+      className={clsx('block rounded-lg px-3 py-1 text-sm', {
+        'bg-gray-700 font-semibold text-gray-100': isActive,
+        'text-gray-400 hover:bg-gray-800 hover:text-gray-300': !isActive,
       })}
     >
       {children}

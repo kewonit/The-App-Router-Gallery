@@ -1,4 +1,7 @@
 {
+  "name": "the-app-router-gallery",
+  "version": "1.0.0",
+  "description": "An interactive showcase of Next.js App Router features",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -23,6 +26,7 @@
     "react": "19.3.0-canary-7dc903cd-20251203",
     "react-dom": "19.3.0-canary-7dc903cd-20251203",
     "recma-codehike": "0.0.1",
+    "remark-gfm": "4.0.1",
     "remark-codehike": "0.0.1",
     "server-only": "0.0.1",
     "styled-components": "6.3.8",

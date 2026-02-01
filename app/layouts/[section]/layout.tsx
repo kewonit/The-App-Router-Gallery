@@ -1,5 +1,3 @@
-'use cache';
-
 import { notFound } from 'next/navigation';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';

@@ -1,21 +1,82 @@
-# Loading.js
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
-`loading.js` is a file convention that lets you define fallback UI for a route segment when it's loading, enabling prefetching and instant navigation for dynamic routes.
+export const demo = db.demo.find({ where: { slug: 'loading' } });
 
-When a user navigates to a dynamic route with prefetched fallback UI, the URL updates immediately and the loading state is shown while the segment loads.
+# {demo.name}
 
-Use filesytem hierarchy to define more or less specific fallback UI.
+<Grid>
+
+# !!col
+
+- The `loading.tsx` file convention creates **instant loading states** that appear immediately during navigation.
+- Loading UI is automatically wrapped in a React Suspense boundary by Next.js.
+- The URL updates immediately when navigation begins, giving users instant feedback.
+- Loading states can be prefetched along with route data for even faster perceived performance.
+- Users can interrupt loading by navigating elsewhere — the pending request is cancelled.
+- Place `loading.tsx` at any route level for granular control over which segments show loading UI.
+
+# !!col
+
+```tsx app/dashboard/loading.tsx
+// !mark
+export default function Loading() {
+  return (
+    <div className="animate-pulse">
+      {/* Skeleton matches final content shape */}
+      // !mark
+      <div className="h-8 w-48 bg-gray-200 rounded" />
+      <div className="mt-4 space-y-3">
+        <div className="h-4 bg-gray-200 rounded" />
+        <div className="h-4 bg-gray-200 rounded w-5/6" />
+      </div>
+    </div>
+  );
+}
+```
+
+</Grid>
 
 ### Demo
 
-- Navigate between categories using the menu above.
-- **Instant navigation**: Even though the new route segment is still rendering on the server, we can instantly navigate (update the url and render fallback UI) to the new route. The actual segment content streams in once rendering is complete.
+1. **Navigate between categories** using the tabs above.
+2. **Watch the instant URL update** — the address bar changes immediately.
+3. **Notice the skeleton UI** — loading placeholders match the content layout.
+4. **Click rapidly between tabs** — previous requests are cancelled.
 
-#### Notes
+An artificial delay is added to make the loading state visible.
 
-- An artificial delay is added to pages to simulate a slow data request and make the loading state more noticeable.
+### Visual Summary
 
-### Links
+<FlowDiagram
+  title="Segment loading lifecycle"
+  steps={[
+    { label: "Navigate", type: "request" },
+    { label: "loading.tsx", type: "component" },
+    { label: "Server render", type: "server" },
+    { label: "Stream", type: "response" },
+    { label: "Swap UI", type: "component" }
+  ]}
+  note="Loading UI provides instant feedback while server content streams in."
+/>
 
-- [Docs](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
-- [Code](https://github.com/vercel/next-app-router-playground/tree/main/app/loading)
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Instant feedback | URL updates before content loads |
+| Prefetching | Loading states can be prefetched |
+| Interruptible | Navigation can be cancelled mid-load |
+| Granular control | Different loading UI per route segment |
+
+### Pitfalls and Tips
+
+- Design skeletons to match the final content dimensions and reduce layout shift.
+- Avoid heavy animations in loading states that distract during short loads.
+- Use segment-level loading only when that specific segment needs its own fallback.
+
+### Learn More
+
+- [Loading UI and Streaming](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
+- [Instant Loading States](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#instant-loading-states)

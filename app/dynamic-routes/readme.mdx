@@ -1,5 +1,6 @@
 import db from '#/lib/db';
 import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
 export const demo = db.demo.find({ where: { slug: 'dynamic-routes' } });
 
@@ -62,6 +63,27 @@ export default async function Page({
 2. **Catch-all**: Navigate docs with nested paths.
 3. **Optional Catch-all**: Browse shop with variable depth.
 4. **Not Found**: Try invalid URLs to see error handling.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Dynamic route resolution"
+  steps={["URL", "Segment match", "params", "Render"]}
+  note="Use `generateStaticParams` to pre-render and `notFound()` for invalid paths."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Types | Single, catch-all, optional catch-all |
+| Data | Use `params` and `generateStaticParams` for SSG |
+| Errors | Call `notFound()` when data is missing |
+
+### Pitfalls & Tips
+
+- Keep optional catch-all routes explicit to avoid ambiguous matches.
+- Validate params early to avoid extra data fetching.
 
 ### Links
 

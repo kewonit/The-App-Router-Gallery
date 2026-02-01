@@ -1,5 +1,6 @@
 import db from '#/lib/db';
 import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
 export const demo = db.demo.find({ where: { slug: 'intercepting-routes' } });
 
@@ -56,6 +57,27 @@ app/
 - `@modal/(.)photo/[id]/page.tsx` - The intercepted modal version
 - `photo/[id]/page.tsx` - The full page version
 - `layout.tsx` - Renders both `children` and `modal` slots
+
+### Visual Summary
+
+<FlowDiagram
+	title="Gallery → Modal → Full page"
+	steps={["List view", "Intercepted modal", "Direct URL", "Full page"]}
+	note="Client navigation shows the modal; direct access renders the full page."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| UX | Use for modals or contextual overlays |
+| Routing | Intercepted routes preserve URLs |
+| Fallback | Full page renders on refresh or direct access |
+
+### Pitfalls & Tips
+
+- Always provide a non-modal full page for direct navigation.
+- Keep modal content lightweight to avoid jarring transitions.
 
 ### Links
 

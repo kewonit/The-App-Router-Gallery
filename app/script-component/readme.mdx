@@ -1,11 +1,105 @@
-# Script Component
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
-Control when third-party scripts load using `next/script`.
+export const demo = db.demo.find({ where: { slug: 'script-component' } });
 
-- `beforeInteractive` — before page hydration (consent managers, bot detection)
-- `afterInteractive` — after the page is interactive (default)
-- `lazyOnload` — during browser idle time (chat widgets, analytics)
+# {demo.name}
 
-### Links
+<Grid>
 
-- [Docs](https://nextjs.org/docs/app/building-your-application/optimizing/scripts)
+# !!col
+
+- **next/script** controls when and how third-party scripts load.
+- Choose a loading strategy to balance functionality with performance.
+- Scripts can load before hydration, after hydration, or during browser idle time.
+- Use the `onLoad` callback to run code after scripts are ready.
+- Web Workers strategy moves script execution off the main thread entirely.
+- Always evaluate third-party scripts for performance and security impact.
+
+# !!col
+
+```tsx app/layout.tsx
+import Script from 'next/script';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html>
+      <body>
+        {children}
+        
+        {/* Analytics - load after page is interactive */}
+        // !mark
+        <Script
+          src="https://analytics.example.com/script.js"
+          // !mark
+          strategy="afterInteractive"
+        />
+        
+        {/* Low-priority widget */}
+        // !mark
+        <Script
+          src="https://widget.example.com/embed.js"
+          // !mark
+          strategy="lazyOnload"
+        />
+      </body>
+    </html>
+  );
+}
+```
+
+</Grid>
+
+### Loading Strategies
+
+| Strategy | When It Loads | Best For |
+| --- | --- | --- |
+| `beforeInteractive` | Before hydration | Consent managers, bot detection |
+| `afterInteractive` | After hydration | Analytics, tag managers |
+| `lazyOnload` | During browser idle | Chat widgets, social embeds |
+| `worker` | In a web worker | Heavy scripts that can run off-thread |
+
+### Demo
+
+1. **Observe the loading timeline** - scripts load at different phases.
+2. **Check performance metrics** - core interactivity is not blocked.
+3. **Verify functionality** - scripts work correctly after loading.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Script loading lifecycle"
+  steps={[
+    { label: "HTML", type: "server" },
+    { label: "Hydration", type: "client" },
+    { label: "Interactive", type: "response" },
+    { label: "Idle", type: "component" }
+  ]}
+  note="Choose the latest possible timing that meets your business needs."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Performance | Delay scripts that are not critical for initial render |
+| User experience | Never block interactivity for non-essential scripts |
+| Security | Audit third-party scripts regularly |
+| Monitoring | Track script impact on Core Web Vitals |
+
+### Pitfalls and Tips
+
+- Avoid `beforeInteractive` unless absolutely necessary - it blocks hydration.
+- Use `lazyOnload` for scripts that users may never interact with.
+- Prefer async loading and isolate heavy scripts from critical paths.
+- Regularly audit third-party scripts for performance regression.
+
+### Learn More
+
+- [Script Optimization](https://nextjs.org/docs/app/building-your-application/optimizing/scripts)
+- [next/script API Reference](https://nextjs.org/docs/app/api-reference/components/script)

@@ -1,23 +1,97 @@
-# Route Groups
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
-Route groups can be used to:
+export const demo = db.demo.find({ where: { slug: 'route-groups' } });
 
-- Opt a route segment out of a shared layout.
-- Organize routes without affecting the URL structure.
-- Create multiple root layouts by partitioning the top level of the
-  application.
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Route groups** let you organize routes into logical folders without affecting the URL path.
+- Create a route group by wrapping a folder name in parentheses: `(marketing)`, `(shop)`, `(auth)`.
+- Routes inside groups can have different layouts while sharing the same URL structure.
+- Use route groups to separate public pages from authenticated sections.
+- Multiple root layouts are possible by placing `layout.tsx` files inside different groups.
+- The folder name in parentheses is purely organizational and never appears in URLs.
+
+# !!col
+
+```tsx app/(marketing)/layout.tsx
+// !mark
+// Routes: /about, /blog, /contact
+export default function MarketingLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="marketing-shell">
+      // !mark
+      <MarketingHeader />
+      {children}
+    </div>
+  );
+}
+```
+
+```tsx app/(shop)/layout.tsx
+// !mark
+// Routes: /products, /cart, /checkout
+export default function ShopLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="shop-shell">
+      // !mark
+      <ShopHeader />
+      {children}
+    </div>
+  );
+}
+```
+
+</Grid>
 
 ### Demo
 
-- This example uses Route Groups to create layouts for different sections of an app.
-  - (main): primary shared UI
-    - (shop): ecommerce specific shared UI
-    - (marketing): marketing specific shared UI
-  - (checkout): top level group that opts out of primary shared UI
-- Try navigating pages and noting the different layouts used for each
-  section.
+1. **Navigate between marketing and shop pages** — notice different layouts for each section.
+2. **Check the URLs** — the group name `(marketing)` or `(shop)` never appears.
+3. **Visit checkout** — see a layout that opts out of the main navigation shell.
 
-### Links
+### Visual Summary
 
-- [Docs](https://nextjs.org/docs/app/building-your-application/routing/route-groups)
-- [Code](https://github.com/vercel/next-app-router-playground/tree/main/app/route-groups)
+<FlowDiagram
+  title="Route group organization"
+  steps={[
+    { label: "(group)", type: "component" },
+    { label: "Layout", type: "component" },
+    { label: "Page", type: "component" },
+    { label: "Clean URL", type: "response" }
+  ]}
+  note="Group folders organize code without affecting URL structure."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| URL impact | None — parentheses are stripped from paths |
+| Layout control | Each group can have its own layout tree |
+| Organization | Group by product area, auth state, or UX shell |
+| Multiple roots | Create separate root layouts per group |
+
+### Pitfalls and Tips
+
+- Avoid deeply nested groups; keep the structure shallow and meaningful.
+- Use descriptive group names that reflect the purpose, not the URL.
+- Remember that routes across groups can still share common parent layouts above the groups.
+
+### Learn More
+
+- [Route Groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups)
+- [Multiple Root Layouts](https://nextjs.org/docs/app/building-your-application/routing/route-groups#creating-multiple-root-layouts)

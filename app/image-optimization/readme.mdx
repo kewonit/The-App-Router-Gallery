@@ -1,5 +1,6 @@
 import db from '#/lib/db';
 import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
 export const demo = db.demo.find({ where: { slug: 'image-optimization' } });
 
@@ -67,6 +68,27 @@ export default function Hero() {
 | `sizes` | Responsive image sizing hints |
 | `fill` | Fill parent container |
 | `quality` | Compression level (1-100, default 75) |
+
+### Visual Summary
+
+<FlowDiagram
+  title="Image optimization pipeline"
+  steps={["Source image", "Resize/format", "Cache", "Client"]}
+  note="`next/image` serves the smallest viable image for the device."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| LCP | Use `priority` on hero images |
+| CLS | Always provide dimensions or use `fill` in a sized container |
+| Formats | Let Next.js serve WebP/AVIF automatically |
+
+### Pitfalls & Tips
+
+- Avoid `priority` on too many images.
+- Use `sizes` to prevent over-downloading on mobile.
 
 ### Links
 

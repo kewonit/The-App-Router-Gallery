@@ -13,7 +13,7 @@ export async function GET() {
         'route',
         ' ',
         'handler!',
-        ' 🚀',
+        ' ',
       ];
 
       for (const chunk of chunks) {

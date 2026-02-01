@@ -1,5 +1,6 @@
 import db from '#/lib/db';
 import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
 export const demo = db.demo.find({ where: { slug: 'remote-cache' } });
 
@@ -53,5 +54,30 @@ export default async function Page() {
 
 ### Notes
 
-- This demo uses the experimental `use cache` directive and describes caching behavior once stable.
-- `use cache: remote` is essential for caching in dynamic contexts where regular `use cache` won't work.
+- `use cache: remote` stores cache entries in a distributed cache layer, enabling cache sharing across edge locations.
+- This directive is essential for caching in dynamic contexts where regular `use cache` would not apply.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Dynamic request → Remote cache"
+  steps={["Dynamic context", "use cache: remote", "Remote store", "Reuse"]}
+  note="Remote cache persists across requests even after dynamic APIs are used."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Use case | Dynamic data that must still be cached |
+| Invalidations | Use tags for targeted refresh |
+| Latency | Remote caching reduces origin load |
+
+### Pitfalls & Tips
+
+- Avoid caching sensitive data without proper scoping.
+- Ensure cache tags are unique and deterministic.
+
+### Learn More
+
+- [Caching](https://nextjs.org/docs/app/building-your-application/caching)

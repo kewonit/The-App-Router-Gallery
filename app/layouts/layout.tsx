@@ -1,5 +1,3 @@
-'use cache';
-
 import React from 'react';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';

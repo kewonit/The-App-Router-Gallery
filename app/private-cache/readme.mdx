@@ -1,5 +1,6 @@
 import db from '#/lib/db';
 import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
 export const demo = db.demo.find({ where: { slug: 'private-cache' } });
 
@@ -69,6 +70,30 @@ export const unstable_prefetch = {
 
 ### Notes
 
-- This demo uses the experimental `use cache` directive and describes caching behavior once stable.
-- `use cache: private` enables runtime prefetching of dynamic content by allowing `cookies()` and `headers()` inside cached functions.
-- Requires `unstable_prefetch` export with `mode: 'runtime'` and `cacheLife({ stale: 60 })` (≥30s).
+- `use cache: private` enables runtime prefetching of personalized content by allowing request-specific APIs inside cached functions.
+- Combine with `unstable_prefetch` export using `mode: 'runtime'` and appropriate `cacheLife` settings.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Private cache prefetch"
+  steps={["Prefetch", "use cache: private", "Runtime", "Personalized UI"]}
+  note="Private cache enables runtime prefetching for user-specific data."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Use case | Personalized data that still benefits from prefetch |
+| Scope | Private caches never persist to shared cache handlers |
+| UX | Makes dynamic content feel instant |
+
+### Pitfalls & Tips
+
+- Ensure cache lifetimes are long enough for prefetch to be useful.
+- Avoid storing sensitive data in cache tags or logs.
+
+### Learn More
+
+- [Caching](https://nextjs.org/docs/app/building-your-application/caching)

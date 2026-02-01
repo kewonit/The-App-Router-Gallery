@@ -1,34 +1,43 @@
 import { Boundary } from '#/ui/boundary';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 
 export default function Byline() {
   return (
     <Boundary kind="solid" animateRerendering={false}>
-      <div className="flex gap-4 text-sm font-medium text-gray-500 dark:text-gray-600">
-        <a
-          className="transition-colors hover:text-gray-900 dark:hover:text-gray-200"
-          href="https://github.com/vercel/next-app-router-playground"
-          target="_blank"
-          rel="noreferrer"
+      <footer className="flex flex-wrap items-center justify-center gap-4 text-sm font-medium sm:justify-between">
+        <nav
+          className="flex flex-wrap items-center gap-4"
+          aria-label="Footer navigation"
         >
-          Source code
-        </a>
-        <span className="text-gray-300 dark:text-gray-800">/</span>
+          <a
+            className="group inline-flex items-center gap-1.5 text-gray-500 transition-colors hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+            href="https://github.com/kewonit/nextjs16-showcase"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>Source code</span>
+            <ArrowTopRightOnSquareIcon className="size-3.5 opacity-50 transition-opacity group-hover:opacity-100" />
+          </a>
+          <span className="text-gray-300 dark:text-gray-700" aria-hidden="true">
+            •
+          </span>
+          <a
+            className="group inline-flex items-center gap-1.5 text-gray-500 transition-colors hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+            href="https://nextjs.org/docs"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>Docs</span>
+            <ArrowTopRightOnSquareIcon className="size-3.5 opacity-50 transition-opacity group-hover:opacity-100" />
+          </a>
+        </nav>
         <a
-          className="transition-colors hover:text-gray-900 dark:hover:text-gray-200"
-          href="https://nextjs.org/docs"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Docs
-        </a>
-        <span className="text-gray-300 dark:text-gray-800">/</span>
-        <a
-          className="flex items-center gap-2 transition-colors hover:text-gray-900 dark:hover:text-gray-200"
+          className="group inline-flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-1.5 text-gray-600 transition-all hover:bg-gray-200 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           href="https://vercel.com/templates/next.js/app-directory"
           target="_blank"
           rel="noreferrer"
         >
-          Deploy on
+          <span className="text-xs font-medium">Deploy on</span>
           <svg
             aria-label="Vercel logotype"
             role="img"
@@ -42,7 +51,7 @@ export default function Byline() {
             />
           </svg>
         </a>
-      </div>
+      </footer>
     </Boundary>
   );
 }

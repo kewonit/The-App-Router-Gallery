@@ -1,9 +1,99 @@
-# Route Handlers
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
-Build API endpoints using the Web Request and Response APIs.
+export const demo = db.demo.find({ where: { slug: 'route-handlers' } });
 
-Define a `route.ts` file and export functions for HTTP methods: GET, POST, PUT, DELETE, etc.
+# {demo.name}
 
-### Links
+<Grid>
 
-- [Docs](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+# !!col
+
+- **Route handlers** create API endpoints using the Web Request/Response APIs.
+- Define handlers by exporting HTTP method functions from `route.ts` files.
+- Supported methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+- Route handlers replace API Routes from the Pages Router with modern web standards.
+- Use `NextRequest` and `NextResponse` for enhanced functionality like cookies and redirects.
+- Route handlers can run in Node.js or Edge runtime based on configuration.
+
+# !!col
+
+```tsx app/api/users/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+// !mark
+export async function GET(request: NextRequest) {
+  const users = await db.user.findMany();
+  // !mark
+  return NextResponse.json(users);
+}
+
+// !mark
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  
+  // Validate input
+  if (!body.email) {
+    return NextResponse.json(
+      { error: 'Email required' },
+      // !mark
+      { status: 400 }
+    );
+  }
+  
+  const user = await db.user.create(body);
+  return NextResponse.json(user, { status: 201 });
+}
+```
+
+</Grid>
+
+### When to Use Each
+
+| Approach | Best For |
+| --- | --- |
+| Route Handlers | External API consumers, webhooks, file downloads |
+| Server Actions | Form submissions, mutations from React components |
+| Server Components | Data fetching for rendering |
+
+### Demo
+
+1. **Trigger a GET request** and inspect the JSON response.
+2. **Send a POST request** and verify the mutation behavior.
+3. **Check response headers** for caching and content-type settings.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Request to response flow"
+  steps={[
+    { label: "HTTP Request", type: "request" },
+    { label: "route.ts", type: "server" },
+    { label: "Process", type: "server" },
+    { label: "Response", type: "response" }
+  ]}
+  note="Handlers run in Node.js or Edge runtime based on your export config."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| API design | One route handler per resource, small and focused |
+| Runtime | Node.js for full APIs, Edge for low-latency endpoints |
+| Caching | GET requests cache by default; use headers to control |
+| Security | Always validate input and sanitize output |
+
+### Pitfalls and Tips
+
+- Avoid heavy Node.js-specific work in Edge runtime handlers.
+- Always validate and sanitize request bodies for POST, PUT, and PATCH.
+- Use consistent response shapes across your API for easier client integration.
+- Remember that GET handlers with `Request` object usage become dynamic.
+
+### Learn More
+
+- [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+- [NextRequest API](https://nextjs.org/docs/app/api-reference/functions/next-request)
+- [NextResponse API](https://nextjs.org/docs/app/api-reference/functions/next-response)

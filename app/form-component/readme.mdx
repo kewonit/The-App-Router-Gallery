@@ -1,5 +1,6 @@
 import db from '#/lib/db';
 import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
 export const demo = db.demo.find({ where: { slug: 'form-component' } });
 
@@ -61,6 +62,19 @@ export default function ContactPage() {
 - **Client Navigation**: No full page reload, preserves client state
 - **Progressive Enhancement**: Works without JavaScript
 - **Accessible**: ARIA attributes for screen readers
+
+### Visual Summary
+
+<FlowDiagram
+  title="Form → Action → UI"
+  steps={["User submit", "Server Action", "Revalidate", "UI update"]}
+  note="`next/form` pairs well with Server Actions for low-friction mutations."
+/>
+
+### Pitfalls & Tips
+
+- Validate on the server for authoritative results.
+- Use `useActionState` to surface field-level errors.
 
 ### Links
 

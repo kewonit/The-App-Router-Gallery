@@ -1,0 +1,113 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'partial-prerendering' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Partial Prerendering (PPR)** combines static and dynamic content in a single route.
+- The static shell renders at build time for instant initial load, while dynamic holes stream in at request time.
+- Use `<Suspense>` boundaries to define where dynamic content should stream into the static shell.
+- PPR gives you the performance of static pages with the freshness of dynamic rendering.
+- No configuration needed — Next.js automatically detects static vs dynamic parts based on your code.
+- Dynamic content is defined by using dynamic APIs like `cookies()`, `headers()`, or uncached `fetch()`.
+
+# !!col
+
+```tsx app/dashboard/page.tsx
+import { Suspense } from 'react';
+
+// !mark
+// Static shell - prerendered at build time
+function StaticHeader() {
+  return <header>Dashboard</header>;
+}
+
+// !mark
+// Dynamic hole - rendered at request time
+async function DynamicUserInfo() {
+  const user = await getCurrentUser(); // Uses cookies
+  return <div>Welcome, {user.name}</div>;
+}
+
+export default function Page() {
+  return (
+    <div>
+      {/* Static content - instant */}
+      // !mark
+      <StaticHeader />
+      
+      {/* Dynamic content - streams in */}
+      // !mark
+      <Suspense fallback={<Skeleton />}>
+        // !mark
+        <DynamicUserInfo />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+</Grid>
+
+### Static vs Dynamic
+
+| Content Type | When Rendered | Best For |
+| --- | --- | --- |
+| Static Shell | Build time | Layout, navigation, static text |
+| Dynamic Holes | Request time | User data, real-time content, personalization |
+
+### Demo
+
+1. **Refresh the page** and notice the cyan-bordered sections appear instantly.
+2. **Watch the pink-bordered sections** stream in after 1-2 seconds.
+3. **Observe the loading skeletons** that show while dynamic content loads.
+4. **Try a hard refresh** (Ctrl/Cmd + Shift + R) to see the full sequence again.
+
+### Visual Summary
+
+<FlowDiagram
+  title="PPR rendering flow"
+  steps={[
+    { label: "Static shell", type: "cache" },
+    { label: "Instant paint", type: "response" },
+    { label: "Suspense boundary", type: "component" },
+    { label: "Dynamic render", type: "server" },
+    { label: "Stream in", type: "client" }
+  ]}
+  note="Users see the static shell immediately while dynamic content streams in."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| Performance | Static shell loads instantly from edge cache |
+| Freshness | Dynamic holes have real-time data |
+| UX | No full-page loading states needed |
+| Architecture | Use Suspense boundaries strategically |
+
+### Pitfalls and Tips
+
+- Place Suspense boundaries around the smallest reasonable unit of dynamic content.
+- Avoid making the entire page dynamic by calling dynamic APIs at the top level.
+- Use loading skeletons that match the final content dimensions to prevent layout shift.
+- Consider which content truly needs to be dynamic vs can be cached.
+
+### Continue Learning
+
+| Demo | Description |
+| --- | --- |
+| [Streaming](/streaming) | Learn Suspense fundamentals for progressive rendering |
+| [Cached Routes](/cached-routes) | Understand route-level caching with use cache |
+| [Loading](/loading) | Create loading states for streaming content |
+
+### Learn More
+
+- [Partial Prerendering](https://nextjs.org/docs/app/building-your-application/rendering/partial-prerendering)
+- [Streaming with Suspense](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)

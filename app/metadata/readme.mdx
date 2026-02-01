@@ -1,0 +1,108 @@
+import db from '#/lib/db';
+import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
+
+export const demo = db.demo.find({ where: { slug: 'metadata' } });
+
+# {demo.name}
+
+<Grid>
+
+# !!col
+
+- **Metadata API** defines SEO and social sharing metadata for your pages.
+- Export a static `metadata` object or async `generateMetadata` function from page or layout files.
+- Metadata is automatically merged from parent layouts to child pages, with children overriding parents.
+- Use template patterns for consistent title formatting across your site.
+- Dynamic metadata can fetch data to generate titles, descriptions, and OG images.
+- Next.js handles deduplication and streaming for optimal performance.
+
+# !!col
+
+```tsx app/blog/[slug]/page.tsx
+import type { Metadata } from 'next';
+
+// !mark
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  // !mark
+  const post = await getPost(slug);
+
+  return {
+    // !mark
+    title: post.title,
+    // !mark
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      // !mark
+      images: [`/api/og?title=${post.title}`],
+    },
+  };
+}
+```
+
+</Grid>
+
+### Static vs Dynamic Metadata
+
+| Approach | Use When | Example |
+| --- | --- | --- |
+| Static `metadata` export | Content is known at build time | About page, Contact page |
+| `generateMetadata` function | Content depends on route params or fetched data | Blog posts, Product pages |
+| Template pattern | Consistent title suffix across pages | Template with `%s` placeholder |
+
+### Demo
+
+1. **Switch between examples** to see different metadata patterns.
+2. **View the generated HTML** for each pattern in the output panel.
+3. **Check the OG image preview** showing dynamic image generation.
+4. **Inspect this page's source** to see real metadata in action.
+
+### Visual Summary
+
+<FlowDiagram
+  title="Metadata resolution"
+  steps={[
+    { label: "Root layout", type: "component" },
+    { label: "Child layout", type: "component" },
+    { label: "Page", type: "component" },
+    { label: "Merged metadata", type: "response" }
+  ]}
+  note="Child metadata extends and overrides parent metadata automatically."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| SEO | Use descriptive titles and meta descriptions |
+| Social | Always provide OG images for rich link previews |
+| Performance | Metadata fetches are deduped with page data |
+| Templates | Use title templates for consistent branding |
+
+### Pitfalls and Tips
+
+- Always provide a `description` for search engine snippets.
+- Use `generateMetadata` when you need async data fetching.
+- OG images should be 1200x630 pixels for best compatibility.
+- Use the `robots` field to control indexing of private pages.
+
+### Continue Learning
+
+| Demo | Description |
+| --- | --- |
+| [Layouts](/layouts) | Where metadata is typically defined |
+| [Dynamic Routes](/dynamic-routes) | Generate metadata from route params |
+| [Image Optimization](/image-optimization) | Optimize OG images with next/image |
+
+### Learn More
+
+- [Metadata API](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
+- [generateMetadata](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)
+- [Open Graph Images](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image)

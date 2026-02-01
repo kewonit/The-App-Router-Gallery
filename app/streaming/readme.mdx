@@ -1,5 +1,6 @@
 import db from '#/lib/db';
 import { Grid } from '#/ui/codehike';
+import { FlowDiagram } from '#/ui/flow-diagram';
 
 export const demo = db.demo.find({ where: { slug: 'streaming' } });
 
@@ -63,6 +64,27 @@ async function SlowComponent() {
 - **Strategic boundaries**: Place Suspense around slow data, not fast data
 - **Avoid waterfalls**: Fetch data in parallel, not sequentially
 - **Use loading.tsx**: For route-level loading states
+
+### Visual Summary
+
+<FlowDiagram
+  title="Streaming with Suspense"
+  steps={["Shell", "Suspense boundary", "Stream chunk", "UI swap"]}
+  note="Multiple boundaries stream in parallel without blocking each other."
+/>
+
+### Key Takeaways
+
+| Topic | Guidance |
+| --- | --- |
+| UX | Users see content sooner via incremental streaming |
+| Structure | Place boundaries around slow data |
+| Performance | Parallelize data fetching to avoid waterfalls |
+
+### Pitfalls & Tips
+
+- Avoid nesting slow components without boundaries.
+- Keep skeletons visually consistent with real content.
 
 ### Links
 
