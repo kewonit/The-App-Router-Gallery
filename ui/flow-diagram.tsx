@@ -59,14 +59,14 @@ export function FlowDiagram({
   const isVertical = direction === 'vertical';
 
   return (
-    <section className="my-6 rounded-xl border border-gray-200 bg-linear-to-br from-gray-50 to-white p-6 shadow-sm dark:border-gray-800/70 dark:from-gray-900/40 dark:to-gray-950/40 dark:shadow-none">
+    <section className="my-4 rounded-xl border border-gray-200 bg-linear-to-br from-gray-50 to-white p-4 shadow-sm sm:my-6 sm:p-6 dark:border-gray-800/70 dark:from-gray-900/40 dark:to-gray-950/40 dark:shadow-none">
       <div className="mb-4 flex items-center justify-between">
         <h4 className="bg-linear-to-r from-gray-700 to-gray-900 bg-clip-text text-sm font-bold tracking-wide text-transparent uppercase dark:from-gray-300 dark:to-gray-100">
           {title}
         </h4>
       </div>
       <div
-        className={`flex ${isVertical ? 'flex-col' : 'flex-wrap'} items-center gap-3`}
+        className={`flex ${isVertical ? 'flex-col' : 'flex-wrap'} items-center gap-2 sm:gap-3`}
       >
         {steps.map((step, index) => {
           const { label, type } = parseStep(step);

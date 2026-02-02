@@ -9,14 +9,16 @@ export function PhotoDetails({
   isModal: boolean;
 }) {
   return (
-    <div className={`flex flex-col gap-4 ${isModal ? 'p-6 pt-12' : ''}`}>
+    <div
+      className={`flex flex-col gap-3 sm:gap-4 ${isModal ? 'p-4 pt-10 sm:p-6 sm:pt-12' : ''}`}
+    >
       {/* Image */}
       <div className="relative aspect-video overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-900">
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-contain p-4"
+          className="object-contain p-2 sm:p-4"
           priority
           sizes="(max-width: 768px) 100vw, 50vw"
         />
@@ -49,7 +51,7 @@ export function PhotoDetails({
         </div>
 
         {/* Features */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {product.features.map((feature) => (
             <span
               key={feature}
@@ -62,7 +64,7 @@ export function PhotoDetails({
 
         {/* Mode indicator */}
         <div
-          className={`mt-2 rounded-lg p-3 text-xs ${
+          className={`mt-2 rounded-lg p-2.5 text-xs sm:p-3 ${
             isModal
               ? 'border border-cyan-300/50 bg-cyan-100/50 text-cyan-800 dark:border-cyan-900/50 dark:bg-cyan-950/30 dark:text-cyan-300'
               : 'border border-violet-300/50 bg-violet-100/50 text-violet-800 dark:border-violet-900/50 dark:bg-violet-950/30 dark:text-violet-300'

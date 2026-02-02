@@ -5,7 +5,7 @@ export function TemplateDemo() {
   return (
     <div className="flex flex-col gap-6">
       <Boundary label="Comparison" size="small" animateRerendering={false}>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
             <h3 className="font-semibold text-blue-700 dark:text-blue-300">
               layout.tsx

@@ -25,7 +25,7 @@ export function FillModeDemo() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {objectFitOptions.map((option) => (
           <div key={option.value} className="flex flex-col gap-2">
             <div className="relative h-40 overflow-hidden rounded-lg bg-gray-900/50">

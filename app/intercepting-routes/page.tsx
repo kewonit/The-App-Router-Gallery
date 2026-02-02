@@ -18,7 +18,7 @@ export default async function Page() {
             description="There are no photos to display at this time."
           />
         ) : (
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
             {products.map((product) => (
               <Link
                 key={product.id}

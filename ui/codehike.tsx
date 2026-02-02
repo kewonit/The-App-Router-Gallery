@@ -22,7 +22,7 @@ export function Grid(props: unknown) {
   const data = parseProps(props, Schema);
 
   return (
-    <div className="my-5 grid grid-cols-1 gap-6 first:mt-0 last:mb-0 lg:grid-cols-2">
+    <div className="my-5 grid grid-cols-1 gap-6 first:mt-0 last:mb-0 sm:grid-cols-2">
       {data.col.map((col, index) => (
         <div className="*:first:mt-0 *:last:mb-0" key={index}>
           {col.children}

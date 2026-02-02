@@ -12,7 +12,7 @@ export function NativeFormDemo() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Next.js Form */}
         <div className="flex flex-col gap-3 rounded-lg border border-blue-900/50 bg-blue-950/20 p-4">
           <div className="flex items-center gap-2">
@@ -87,7 +87,7 @@ export function NativeFormDemo() {
         <h4 className="font-medium text-gray-700 dark:text-gray-300">
           When to use each:
         </h4>
-        <div className="grid grid-cols-1 gap-4 text-sm lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
           <div>
             <p className="font-medium text-blue-400">Use Next.js Form when:</p>
             <ul className="mt-1 list-inside list-disc text-gray-600 dark:text-gray-400">

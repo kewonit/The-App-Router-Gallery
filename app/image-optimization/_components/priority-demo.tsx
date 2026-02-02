@@ -16,7 +16,7 @@ export function PriorityDemo() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Priority Image */}
         <div className="flex flex-col gap-2">
           <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-pink-900/30 to-purple-900/30">
@@ -77,7 +77,7 @@ export function PriorityDemo() {
         <h4 className="text-sm font-medium text-pink-400">
           When to use priority
         </h4>
-        <div className="grid grid-cols-1 gap-2 text-xs text-gray-600 lg:grid-cols-2 dark:text-gray-400">
+        <div className="grid grid-cols-1 gap-2 text-xs text-gray-600 sm:grid-cols-2 dark:text-gray-400">
           <div>
             <strong className="text-gray-700 dark:text-gray-300">
               ✓ Use priority for:

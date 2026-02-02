@@ -30,7 +30,7 @@ export function ProductCard<E extends ElementType = 'div'>({
   const Component = as || 'div';
   return (
     <Component className="group flex flex-col gap-2.5" {...rest}>
-      <div className="overflow-hidden rounded-md bg-gray-100 p-8 group-hover:bg-gray-200 dark:bg-gray-900/50 dark:group-hover:bg-gray-900">
+      <div className="overflow-hidden rounded-md bg-gray-100 p-4 group-hover:bg-gray-200 sm:p-6 lg:p-8 dark:bg-gray-900/50 dark:group-hover:bg-gray-900">
         <Image
           className={clsx(animateEnter && 'transition-enter')}
           src={`/shop/${product.image}`}
@@ -80,14 +80,16 @@ export function ProductList({
   count: number;
 }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3 sm:gap-4">
       <h1 className="flex items-center gap-2 text-xl font-medium text-gray-700 dark:text-gray-300">
         <div>{title}</div>
         <span className="font-mono tracking-tighter text-gray-500 dark:text-gray-600">
           ({count})
         </span>
       </h1>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">{children}</div>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {children}
+      </div>
     </div>
   );
 }
@@ -104,7 +106,7 @@ export function ProductListSkeleton({
       <h1 className="text-xl font-medium text-gray-500 dark:text-gray-600">
         {title}
       </h1>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: count }).map((_, i) => (
           <ProductCardSkeleton key={i} />
         ))}

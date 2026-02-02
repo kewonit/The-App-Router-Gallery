@@ -124,10 +124,10 @@ export function CodeBlock({
   return (
     <div className="group relative overflow-hidden rounded-lg border border-gray-700 bg-gray-900">
       {filename && (
-        <div className="flex items-center justify-between border-b border-gray-700 bg-gray-800/50 px-4 py-2">
+        <div className="flex items-center justify-between border-b border-gray-700 bg-gray-800/50 px-3 py-1.5 sm:px-4 sm:py-2">
           <span className="text-xs font-medium text-gray-400">{filename}</span>
           {language && (
-            <span className="rounded bg-gray-700 px-2 py-0.5 text-xs text-gray-300">
+            <span className="rounded bg-gray-700 px-1.5 py-0.5 text-xs text-gray-300 sm:px-2">
               {language}
             </span>
           )}
@@ -175,11 +175,11 @@ export function HighlightedCode({
         )}
       >
         {filename && (
-          <div className="flex items-center justify-between border-b border-gray-700 bg-gray-800/50 px-4 py-2">
+          <div className="flex items-center justify-between border-b border-gray-700 bg-gray-800/50 px-3 py-1.5 sm:px-4 sm:py-2">
             <span className="text-xs font-medium text-gray-400">
               {filename}
             </span>
-            <span className="rounded bg-gray-700 px-2 py-0.5 text-xs text-gray-300">
+            <span className="rounded bg-gray-700 px-1.5 py-0.5 text-xs text-gray-300 sm:px-2">
               {language}
             </span>
           </div>
@@ -199,9 +199,9 @@ export function HighlightedCode({
       )}
     >
       {filename && (
-        <div className="flex items-center justify-between border-b border-gray-700 bg-gray-800/50 px-4 py-2">
+        <div className="flex items-center justify-between border-b border-gray-700 bg-gray-800/50 px-3 py-1.5 sm:px-4 sm:py-2">
           <span className="text-xs font-medium text-gray-400">{filename}</span>
-          <span className="rounded bg-gray-700 px-2 py-0.5 text-xs text-gray-300">
+          <span className="rounded bg-gray-700 px-1.5 py-0.5 text-xs text-gray-300 sm:px-2">
             {language}
           </span>
         </div>
@@ -235,7 +235,7 @@ export function SimpleCode({ code, filename, className }: SimpleCodeProps) {
       )}
     >
       {filename && (
-        <div className="flex items-center border-b border-gray-700 bg-gray-800/50 px-4 py-2">
+        <div className="flex items-center border-b border-gray-700 bg-gray-800/50 px-3 py-1.5 sm:px-4 sm:py-2">
           <span className="text-xs font-medium text-gray-400">{filename}</span>
         </div>
       )}

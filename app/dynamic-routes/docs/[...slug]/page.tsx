@@ -123,7 +123,7 @@ export default async function DocsPage({
           <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400">
             Other documentation pages:
           </h3>
-          <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
             {Object.entries(docsTree)
               .filter(([p]) => p !== path)
               .slice(0, 4)

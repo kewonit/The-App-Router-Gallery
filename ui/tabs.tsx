@@ -10,7 +10,7 @@ export type Item = { text: string; slug?: string; segment?: string };
 export function Tabs({ basePath, items }: { basePath: string; items: Item[] }) {
   return (
     <nav
-      className="flex flex-wrap items-center gap-2"
+      className="flex flex-wrap items-center gap-1.5 sm:gap-2"
       role="tablist"
       aria-label="Demo sections"
     >

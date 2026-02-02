@@ -10,7 +10,7 @@ export function ImageComparison() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Next.js Image */}
         <div className="flex flex-col gap-3 rounded-lg border border-green-300/50 bg-green-100/50 p-4 dark:border-green-900/50 dark:bg-green-950/20">
           <div className="flex items-center gap-2">
@@ -99,7 +99,7 @@ export function ImageComparison() {
         <h4 className="mb-3 font-medium text-gray-700 dark:text-gray-300">
           Typical Performance Gains
         </h4>
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <StatCard label="File Size" value="-40%" color="green" />
           <StatCard label="Load Time" value="-60%" color="blue" />
           <StatCard label="LCP Score" value="+30%" color="violet" />

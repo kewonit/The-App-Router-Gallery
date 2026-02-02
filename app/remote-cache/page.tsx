@@ -34,7 +34,7 @@ async function ProductList() {
             description="There are no products to display at this time."
           />
         ) : (
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {products.map((product) => (
               <div key={product.id} className="flex flex-col gap-3">
                 <ProductCard product={product} animateEnter={true} />

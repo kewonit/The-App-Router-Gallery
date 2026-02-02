@@ -33,9 +33,9 @@ export default async function Layout({
         label="layout.tsx"
         kind="solid"
         animateRerendering={false}
-        className="flex flex-col gap-9"
+        className="flex flex-col gap-4 sm:gap-6 lg:gap-9"
       >
-        <div className="flex justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:gap-4">
           <Tabs
             basePath={`/${demo.slug}`}
             items={[

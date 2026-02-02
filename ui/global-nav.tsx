@@ -39,7 +39,7 @@ export function GlobalNav({ items }: { items: DemoCategory[] }) {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex h-14 shrink-0 items-center justify-between px-4 py-4 lg:h-auto">
+      <div className="flex h-14 shrink-0 items-center justify-between px-3 py-3 sm:px-4 sm:py-4 lg:h-auto">
         <Link
           href="/"
           className="group flex items-center gap-x-2.5"
@@ -78,7 +78,7 @@ export function GlobalNav({ items }: { items: DemoCategory[] }) {
         })}
       >
         <ScrollArea className="flex-1">
-          <nav className="space-y-6 px-2 pt-5 pb-6">
+          <nav className="space-y-4 px-2 pt-4 pb-4 sm:space-y-6 sm:pt-5 sm:pb-6">
             {items.map((section) => {
               return (
                 <div key={section.name}>
@@ -102,8 +102,8 @@ export function GlobalNav({ items }: { items: DemoCategory[] }) {
           </nav>
         </ScrollArea>
 
-        <div className="shrink-0 border-t border-gray-200 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900">
-          <div className="flex items-center justify-between gap-3">
+        <div className="shrink-0 border-t border-gray-200 bg-gray-50 p-3 sm:p-4 dark:border-gray-800 dark:bg-gray-900">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
             <ThemeToggle />
             <a
               href="https://github.com/kewonit/The-App-Router-Gallery"

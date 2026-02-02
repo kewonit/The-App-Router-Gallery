@@ -15,7 +15,7 @@ export async function ProductDetails({
       animateRerendering={false}
     >
       <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
           <div className="overflow-hidden rounded-md bg-gray-900/50 p-12">
             <Image
               className="brightness-150"

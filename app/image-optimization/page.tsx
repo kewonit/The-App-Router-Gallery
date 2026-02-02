@@ -25,7 +25,7 @@ export default async function Page() {
             description="There are no images to display at this time."
           />
         ) : (
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {images.map((img) => (
               <div key={img.src} className="group flex flex-col gap-2.5">
                 <div className="overflow-hidden rounded-md bg-gray-100 p-8 group-hover:bg-gray-200 dark:bg-gray-900/50 dark:group-hover:bg-gray-900">

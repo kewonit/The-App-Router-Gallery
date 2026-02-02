@@ -184,14 +184,14 @@ export default function Page() {
       {/* Static shell - rendered at build time */}
       <StaticHeader />
 
-      <div className="grid gap-6 lg:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-4">
         {/* Static sidebar */}
-        <div className="lg:col-span-1">
+        <div className="md:col-span-1">
           <StaticSidebar />
         </div>
 
         {/* Main content with dynamic holes */}
-        <div className="space-y-6 lg:col-span-3">
+        <div className="space-y-6 md:col-span-3">
           {/* Dynamic hole 1: User widget */}
           <Suspense fallback={<UserWidgetSkeleton />}>
             <DynamicUserWidget />
@@ -199,7 +199,7 @@ export default function Page() {
 
           {/* Static content section */}
           <Boundary label="Static Stats (Prerendered)" color="cyan">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {[
                 { label: 'Total Views', value: '12,345' },
                 { label: 'Active Users', value: '1,234' },

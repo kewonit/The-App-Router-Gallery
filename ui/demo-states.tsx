@@ -45,7 +45,7 @@ export function EmptyState({
   return (
     <div
       className={clsx(
-        'flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-gray-200 bg-gray-50/50 px-6 py-12 text-center dark:border-gray-800 dark:bg-gray-900/30',
+        'flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-gray-200 bg-gray-50/50 px-4 py-8 text-center sm:px-6 sm:py-12 dark:border-gray-800 dark:bg-gray-900/30',
         className,
       )}
       role="status"
@@ -166,7 +166,7 @@ export function ErrorState({
           </details>
         )}
       </div>
-      <div className="flex gap-3">
+      <div className="flex flex-wrap gap-2 sm:gap-3">
         {retry && (
           <button
             onClick={retry}

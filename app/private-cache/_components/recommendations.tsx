@@ -34,7 +34,7 @@ export function RecommendationsSkeleton() {
         <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
           Recommendations
         </h2>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((i) => (
             <div
               key={i}

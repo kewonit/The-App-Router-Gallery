@@ -43,7 +43,7 @@ export default async function Page() {
             description="Add some dynamic route examples to get started."
           />
         ) : (
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
             {routes.map((route) => (
               <div key={route.type} className="flex flex-col gap-3">
                 <code className="text-xs text-gray-600 dark:text-gray-500">

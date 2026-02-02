@@ -4,9 +4,9 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 export default function Byline() {
   return (
     <Boundary kind="solid" animateRerendering={false}>
-      <footer className="flex flex-wrap items-center justify-center gap-4 text-sm font-medium sm:justify-between">
+      <footer className="flex flex-wrap items-center justify-center gap-3 text-sm font-medium sm:justify-between sm:gap-4">
         <nav
-          className="flex flex-wrap items-center gap-4"
+          className="flex flex-wrap items-center gap-3 sm:gap-4"
           aria-label="Footer navigation"
         >
           <a

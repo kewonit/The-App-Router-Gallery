@@ -85,7 +85,7 @@ export default async function Page({
             </SharedTransition>
           </TransitionLink>
 
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
             <SharedTransition
               name={`product-${product.id}`}
               share={{

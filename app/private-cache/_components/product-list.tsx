@@ -29,7 +29,7 @@ export async function ProductList() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {products.map((product, index) => {
             // First half uses private cache (with runtime prefetch)
             // Second half uses remote cache (no prefetch)
@@ -68,7 +68,7 @@ export function ProductListSkeleton() {
         <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
           Available Products
         </h1>
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div
               key={i}
