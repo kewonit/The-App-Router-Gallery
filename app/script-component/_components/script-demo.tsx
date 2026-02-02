@@ -1,6 +1,7 @@
 'use client';
 
 import { Boundary } from '#/ui/boundary';
+import { HighlightedCode } from '#/ui/code-block';
 import Script from 'next/script';
 import { useState } from 'react';
 
@@ -84,8 +85,8 @@ export function ScriptDemo() {
       </Boundary>
 
       <Boundary label="Example" size="small" animateRerendering={false}>
-        <pre className="overflow-x-auto text-xs text-gray-700 dark:text-gray-300">
-          {`import Script from 'next/script'
+        <HighlightedCode
+          code={`import Script from 'next/script'
 
 export default function Page() {
   return (
@@ -101,7 +102,8 @@ export default function Page() {
     </>
   )
 }`}
-        </pre>
+          language="tsx"
+        />
       </Boundary>
     </div>
   );

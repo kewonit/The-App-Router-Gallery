@@ -1,6 +1,7 @@
 'use client';
 
 import { Boundary } from '#/ui/boundary';
+import { HighlightedCode } from '#/ui/code-block';
 import { useState } from 'react';
 
 export function RouteHandlerDemo() {
@@ -87,20 +88,22 @@ export function RouteHandlerDemo() {
       </Boundary>
 
       <Boundary label="GET Handler" size="small" animateRerendering={false}>
-        <pre className="overflow-x-auto text-xs text-gray-700 dark:text-gray-300">
-          {`// app/api/hello/route.ts
+        <HighlightedCode
+          code={`// app/api/hello/route.ts
 export async function GET() {
   return Response.json({
     message: 'Hello!',
     timestamp: new Date().toISOString(),
   })
 }`}
-        </pre>
+          language="tsx"
+          filename="app/api/hello/route.ts"
+        />
       </Boundary>
 
       <Boundary label="POST Handler" size="small" animateRerendering={false}>
-        <pre className="overflow-x-auto text-xs text-gray-700 dark:text-gray-300">
-          {`export async function POST(request: Request) {
+        <HighlightedCode
+          code={`export async function POST(request: Request) {
   const body = await request.json()
 
   return Response.json({
@@ -108,7 +111,8 @@ export async function GET() {
     processed: true,
   })
 }`}
-        </pre>
+          language="tsx"
+        />
       </Boundary>
 
       <Boundary
@@ -117,8 +121,8 @@ export async function GET() {
         color="cyan"
         animateRerendering={false}
       >
-        <pre className="overflow-x-auto text-xs text-gray-700 dark:text-gray-300">
-          {`export async function GET() {
+        <HighlightedCode
+          code={`export async function GET() {
   const encoder = new TextEncoder()
 
   const stream = new ReadableStream({
@@ -133,7 +137,8 @@ export async function GET() {
 
   return new Response(stream)
 }`}
-        </pre>
+          language="tsx"
+        />
       </Boundary>
     </div>
   );

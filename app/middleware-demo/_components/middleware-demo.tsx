@@ -1,20 +1,21 @@
 import { Boundary } from '#/ui/boundary';
+import { HighlightedCode, SimpleCode } from '#/ui/code-block';
 
 export function MiddlewareDemo() {
   return (
     <div className="flex flex-col gap-6">
       <Boundary label="File Location" size="small" animateRerendering={false}>
-        <pre className="text-sm text-gray-700 dark:text-gray-300">
-          {`project/
+        <SimpleCode
+          code={`project/
 ├── middleware.ts   ← runs on matched routes
 ├── app/
 │   └── ...`}
-        </pre>
+        />
       </Boundary>
 
       <Boundary label="Basic Example" size="small" animateRerendering={false}>
-        <pre className="overflow-x-auto text-xs text-gray-700 dark:text-gray-300">
-          {`import { NextResponse } from 'next/server'
+        <HighlightedCode
+          code={`import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
@@ -31,7 +32,9 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: '/dashboard/:path*',
 }`}
-        </pre>
+          language="tsx"
+          filename="middleware.ts"
+        />
       </Boundary>
 
       <Boundary
@@ -77,15 +80,16 @@ export const config = {
       </Boundary>
 
       <Boundary label="Matcher" size="small" animateRerendering={false}>
-        <pre className="overflow-x-auto text-xs text-gray-700 dark:text-gray-300">
-          {`export const config = {
+        <HighlightedCode
+          code={`export const config = {
   matcher: [
     '/dashboard/:path*',      // all dashboard routes
     '/api/:function*',        // all API routes
     '/((?!_next|static).*)',  // all except _next and static
   ],
 }`}
-        </pre>
+          language="tsx"
+        />
       </Boundary>
     </div>
   );

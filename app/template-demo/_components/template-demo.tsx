@@ -1,4 +1,5 @@
 import { Boundary } from '#/ui/boundary';
+import { HighlightedCode } from '#/ui/code-block';
 
 export function TemplateDemo() {
   return (
@@ -30,8 +31,8 @@ export function TemplateDemo() {
       </Boundary>
 
       <Boundary label="Example" size="small" animateRerendering={false}>
-        <pre className="overflow-x-auto text-xs text-gray-700 dark:text-gray-300">
-          {`// template.tsx - re-mounts on navigation
+        <HighlightedCode
+          code={`// template.tsx - re-mounts on navigation
 'use client'
 
 import { useEffect } from 'react'
@@ -52,7 +53,9 @@ export default function Template({
     </div>
   )
 }`}
-        </pre>
+          language="tsx"
+          filename="template.tsx"
+        />
       </Boundary>
 
       <Boundary

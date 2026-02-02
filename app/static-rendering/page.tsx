@@ -1,4 +1,5 @@
 import { Boundary } from '#/ui/boundary';
+import { HighlightedCode, SimpleCode } from '#/ui/code-block';
 
 const staticPosts = [
   {
@@ -133,9 +134,8 @@ function StaticPagesDemo() {
           ))}
         </div>
 
-        <div className="rounded-lg bg-gray-900 p-4 font-mono text-sm">
-          <pre className="overflow-x-auto text-gray-300">
-            {`// app/blog/[slug]/page.tsx
+        <HighlightedCode
+          code={`// app/blog/[slug]/page.tsx
 export async function generateStaticParams() {
   const posts = await getPosts();
   return posts.map((post) => ({ slug: post.slug }));
@@ -147,8 +147,9 @@ export default async function BlogPost({ params }) {
   const post = await getPost(slug);
   return <Article post={post} />;
 }`}
-          </pre>
-        </div>
+          language="tsx"
+          filename="app/blog/[slug]/page.tsx"
+        />
       </div>
     </Boundary>
   );
@@ -178,9 +179,7 @@ function ISRDemo() {
             <p className="mt-1 text-xs text-blue-600 dark:text-blue-400">
               Revalidates every 60 seconds
             </p>
-            <div className="mt-3 rounded bg-gray-900 p-2 font-mono text-xs text-gray-300">
-              {`export const revalidate = 60;`}
-            </div>
+            <SimpleCode code="export const revalidate = 60;" className="mt-3" />
           </div>
 
           <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
@@ -190,9 +189,7 @@ function ISRDemo() {
             <p className="mt-1 text-xs text-blue-600 dark:text-blue-400">
               Revalidates via API/webhook
             </p>
-            <div className="mt-3 rounded bg-gray-900 p-2 font-mono text-xs text-gray-300">
-              {`revalidatePath('/blog/post')`}
-            </div>
+            <SimpleCode code="revalidatePath('/blog/post')" className="mt-3" />
           </div>
         </div>
 
@@ -268,16 +265,16 @@ function DynamicSegmentsDemo() {
           </div>
         </div>
 
-        <div className="rounded-lg bg-gray-900 p-4 font-mono text-sm">
-          <pre className="overflow-x-auto text-gray-300">
-            {`// Only allow paths from generateStaticParams
+        <HighlightedCode
+          code={`// Only allow paths from generateStaticParams
 export const dynamicParams = false;
 
 // Or allow on-demand generation with caching
 export const dynamicParams = true; // default
 export const revalidate = 3600; // Cache new pages for 1 hour`}
-          </pre>
-        </div>
+          language="tsx"
+          showLineNumbers={false}
+        />
       </div>
     </Boundary>
   );
@@ -303,9 +300,8 @@ export default function Page() {
             which routes are static, dynamic, or ISR:
           </p>
 
-          <div className="rounded-lg bg-gray-900 p-4 font-mono text-xs">
-            <pre className="overflow-x-auto text-gray-300">
-              {`Route                          Size     First Load JS
+          <SimpleCode
+            code={`Route                          Size     First Load JS
 ┌ ○ /                            1.2 kB      89.5 kB
 ├ ○ /about                       845 B       88.9 kB
 ├ ● /blog                        1.1 kB      89.3 kB
@@ -319,8 +315,7 @@ export default function Page() {
 ○  (Static)   prerendered as static content
 ●  (SSG)      prerendered with getStaticProps or generateStaticParams
 λ  (Dynamic)  server-rendered on demand`}
-            </pre>
-          </div>
+          />
         </div>
       </Boundary>
     </div>

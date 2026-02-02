@@ -1,4 +1,5 @@
 import { Boundary } from '#/ui/boundary';
+import { HighlightedCode } from '#/ui/code-block';
 import {
   Geist,
   Geist_Mono,
@@ -128,8 +129,8 @@ console.log(greeting);`}
         color="blue"
         animateRerendering={false}
       >
-        <pre className="overflow-x-auto text-xs text-gray-700 dark:text-gray-300">
-          {`import { Inter } from 'next/font/google'
+        <HighlightedCode
+          code={`import { Inter } from 'next/font/google'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -143,7 +144,9 @@ export default function Layout({ children }) {
     </html>
   )
 }`}
-        </pre>
+          language="tsx"
+          filename="app/layout.tsx"
+        />
       </Boundary>
     </div>
   );
