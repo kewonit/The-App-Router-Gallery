@@ -25,7 +25,11 @@ export default async function Page() {
         'transition-to-detail': 'animate-slide-to-left',
       }}
     >
-      <Boundary label="page.tsx" animateRerendering={true}>
+      <Boundary
+        label="page.tsx (Cached)"
+        color="pink"
+        animateRerendering={true}
+      >
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 text-xl font-medium text-gray-700 dark:text-gray-300">
             <SharedTransition name="navigation-title" share="animate-morph">

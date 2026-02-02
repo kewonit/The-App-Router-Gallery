@@ -2,13 +2,18 @@ import { Boundary } from '#/ui/boundary';
 
 export default function Loading() {
   return (
-    <Boundary label="loading.tsx" animateRerendering={false}>
+    <Boundary
+      label="loading.tsx (Suspense)"
+      color="blue"
+      pulse
+      animateRerendering={false}
+    >
       <div className="flex flex-col gap-8">
         {/* Product Details Skeleton */}
         <Boundary
-          label="<ProductDetails> (static)"
+          label="<ProductDetails> (Static)"
           size="small"
-          color="blue"
+          color="cyan"
           animateRerendering={false}
         >
           <div className="flex flex-col gap-4">
@@ -24,13 +29,13 @@ export default function Loading() {
 
         {/* Recommendations Skeleton */}
         <Boundary
-          label="<Recommendations>"
+          label="<Recommendations> (Async)"
           size="small"
           color="blue"
           animateRerendering={false}
         >
           <div className="flex flex-col gap-4">
-            <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+            <h2 className="text-lg font-medium text-gray-700 dark:text-gray-300">
               Recommendations
             </h2>
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">

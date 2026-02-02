@@ -1,11 +1,12 @@
 import { Boundary } from '#/ui/boundary';
+import { DemoHeading } from '#/ui/demo-states';
 import { ProductCardSkeleton } from '#/ui/product-card';
 
 export default function Loading() {
   return (
-    <Boundary label="loading.tsx">
+    <Boundary label="loading.tsx (Suspense)" color="blue" pulse>
       <div className="flex flex-col gap-4">
-        <h1 className="text-xl font-semibold text-gray-600">All</h1>
+        <DemoHeading>All</DemoHeading>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <ProductCardSkeleton />

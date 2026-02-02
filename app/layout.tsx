@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     default: 'The App Router Gallery',
     template: '%s | The App Router Gallery',
   },
-  metadataBase: new URL('https://app-router.vercel.app'),
+  metadataBase: new URL('https://the-app-router-gallery.vercel.app'),
   description:
     'An interactive showcase to explore Next.js App Router features such as nested layouts, instant loading states, streaming, and component level data fetching.',
   openGraph: {

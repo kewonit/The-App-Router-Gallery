@@ -23,12 +23,12 @@ export default async function Layout({
       </Boundary>
 
       <Boundary
-        label="layout.tsx (Server Environment)"
+        label="layout.tsx (Server)"
         kind="solid"
         animateRerendering={false}
       >
         <Boundary
-          label="Context Provider (Client Environment)"
+          label="Context Provider (Client)"
           color="blue"
           animateRerendering={false}
         >

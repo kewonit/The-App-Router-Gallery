@@ -12,7 +12,10 @@ export default async function Layout({
   const sections = db.section.findMany({ limit: 1 });
 
   return (
-    <Boundary label="(main)/layout.tsx" className="flex flex-col gap-9">
+    <Boundary
+      label="(main)/layout.tsx (Server)"
+      className="flex flex-col gap-9"
+    >
       <Tabs
         basePath={`/${demo.slug}`}
         items={[

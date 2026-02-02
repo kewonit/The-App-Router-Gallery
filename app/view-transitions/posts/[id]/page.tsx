@@ -51,7 +51,11 @@ export default async function Page({
         'transition-forwards': 'animate-slide-to-left',
       }}
     >
-      <Boundary label="posts/[id]/page.tsx" animateRerendering={true}>
+      <Boundary
+        label="posts/[id]/page.tsx (Static)"
+        color="cyan"
+        animateRerendering={true}
+      >
         <div className="grid gap-4">
           <TransitionLink
             href={`/${demo.slug}`}

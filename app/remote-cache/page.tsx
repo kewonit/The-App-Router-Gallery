@@ -1,13 +1,14 @@
 import { Suspense } from 'react';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
+import { DemoHeading, EmptyState } from '#/ui/demo-states';
 import { ProductCard } from '#/ui/product-card';
 import { cacheTag } from 'next/cache';
 import { connection } from 'next/server';
 
 export default async function Page() {
   return (
-    <Boundary label="page.tsx (statically inferred)" animateRerendering={false}>
+    <Boundary label="page.tsx (Static)" color="cyan" animateRerendering={false}>
       <ProductList />
     </Boundary>
   );
@@ -19,27 +20,31 @@ async function ProductList() {
 
   return (
     <Boundary
-      label="<ProductList> (statically inferred)"
+      label="<ProductList> (Cached)"
       size="small"
+      color="pink"
       animateRerendering={false}
     >
       <div className="flex flex-col gap-4">
-        <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
-          All{' '}
-          <span className="font-mono tracking-tighter text-gray-600">
-            ({products.length})
-          </span>
-        </h1>
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {products.map((product) => (
-            <div key={product.id} className="flex flex-col gap-3">
-              <ProductCard product={product} animateEnter={true} />
-              <Suspense fallback={<ProductPriceSkeleton />}>
-                <ProductPrice productId={product.id} />
-              </Suspense>
-            </div>
-          ))}
-        </div>
+        <DemoHeading count={products.length}>All</DemoHeading>
+
+        {products.length === 0 ? (
+          <EmptyState
+            title="No products found"
+            description="There are no products to display at this time."
+          />
+        ) : (
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {products.map((product) => (
+              <div key={product.id} className="flex flex-col gap-3">
+                <ProductCard product={product} animateEnter={true} />
+                <Suspense fallback={<ProductPriceSkeleton />}>
+                  <ProductPrice productId={product.id} />
+                </Suspense>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </Boundary>
   );
@@ -75,7 +80,7 @@ async function ProductPrice({ productId }: { productId: string }) {
   const price = await getProductPrice(productId);
 
   return (
-    <Boundary label="<ProductPrice> (Remote Cacheable)" size="small">
+    <Boundary label="<ProductPrice> (Cached)" size="small" color="pink">
       <div className="text-center text-sm">
         <span className="text-gray-400">Price: </span>
         <span className="font-semibold text-green-400">${price}</span>

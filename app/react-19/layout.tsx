@@ -24,7 +24,10 @@ export default async function Layout({
       <Boundary label="Demo" kind="solid" animateRerendering={false}>
         <Mdx source={readme} collapsed={true} />
       </Boundary>
-      {children}
+
+      <Boundary label="layout.tsx" kind="solid" animateRerendering={false}>
+        {children}
+      </Boundary>
     </>
   );
 }

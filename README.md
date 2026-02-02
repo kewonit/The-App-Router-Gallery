@@ -2,7 +2,7 @@
 
 A hands-on exploration of Next.js App Router patterns and APIs. Built with Next.js 16, React 19, and the latest caching primitives.
 
-[Live Demo →](https://nextjs16-showcase.vercel.app)
+[Live Demo →](https://the-app-router-gallery.vercel.app)
 
 ## What's Inside
 
@@ -20,7 +20,7 @@ A hands-on exploration of Next.js App Router patterns and APIs. Built with Next.
 ## Quick Start
 
 ```sh
-git clone https://github.com/kewonit/nextjs16-showcase.git
+git clone https://github.com/kewonit/The-App-Router-Gallery.git
 cd nextjs16-showcase
 pnpm install
 pnpm dev

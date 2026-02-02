@@ -20,7 +20,10 @@ export default async function Layout({
   const categories = db.category.findMany({ where: { section: section?.id } });
 
   return (
-    <Boundary label="[section]/layout.tsx" className="flex flex-col gap-9">
+    <Boundary
+      label="[section]/layout.tsx (Server)"
+      className="flex flex-col gap-9"
+    >
       <Tabs
         basePath={`/${demo.slug}/${section.slug}`}
         items={[

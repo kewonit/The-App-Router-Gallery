@@ -1,4 +1,5 @@
 import { HooksClient } from '#/app/_hooks/_components/router-context';
+import { DemoHeading } from '#/ui/demo-states';
 import db from '#/lib/db';
 import { notFound } from 'next/navigation';
 
@@ -15,9 +16,7 @@ export default async function Page({
 
   return (
     <div className="space-y-9">
-      <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-300">
-        {category.name}
-      </h1>
+      <DemoHeading>{category.name}</DemoHeading>
 
       <HooksClient />
     </div>

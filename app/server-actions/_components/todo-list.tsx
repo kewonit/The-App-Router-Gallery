@@ -1,4 +1,5 @@
 import { Boundary } from '#/ui/boundary';
+import { EmptyState } from '#/ui/demo-states';
 import { getTodos } from '../actions';
 import { TodoItem } from './todo-item';
 
@@ -7,7 +8,7 @@ export async function TodoList() {
   const completedCount = todos.filter((t) => t.completed).length;
 
   return (
-    <Boundary label="TodoList (async)" size="small">
+    <Boundary label="TodoList (Async)" size="small" color="blue">
       <div className="flex flex-col gap-4">
         <h2 className="text-xl font-medium text-gray-700 dark:text-gray-300">
           Todos{' '}
@@ -17,9 +18,10 @@ export async function TodoList() {
         </h2>
 
         {todos.length === 0 ? (
-          <div className="rounded-lg bg-gray-100 p-8 text-center text-gray-500 dark:bg-gray-900/50 dark:text-gray-600">
-            No todos yet
-          </div>
+          <EmptyState
+            title="No todos yet"
+            description="Add a todo using the form above to get started."
+          />
         ) : (
           <div className="flex flex-col gap-2">
             {todos.map((todo) => (
@@ -34,7 +36,7 @@ export async function TodoList() {
 
 export function TodoListSkeleton() {
   return (
-    <Boundary label="TodoList (loading)" size="small" color="blue">
+    <Boundary label="TodoList (Loading)" size="small" color="blue" pulse>
       <div className="flex flex-col gap-4">
         <div className="h-6 w-32 animate-pulse rounded bg-gray-200 dark:bg-gray-800" />
         <div className="flex flex-col gap-2">

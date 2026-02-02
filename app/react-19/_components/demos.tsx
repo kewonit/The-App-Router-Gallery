@@ -17,7 +17,7 @@ function AddTodoForm() {
   );
 
   return (
-    <Boundary label="useActionState" color="blue">
+    <Boundary label="useActionState (Client)" color="blue">
       <div className="space-y-3">
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-gray-100">
@@ -99,7 +99,7 @@ function OptimisticTodoList({
   };
 
   return (
-    <Boundary label="useOptimistic" color="violet">
+    <Boundary label="useOptimistic (Client)" color="violet">
       <div className="space-y-3">
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-gray-100">
@@ -193,7 +193,7 @@ function UseHookDemo({ dataPromise }: { dataPromise: Promise<string> }) {
   const data = use(dataPromise);
 
   return (
-    <Boundary label="use() Hook" color="pink">
+    <Boundary label="use() Hook (Client)" color="pink">
       <div className="space-y-3">
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-gray-100">
@@ -216,7 +216,7 @@ function UseHookDemo({ dataPromise }: { dataPromise: Promise<string> }) {
 // Hooks comparison reference
 function HooksReference() {
   return (
-    <Boundary label="React 19 Hooks Reference">
+    <Boundary label="React 19 Hooks Reference (Server)">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>

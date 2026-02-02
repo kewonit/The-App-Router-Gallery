@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Boundary } from '#/ui/boundary';
+import { CodeDisplay } from './_components/code-display';
+import { CodeExample } from './_components/code-example';
 
 type MetadataExample = {
   title: string;
@@ -63,7 +65,7 @@ export default function Page() {
   return (
     <div className="space-y-6">
       {/* Example Selector */}
-      <Boundary label="Select Metadata Example">
+      <Boundary label="Select Metadata Example (Client)" color="blue">
         <div className="flex flex-wrap gap-2">
           {examples.map((example, index) => (
             <button
@@ -84,68 +86,12 @@ export default function Page() {
       {/* Current Example Display */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Code Example */}
-        <Boundary label="Code Pattern" color="cyan">
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-                {current.title}
-              </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {current.description}
-              </p>
-            </div>
-
-            <div className="rounded-lg bg-gray-900 p-4 font-mono text-sm">
-              <pre className="overflow-x-auto text-gray-300">
-                {activeExample === 0
-                  ? `// Static metadata export
-export const metadata = {
-  title: '${current.metadata.title}',
-  description: '${current.metadata.description}',
-  openGraph: {
-    title: '${current.metadata.openGraph?.title}',
-    images: ['${current.metadata.openGraph?.images?.[0]}'],
-  },
-};`
-                  : activeExample === 1
-                    ? `// Dynamic metadata function
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const post = await getPost(slug);
-  
-  return {
-    title: post.title,
-    description: post.excerpt,
-    openGraph: {
-      title: post.title,
-      images: [\`/api/og?title=\${post.title}\`],
-    },
-  };
-}`
-                    : `// Parent layout.tsx
-export const metadata = {
-  title: {
-    template: '%s | Dashboard | My App',
-    default: 'Dashboard',
-  },
-};
-
-// Child page.tsx
-export const metadata = {
-  title: 'Settings', // Becomes: Settings | Dashboard | My App
-  robots: 'noindex, nofollow',
-};`}
-              </pre>
-            </div>
-          </div>
-        </Boundary>
+        <CodeDisplay title={current.title} description={current.description}>
+          <CodeExample exampleId={activeExample} />
+        </CodeDisplay>
 
         {/* Generated Output */}
-        <Boundary label="Generated HTML Head" color="pink">
+        <Boundary label="Generated HTML Head (Preview)" color="pink">
           <div className="space-y-4">
             <div>
               <h3 className="font-semibold text-gray-900 dark:text-gray-100">
