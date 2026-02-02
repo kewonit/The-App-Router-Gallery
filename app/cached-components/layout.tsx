@@ -25,8 +25,9 @@ export default async function Layout({
       </Boundary>
 
       <Boundary
-        label="layout.tsx (statically inferred)"
+        label="layout.tsx (Static)"
         kind="solid"
+        color="cyan"
         animateRerendering={false}
       >
         {children}

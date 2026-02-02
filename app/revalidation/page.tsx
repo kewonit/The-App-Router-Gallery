@@ -14,7 +14,7 @@ function DataDisplay({
   refreshKey: number;
 }) {
   return (
-    <Boundary label="Cached Data Display" color="cyan">
+    <Boundary label="Cached Data Display (Client)" color="cyan">
       <div className="space-y-4">
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-gray-100">

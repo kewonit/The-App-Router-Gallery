@@ -65,7 +65,7 @@ export default function Page() {
   return (
     <div className="space-y-6">
       {/* Example Selector */}
-      <Boundary label="Select Metadata Example">
+      <Boundary label="Select Metadata Example (Client)" color="blue">
         <div className="flex flex-wrap gap-2">
           {examples.map((example, index) => (
             <button
@@ -91,7 +91,7 @@ export default function Page() {
         </CodeDisplay>
 
         {/* Generated Output */}
-        <Boundary label="Generated HTML Head" color="pink">
+        <Boundary label="Generated HTML Head (Preview)" color="pink">
           <div className="space-y-4">
             <div>
               <h3 className="font-semibold text-gray-900 dark:text-gray-100">

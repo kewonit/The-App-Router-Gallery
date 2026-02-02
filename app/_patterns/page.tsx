@@ -1,4 +1,5 @@
 import { ExternalLink } from '#/ui/external-link';
+import { DemoHeading } from '#/ui/demo-states';
 import Link from 'next/link';
 
 const items = [
@@ -22,9 +23,7 @@ const items = [
 export default function Page() {
   return (
     <div className="space-y-6">
-      <h1 className="text-xl font-medium text-gray-700 dark:text-gray-300">
-        Patterns
-      </h1>
+      <DemoHeading>Patterns</DemoHeading>
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         {items.map((item) => {

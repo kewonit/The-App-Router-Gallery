@@ -22,7 +22,11 @@ export default async function Page({
   }
 
   return (
-    <Boundary label="page.tsx (without-private)" animateRerendering={false}>
+    <Boundary
+      label="page.tsx (Dynamic)"
+      color="violet"
+      animateRerendering={false}
+    >
       <div className="flex flex-col gap-8">
         <Link
           href="/private-cache"

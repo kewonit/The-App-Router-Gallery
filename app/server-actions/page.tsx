@@ -6,7 +6,7 @@ import { ActionButtons } from './_components/action-buttons';
 
 export default function Page() {
   return (
-    <Boundary label="page.tsx">
+    <Boundary label="page.tsx (Server)">
       <div className="flex flex-col gap-6">
         <AddTodoForm />
 

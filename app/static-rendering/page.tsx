@@ -17,7 +17,7 @@ export function generateStaticParams() {
 
 function RenderingComparison() {
   return (
-    <Boundary label="Rendering Strategies Comparison">
+    <Boundary label="Rendering Strategies Comparison (Server)">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
@@ -296,7 +296,7 @@ export default function Page() {
       <DynamicSegmentsDemo />
 
       {/* Build output example */}
-      <Boundary label="Build Output Preview">
+      <Boundary label="Build Output Preview (Server)">
         <div className="space-y-3">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             During <code className="text-blue-600">next build</code>, you see

@@ -6,5 +6,9 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Boundary label="(main)(marketing)/layout.tsx">{children}</Boundary>;
+  return (
+    <Boundary label="(main)(marketing)/layout.tsx (Server)">
+      {children}
+    </Boundary>
+  );
 }

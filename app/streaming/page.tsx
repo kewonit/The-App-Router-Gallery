@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { Boundary } from '#/ui/boundary';
+import { DemoHeading } from '#/ui/demo-states';
 import {
   FastComponent,
   MediumComponent,
@@ -10,14 +11,9 @@ import { Skeleton } from './_components/skeletons';
 
 export default function Page() {
   return (
-    <Boundary label="page.tsx">
+    <Boundary label="page.tsx (Server)">
       <div className="flex flex-col gap-4">
-        <h1 className="text-xl font-medium text-gray-700 dark:text-gray-300">
-          Streaming{' '}
-          <span className="font-mono tracking-tighter text-gray-500 dark:text-gray-600">
-            (4)
-          </span>
-        </h1>
+        <DemoHeading count={4}>Streaming</DemoHeading>
 
         <div className="grid gap-4 rounded-lg border border-gray-200/70 bg-white/60 p-4 text-sm text-gray-600 shadow-sm dark:border-gray-800/80 dark:bg-gray-950/40 dark:text-gray-300">
           <div className="grid gap-2">
